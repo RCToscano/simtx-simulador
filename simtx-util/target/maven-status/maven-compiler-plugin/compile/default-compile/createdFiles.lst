@@ -1,0 +1,13 @@
+br\gov\caixa\simtx\simulador\services\util\token\TokenServicoBody.class
+br\gov\caixa\simtx\simulador\services\vo\ContaSIBAR.class
+br\gov\caixa\simtx\simulador\services\exception\ControleException.class
+br\gov\caixa\simtx\simulador\services\util\token\TokenServico.class
+br\gov\caixa\simtx\simulador\services\util\token\TokenServicoSsoBody.class
+br\gov\caixa\simtx\simulador\services\util\token\TokenServicoB2cBody.class
+br\gov\caixa\simtx\simulador\services\util\token\TokenServicoHeader.class
+br\gov\caixa\simtx\simulador\services\data\DataUtil.class
+br\gov\caixa\simtx\simulador\services\util\token\ParametrosApiUtil.class
+br\gov\caixa\simtx\simulador\services\util\jwt\JWTUtil.class
+br\gov\caixa\simtx\simulador\services\util\token\B2CKeys.class
+br\gov\caixa\simtx\simulador\services\util\token\ChaveB2C.class
+br\gov\caixa\simtx\simulador\services\util\token\ChaveSSO.class
