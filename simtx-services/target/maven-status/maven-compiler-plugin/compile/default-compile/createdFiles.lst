@@ -1,5 +1,0 @@
-br\gov\caixa\simtx\simulador\services\controle\Controle.class
-br\gov\caixa\simtx\simulador\services\configuracao\RestApiConfig.class
-br\gov\caixa\simtx\simulador\services\permissao\RequisicaoValidaPermissao.class
-br\gov\caixa\simtx\simulador\services\permissao\ValidaPermissaoControle.class
-br\gov\caixa\simtx\simulador\services\configuracao\JWTFilter.class
