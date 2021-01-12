@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import br.gov.caixa.simtx.simulador.services.exception.ControleException;
-import br.gov.caixa.simtx.simulador.services.util.jwt.JWTUtil;
+import br.gov.caixa.simtx.simulador.util.exception.ControleException;
+import br.gov.caixa.simtx.simulador.util.jwt.JWTUtil;
 
 public class JWTFilter implements Filter{
 	

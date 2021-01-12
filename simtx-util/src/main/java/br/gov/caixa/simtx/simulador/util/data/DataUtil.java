@@ -3,7 +3,7 @@
  * 
  * Todos os direitos reservados
  ******************************************************************************/
-package br.gov.caixa.simtx.simulador.services.data;
+package br.gov.caixa.simtx.simulador.util.data;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;

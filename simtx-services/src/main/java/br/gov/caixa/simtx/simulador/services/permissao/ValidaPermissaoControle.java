@@ -14,9 +14,9 @@ import javax.ws.rs.core.Response;
 import org.apache.log4j.Logger;
 
 import br.gov.caixa.simtx.simulador.services.controle.Controle;
-import br.gov.caixa.simtx.simulador.services.data.DataUtil;
-import br.gov.caixa.simtx.simulador.services.exception.ControleException;
-import br.gov.caixa.simtx.simulador.services.util.token.ParametrosApiUtil;
+import br.gov.caixa.simtx.simulador.util.data.DataUtil;
+import br.gov.caixa.simtx.simulador.util.exception.ControleException;
+import br.gov.caixa.simtx.simulador.util.token.ParametrosApiUtil;
 
 @Path("/sibar/valida-permissao")
 @Consumes("application/json")

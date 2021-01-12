@@ -1,9 +1,9 @@
-package br.gov.caixa.simtx.simulador.services.util.token;
+package br.gov.caixa.simtx.simulador.util.token;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import br.gov.caixa.simtx.simulador.services.vo.ContaSIBAR;
+import br.gov.caixa.simtx.simulador.util.vo.ContaSIBAR;
 
 public class ParametrosApiUtil {
 

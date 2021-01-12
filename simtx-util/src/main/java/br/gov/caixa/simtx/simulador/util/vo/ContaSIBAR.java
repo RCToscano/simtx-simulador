@@ -1,4 +1,4 @@
-package br.gov.caixa.simtx.simulador.services.vo;
+package br.gov.caixa.simtx.simulador.util.vo;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;

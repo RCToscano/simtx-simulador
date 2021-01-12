@@ -1,4 +1,4 @@
-package br.gov.caixa.simtx.simulador.services.util.token;
+package br.gov.caixa.simtx.simulador.util.token;
 
 import java.util.Date;
 import java.util.List;

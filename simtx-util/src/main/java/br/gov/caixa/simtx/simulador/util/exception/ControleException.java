@@ -3,7 +3,7 @@
  * 
  * Todos os direitos reservados
  ******************************************************************************/
-package br.gov.caixa.simtx.simulador.services.exception;
+package br.gov.caixa.simtx.simulador.util.exception;
 
 public class ControleException extends Exception {
 	private static final long serialVersionUID = 6215361465016735503L;

@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import br.gov.caixa.simtx.simulador.services.vo.ContaSIBAR;
+import br.gov.caixa.simtx.simulador.util.vo.ContaSIBAR;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

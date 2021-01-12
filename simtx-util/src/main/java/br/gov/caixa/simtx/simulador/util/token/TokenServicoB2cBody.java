@@ -1,4 +1,4 @@
-package br.gov.caixa.simtx.simulador.services.util.token;
+package br.gov.caixa.simtx.simulador.util.token;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

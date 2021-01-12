@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 
-import br.gov.caixa.simtx.simulador.services.exception.ControleException;
+import br.gov.caixa.simtx.simulador.util.exception.ControleException;
 
 
 public abstract class Controle {
