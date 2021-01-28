@@ -1,4 +1,4 @@
-package br.gov.caixa.simtx.simulador.services.permissao;
+package br.gov.caixa.simtx.simulador.services.titular;
 
 import java.util.Date;
 
@@ -21,11 +21,11 @@ import br.gov.caixa.simtx.simulador.util.token.ParametrosApiUtil;
 @Path("/sibar/valida-permissao")
 @Consumes("application/json")
 @Produces("application/json")
-public class ValidaPermissaoControle extends Controle {
+public class ValidaTitularControle extends Controle {
 
-	private static final Logger logger = Logger.getLogger(ValidaPermissaoControle.class);
+	private static final Logger logger = Logger.getLogger(ValidaTitularControle.class);
 	
-	private static final String PATH = "valida_permissao";
+	private static final String PATH = "valida_titular";
 	
 
 	@POST

@@ -1,12 +1,9 @@
-package br.gov.caixa.simtx.simulador.services.permissao;
-
-import java.util.Date;
+package br.gov.caixa.simtx.simulador.services.assinatura;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
@@ -14,30 +11,25 @@ import javax.ws.rs.core.Response;
 import org.apache.log4j.Logger;
 
 import br.gov.caixa.simtx.simulador.services.controle.Controle;
-import br.gov.caixa.simtx.simulador.util.data.DataUtil;
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
-import br.gov.caixa.simtx.simulador.util.token.ParametrosApiUtil;
 
 @Path("/sibar/valida-permissao")
 @Consumes("application/json")
 @Produces("application/json")
-public class ValidaPermissaoControle extends Controle {
+public class AssinaturaSimplesControle extends Controle {
 
-	private static final Logger logger = Logger.getLogger(ValidaPermissaoControle.class);
+	private static final Logger logger = Logger.getLogger(AssinaturaSimplesControle.class);
 	
-	private static final String PATH = "valida_permissao";
+	private static final String PATH = "assinatura_simples";
 	
 
 	@POST
-	@Path("/v1/clientes/{cpf}/validar-servico")
-	public Response validarServico(@Context HttpServletRequest httpRequest, @PathParam("cpf") String cpf, String json) {
+	@Path("/v1/assinatura-simples/validar")
+	public Response validarServico(@Context HttpServletRequest httpRequest, String json) {
 		try {
-			RequisicaoValidaPermissao requisicao = gson.fromJson(json, RequisicaoValidaPermissao.class);
-			String resposta = simuladorGenerico(requisicao, PATH);
-			resposta = resposta.replace("{CONTA}", ParametrosApiUtil.converterParaIDConta(requisicao.getConta()));
-			resposta = resposta.replace("{DATA_ATUAL}", DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_XML));
+			RequisicaoAssinaturaSimples requisicao = gson.fromJson(json, RequisicaoAssinaturaSimples.class);
 			return Response.ok().header("Content-Type", "application/json; charset=utf-8")
-					.entity(resposta).build();
+					.entity(simuladorGenerico(requisicao, PATH)).build();
 		} 
 		catch (ControleException e) {
 			logger.error(e.getMensagem());
@@ -50,8 +42,5 @@ public class ValidaPermissaoControle extends Controle {
 					.entity(montarMsgErro(BASE_PATH_JSON + "/erro_generico_sibar.json", e.getMessage())).build();
 		}
 	}
-	
-	
-	
 	
 }

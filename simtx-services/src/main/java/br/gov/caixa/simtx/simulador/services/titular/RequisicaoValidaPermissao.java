@@ -1,4 +1,4 @@
-package br.gov.caixa.simtx.simulador.services.permissao;
+package br.gov.caixa.simtx.simulador.services.titular;
 
 import java.math.BigDecimal;
 

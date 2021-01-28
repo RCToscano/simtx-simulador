@@ -1,0 +1,10 @@
+{
+  "data_transacao": "{DATA_TRANSACAO}",
+  "classificacao": "ASSINATURA_INTERMEDIARIA",
+  "assinantes": [
+    {
+      "cpf": 0
+    }
+  ],
+  "token_autenticacao": "{TOKEN}"
+}

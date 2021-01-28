@@ -1,0 +1,18 @@
+[
+  {
+    "nsuTransacao": "123450",
+    "dataTransacao": "{DATA}",
+    "canalOrigem": "SIIBC",
+    "valorTransacao": 26.82,
+    "servico": "PIX",
+    "identificacaoTransacao": "PIX SIMULADOR"
+  },
+  {
+    "nsuTransacao": "123451",
+    "dataTransacao": "{DATA}",
+    "canalOrigem": "SIIBC",
+    "valorTransacao": 20.12,
+    "servico": "DEVOLUCAO_PIX",
+    "identificacaoTransacao": "DEVOLUCAO PIX SIMULADOR"
+  }
+]

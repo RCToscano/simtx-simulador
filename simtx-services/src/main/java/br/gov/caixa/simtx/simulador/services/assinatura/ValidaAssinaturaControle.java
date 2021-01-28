@@ -1,6 +1,7 @@
-package br.gov.caixa.simtx.simulador.services.permissao;
+package br.gov.caixa.simtx.simulador.services.assinatura;
 
-import java.util.Date;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -11,33 +12,45 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 
 import br.gov.caixa.simtx.simulador.services.controle.Controle;
-import br.gov.caixa.simtx.simulador.util.data.DataUtil;
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
-import br.gov.caixa.simtx.simulador.util.token.ParametrosApiUtil;
 
 @Path("/sibar/valida-permissao")
 @Consumes("application/json")
 @Produces("application/json")
-public class ValidaPermissaoControle extends Controle {
+public class ValidaAssinaturaControle extends Controle {
 
-	private static final Logger logger = Logger.getLogger(ValidaPermissaoControle.class);
+	private static final Logger logger = Logger.getLogger(ValidaAssinaturaControle.class);
 	
-	private static final String PATH = "valida_permissao";
+	private static final String PATH = "valida_assinatura";
 	
 
 	@POST
-	@Path("/v1/clientes/{cpf}/validar-servico")
+	@Path("/v1/assinatura-multipla/{cpf}/validar")
 	public Response validarServico(@Context HttpServletRequest httpRequest, @PathParam("cpf") String cpf, String json) {
 		try {
-			RequisicaoValidaPermissao requisicao = gson.fromJson(json, RequisicaoValidaPermissao.class);
-			String resposta = simuladorGenerico(requisicao, PATH);
-			resposta = resposta.replace("{CONTA}", ParametrosApiUtil.converterParaIDConta(requisicao.getConta()));
-			resposta = resposta.replace("{DATA_ATUAL}", DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_XML));
+			RequisicaoValidaAssinatura requisicao = gson.fromJson(json, RequisicaoValidaAssinatura.class);
+			validarAtributosCampos(requisicao);
+			
+			String resposta = "";
+			if(requisicao.getClassificacao().equals(ClassificacaoAssinaturaEnum.PRIMEIRA_ASSINATURA)) {
+				
+				InputStream input = getClass().getClassLoader().getResourceAsStream(BASE_PATH_JSON + PATH + "/200.json");
+				resposta = IOUtils.toString(input, StandardCharsets.UTF_8);
+				
+				
+			}
+			else if(requisicao.getClassificacao().equals(ClassificacaoAssinaturaEnum.ASSINATURA_INTERMEDIARIA)) {
+				
+			}
+			
+			
+			
 			return Response.ok().header("Content-Type", "application/json; charset=utf-8")
-					.entity(resposta).build();
+					.entity("").build();
 		} 
 		catch (ControleException e) {
 			logger.error(e.getMensagem());
@@ -50,8 +63,5 @@ public class ValidaPermissaoControle extends Controle {
 					.entity(montarMsgErro(BASE_PATH_JSON + "/erro_generico_sibar.json", e.getMessage())).build();
 		}
 	}
-	
-	
-	
 	
 }

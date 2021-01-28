@@ -1,0 +1,25 @@
+{
+  "nsuTransacao": 1355055,
+  "situacaoTransacao": "EFETIVADO",
+  "dadosDevolucao": {
+    "idOperacao": "D00360305202101132023f594f2e6a0f",
+    "valor": "5.5",
+    "informacoesEntreUsuarios": "teste",
+    "dataHoraRecebimentoPagador": "2021-01-02T17:23:47",
+    "dataHoraLiquidacao": "2021-01-02T20:23:47.000Z",
+    "dataContabil": "2021-01-02",
+    "valorAtualizado": "33.5"
+  },
+  "dadosRecebimento": {
+    "idFimAFim": "E003603052021010513557282521aede",
+    "pagador": {
+      "nome": "MARY POPPINS DA SILVA",
+      "cpf": "53383391884",
+      "ispb": "00360305"
+    },
+    "valor": 42,
+    "dataHoraRecebimento": "2021-01-02T10:56:07",
+    "formaIniciacaoPagamento": "MANUAL_COM_CHAVE",
+    "informacoesEntreUsuarios": "teste CNPJ"
+  }
+}

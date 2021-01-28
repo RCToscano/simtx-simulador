@@ -16,9 +16,9 @@ import org.apache.log4j.Logger;
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
 import br.gov.caixa.simtx.simulador.util.jwt.JWTUtil;
 
-public class JWTFilter implements Filter{
+public class FiltroSimulador implements Filter{
 	
-	private static final Logger logger = Logger.getLogger(JWTFilter.class);
+	private static final Logger logger = Logger.getLogger(FiltroSimulador.class);
 
 	
     @Override
@@ -46,7 +46,7 @@ public class JWTFilter implements Filter{
         }
 
         try {
-            JWTUtil.validarToken(token);
+            JWTUtil.validarToken(token.replace("Bearer ", ""));
             filterChain.doFilter(servletRequest, servletResponse);
         } 
         catch (ControleException e) {

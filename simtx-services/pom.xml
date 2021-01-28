@@ -45,6 +45,7 @@
 						<configuration>
 							<tasks>
 								<copy file="${basedir}/target/simtx-simulador.war" todir="C:/jboss-eap-7.1/standalone/deployments" />
+								<copy file="${basedir}/target/simtx-simulador.war" todir="C:/jetty-distribution-9.4.35.v20201120/webapps" />
 							</tasks>
 						</configuration>
 						<goals>

@@ -1,0 +1,41 @@
+{
+  "dataHora": "2021-01-01T02:50:00-03:00",
+  "idFimAFim": "E003603052021010719170fca7910fd3",
+  "informacoesEntreUsuarios": "Comprovante Simulador",
+  "usuarioPagador": {
+    "nome": "teste pg 0701",
+    "cpf": "52649647345",
+    "conta": {
+      "chave": "123",
+      "agencia": "1679",
+      "numeroConta": "02531007",
+      "produto": "001",
+      "dv": "4",
+      "tipoConta": "CACC",
+      "ispb": "00360305"
+    }
+  },
+  "usuarioRecebedor": {
+    "nome": "receb multipla ",
+    "cpf": "45645628861",
+    "conta": {
+      "chave": "",
+      "agencia": "1679",
+      "numeroConta": "88501265",
+      "produto": "001",
+      "dv": "1",
+      "tipoConta": "CACC",
+      "ispb": "00360305"
+    }
+  },
+  "valor": 26.82,
+  "participanteTarifado": "SLEV",
+  "metodoLiquidacao": "CLRG",
+  "transactionCurrency": "BRL",
+  "nsuTransacao": 1355055,
+  "situacaoDaTransacao": "EFETIVADO",
+  "dataHoraLiquidacao": "2021-01-01T02:50:00-03:00",
+  "dataContabil": "2021-01-01T02:50:00-03:00",
+  "formaIniciacaoPagamento": "MANUAL_SEM_CHAVE",
+  "txId": "1234"
+}

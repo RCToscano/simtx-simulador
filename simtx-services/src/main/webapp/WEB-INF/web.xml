@@ -6,12 +6,12 @@
 	<display-name>simtx-services</display-name>
 	
 	<filter>
-        <filter-name>jwtFilter</filter-name>
-        <filter-class>br.gov.caixa.simtx.simulador.services.configuracao.JWTFilter</filter-class>
+        <filter-name>filtroSimulador</filter-name>
+        <filter-class>br.gov.caixa.simtx.simulador.services.configuracao.FiltroSimulador</filter-class>
     </filter>
 
     <filter-mapping>
-        <filter-name>jwtFilter</filter-name>
+        <filter-name>filtroSimulador</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 	

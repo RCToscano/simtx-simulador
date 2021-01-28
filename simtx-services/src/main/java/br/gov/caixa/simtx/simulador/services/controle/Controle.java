@@ -39,16 +39,18 @@ public abstract class Controle {
 	}
 	
 	public void validarAtributosCampos(Object objeto) throws ControleException {
-		logger.info("Validando campos de entrada");
-		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-		Set<ConstraintViolation<Object>> violations = validator.validate(objeto);
-		if(!violations.isEmpty() ) {
-			String mensagem = "Campos invalidos:";
-			for (Iterator<ConstraintViolation<Object>> iter = violations.iterator(); iter.hasNext();) {
-				ConstraintViolation<Object> erro = iter.next();
-				mensagem = mensagem.concat(" | ").concat(erro.getMessage());
+		if(objeto != null) {
+			logger.info("Validando campos de entrada");
+			Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+			Set<ConstraintViolation<Object>> violations = validator.validate(objeto);
+			if(!violations.isEmpty() ) {
+				String mensagem = "Campos invalidos:";
+				for (Iterator<ConstraintViolation<Object>> iter = violations.iterator(); iter.hasNext();) {
+					ConstraintViolation<Object> erro = iter.next();
+					mensagem = mensagem.concat(" | ").concat(erro.getMessage());
+				}
+				throw new ControleException(mensagem, "SIMULADOR");
 			}
-			throw new ControleException(mensagem, "SIMULADOR");
 		}
 	}
 	

@@ -1,0 +1,10 @@
+{
+  "data_transacao": "{DATA_TRANSACAO}",
+  "classificacao": "PRIMEIRA_ASSINATURA",
+  "assinantes": [
+    {
+      "cpf": 0
+    }
+  ],
+  "token_autenticacao": "string"
+}
