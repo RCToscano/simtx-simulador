@@ -29,7 +29,7 @@ public class AssinaturaSimplesControle extends Controle {
 		try {
 			RequisicaoAssinaturaSimples requisicao = gson.fromJson(json, RequisicaoAssinaturaSimples.class);
 			return Response.ok().header("Content-Type", "application/json; charset=utf-8")
-					.entity(simuladorGenerico(requisicao, PATH)).build();
+					.entity(simuladorGenerico(requisicao, PATH + "/V1")).build();
 		} 
 		catch (ControleException e) {
 			logger.error(e.getMensagem());

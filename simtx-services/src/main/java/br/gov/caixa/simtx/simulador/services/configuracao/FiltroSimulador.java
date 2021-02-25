@@ -39,20 +39,20 @@ public class FiltroSimulador implements Filter{
 
         String token = request.getHeader(JWTUtil.TOKEN_HEADER);
 
-        if(token == null || token.trim().isEmpty()) {
-        	logger.error("[SIMULADOR] Token nao informado");
-            response.setStatus(401);
-            return;
-        }
+//        if(token == null || token.trim().isEmpty()) {
+//        	logger.error("[SIMULADOR] Token nao informado");
+//            response.setStatus(401);
+//            return;
+//        }
 
-        try {
-            JWTUtil.validarToken(token.replace("Bearer ", ""));
+//        try {
+//            JWTUtil.validarToken(token.replace("Bearer ", ""));
             filterChain.doFilter(servletRequest, servletResponse);
-        } 
-        catch (ControleException e) {
-        	logger.error("[SIMULADOR] " + e.getMensagem());
-            response.setStatus(401);
-        }
+//        } 
+//        catch (ControleException e) {
+//        	logger.error("[SIMULADOR] " + e.getMensagem());
+//            response.setStatus(401);
+//        }
     }
 
     @Override

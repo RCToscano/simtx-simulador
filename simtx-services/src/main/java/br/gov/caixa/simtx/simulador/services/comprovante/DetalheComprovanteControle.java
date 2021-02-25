@@ -32,19 +32,19 @@ public class DetalheComprovanteControle extends Controle {
 			if (nsuTransacao == null || dataTransacao == null) {
 				logger.warn("[SIMULADOR] Campos obrigatorios nao informados");
 				return Response.status(Response.Status.BAD_REQUEST)
-						.entity(montarMsgErro(BASE_PATH_JSON + PATH + "/500.json", "Campos obrigatorios nao informados"))
+						.entity(montarMsgErro(BASE_PATH_JSON + PATH + "/V1/500.json", "Campos obrigatorios nao informados"))
 						.build();
 			} 
 			else if (dataTransacao.equals("2021-01-01")) {
-				json = recuperarJson(BASE_PATH_JSON + PATH + "/200_pix.json");
+				json = recuperarJson(BASE_PATH_JSON + PATH + "/V1/200_pix.json");
 			} 
 			else if (dataTransacao.equals("2021-01-02")) {
-				json = recuperarJson(BASE_PATH_JSON + PATH + "/200_devolucao_pix.json");
+				json = recuperarJson(BASE_PATH_JSON + PATH + "/V1/200_devolucao_pix.json");
 			} 
 			else {
 				logger.warn("[SIMULADOR] Comprovante nao implementado");
 				return Response.status(Response.Status.BAD_REQUEST).entity(montarMsgErro(
-						BASE_PATH_JSON + PATH + "/500.json",
+						BASE_PATH_JSON + PATH + "/V1/500.json",
 						"Comprovante nao implementado. Informe a data 2021-01-01 para PIX e 2021-01-02 para Devolucao PIX"))
 						.build();
 			}
@@ -55,7 +55,7 @@ public class DetalheComprovanteControle extends Controle {
 		catch (Exception e) {
 			logger.error(e);
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity(montarMsgErro(BASE_PATH_JSON + PATH + "/500.json", e.getMessage())).build();
+					.entity(montarMsgErro(BASE_PATH_JSON + PATH + "/V1/500.json", e.getMessage())).build();
 		}
 	}
 	

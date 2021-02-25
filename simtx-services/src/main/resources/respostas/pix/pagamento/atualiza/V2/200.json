@@ -1,0 +1,51 @@
+{
+  "dataHora": "string",
+  "idFimAFim": "string",
+  "situacaoDaTransacao": "string",
+  "codigoDeErro": "string",
+  "detalhamentoDoErro": "string",
+  "dataHoraLiquidacao": "string",
+  "dataContabil": "string",
+  "qrcode": {
+    "revisao": 0,
+    "calendario": {
+      "criacao": "string",
+      "apresentacao": "string",
+      "expiracao": 0,
+      "dataDeVencimento": "string",
+      "validaAposVencimento": 0
+    },
+    "devedor": {
+      "cpf": "string",
+      "cnpj": "string",
+      "nome": "string"
+    },
+    "recebedor": {
+      "cpf": "string",
+      "cnpj": "string",
+      "nome": "string",
+      "nomeFantasia": "string",
+      "logradouro": "string",
+      "cidade": "string",
+      "uf": "string",
+      "cep": "string"
+    },
+    "valor": {
+      "original": "string",
+      "abatimento": "string",
+      "desconto": "string",
+      "juros": "string",
+      "multa": "string",
+      "finall": "string"
+    },
+    "chave": "string",
+    "txid": "string",
+    "solicitacaoPagador": "string",
+    "infoAdicionais": [
+      {
+        "nome": "string",
+        "descricao": "string"
+      }
+    ]
+  }
+}

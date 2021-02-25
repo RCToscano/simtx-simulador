@@ -28,7 +28,7 @@ public class ListaComprovantesControle extends Controle {
 	public Response validarServico(@Context HttpServletRequest httpRequest, String json) {
 		try {
 			RequisicaoListaComprovante requisicao = gson.fromJson(json, RequisicaoListaComprovante.class);
-			String resposta = simuladorGenerico(requisicao, PATH);
+			String resposta = simuladorGenerico(requisicao, PATH + "/V1");
 			resposta = resposta.replace("{DATA}", requisicao.getDataInicio());
 			return Response.ok().header("Content-Type", "application/json; charset=utf-8").entity(resposta).build();
 		} 

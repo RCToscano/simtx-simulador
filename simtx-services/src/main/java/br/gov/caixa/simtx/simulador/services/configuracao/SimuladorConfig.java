@@ -13,6 +13,9 @@ public class SimuladorConfig extends Application {
 		resources.add(br.gov.caixa.simtx.simulador.services.assinatura.AssinaturaSimplesControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.comprovante.DetalheComprovanteControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.feriados.ConsultaFeriadosControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.pagamentospi.PagamentoSPIControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.pagamentospi.AtualizacaoSPIControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.consultaconta.ConsultaContaControle.class);
 		return resources;
 	}
 }

@@ -38,7 +38,7 @@ public class ValidaAssinaturaControle extends Controle {
 			String resposta = "";
 			if(requisicao.getClassificacao().equals(ClassificacaoAssinaturaEnum.PRIMEIRA_ASSINATURA)) {
 				
-				InputStream input = getClass().getClassLoader().getResourceAsStream(BASE_PATH_JSON + PATH + "/200.json");
+				InputStream input = getClass().getClassLoader().getResourceAsStream(BASE_PATH_JSON + PATH + "/V1/200.json");
 				resposta = IOUtils.toString(input, StandardCharsets.UTF_8);
 				
 				

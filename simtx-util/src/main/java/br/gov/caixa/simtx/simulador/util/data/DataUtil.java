@@ -24,7 +24,7 @@ public class DataUtil {
 	public static final String FORMATO_DATA_XML = "yyyy-MM-dd";
 	public static final String FORMATO_DATA_PADRAO_BR = "dd/MM/yyyy";
 	public static final String FORMATO_DATA_PADRAO_BR_HORA = "dd/MM/yyyy HH:mm:ss";
-	public static final String FORMATO_DATA_YYYY_MM_DD_HIFEN_JSON = "yyyy-MM-dd'T'HH:mm:ss.SSSX";
+	public static final String FORMATO_DATA_YYYY_MM_DD_HIFEN_JSON = "yyyy-MM-dd'T'HH:mm:ss.sss";
 	public static final String FORMATO_DATA_YYYY_MM_DD_HH_MM_TIME = "yyyy-MM-dd'T'HH:mm:ss";
 	public static final String FORMATO_DATA_YYYY_MM_DD_HH_MM = "yyyy-MM-dd HH:mm";
 	public static final String FORMATO_DATA_YYYY_MM_DD_HH_MM_SS = "yyyyMMddHHmmss";

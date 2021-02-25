@@ -35,7 +35,7 @@ public class ConsultaFeriadosControle extends Controle {
 			if (abrangencia != null && !abrangencia.isEmpty() && dataInicial != null && !dataInicial.isEmpty()
 					&& dataFinal != null && !dataFinal.isEmpty()) {
 
-				String resposta = simuladorGenerico(null, PATH);
+				String resposta = simuladorGenerico(null, PATH + "/V1");
 				resposta = resposta.replace("{DATA_SIMULADA}",
 						DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_XML));
 				return Response.ok().header("Content-Type", "application/json; charset=utf-8").entity(resposta).build();

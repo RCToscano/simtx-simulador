@@ -33,7 +33,7 @@ public class ValidaTitularControle extends Controle {
 	public Response validarServico(@Context HttpServletRequest httpRequest, @PathParam("cpf") String cpf, String json) {
 		try {
 			RequisicaoValidaPermissao requisicao = gson.fromJson(json, RequisicaoValidaPermissao.class);
-			String resposta = simuladorGenerico(requisicao, PATH);
+			String resposta = simuladorGenerico(requisicao, PATH + "/V1");
 			resposta = resposta.replace("{CONTA}", ParametrosApiUtil.converterParaIDConta(requisicao.getConta()));
 			resposta = resposta.replace("{DATA_ATUAL}", DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_XML));
 			return Response.ok().header("Content-Type", "application/json; charset=utf-8")

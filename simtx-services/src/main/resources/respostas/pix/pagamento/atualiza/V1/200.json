@@ -1,0 +1,9 @@
+{
+  "dataHora": "string",
+  "idFimAFim": "string",
+  "situacaoDaTransacao": "string",
+  "codigoDeErro": "string",
+  "detalhamentoDoErro": "string",
+  "dataHoraLiquidacao": "string",
+  "dataContabil": "string"
+}
