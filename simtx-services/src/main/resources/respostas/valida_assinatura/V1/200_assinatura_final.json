@@ -3,8 +3,14 @@
   "classificacao": "ASSINATURA_FINAL",
   "assinantes": [
     {
-      "cpf": 0
+      "cpf": 99999999999
+    },
+    {
+      "cpf": 88888888888
+    },
+    {
+      "cpf": 77777777777
     }
   ],
-  "token_autenticacao": "string"
+  "token_autenticacao": "{TOKEN}"
 }

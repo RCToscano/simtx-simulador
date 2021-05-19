@@ -1,4 +1,4 @@
-package br.gov.caixa.simtx.simulador.services.assinatura;
+package br.gov.caixa.simtx.simulador.services.assinatura.multipla;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 

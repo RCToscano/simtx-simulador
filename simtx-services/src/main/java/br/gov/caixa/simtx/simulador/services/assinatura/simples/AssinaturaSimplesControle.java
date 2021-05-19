@@ -1,4 +1,4 @@
-package br.gov.caixa.simtx.simulador.services.assinatura;
+package br.gov.caixa.simtx.simulador.services.assinatura.simples;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;

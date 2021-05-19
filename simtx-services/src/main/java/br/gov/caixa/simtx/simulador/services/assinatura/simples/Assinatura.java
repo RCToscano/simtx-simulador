@@ -1,8 +1,10 @@
-package br.gov.caixa.simtx.simulador.services.assinatura;
+package br.gov.caixa.simtx.simulador.services.assinatura.simples;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import br.gov.caixa.simtx.simulador.services.assinatura.multipla.TipoAssinaturaApiEnum;
 
 public class Assinatura {
 

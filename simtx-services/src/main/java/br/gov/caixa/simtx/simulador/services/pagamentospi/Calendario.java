@@ -22,20 +22,20 @@ public class Calendario {
 	@Size(min = 10, max = 10, message = "dataDeVencimento deve ser informada e ter o seguinte formato yyyy-MM-dd")
 	private String dataDeVencimento;
 
-	@NotNull(message = "validaAposVencimento nao informado")
-	@Min(value = 0, message = "validaAposVencimento nao informado")
-	private Long validaAposVencimento;
+	@NotNull(message = "validadeAposVencimento nao informado")
+	@Min(value = 0, message = "validadeAposVencimento nao informado")
+	private Long validadeAposVencimento;
 
 	public Calendario() {}
 
 	public Calendario(String criacao, String apresentacao, Long expiracao, String dataDeVencimento,
-			Long validaAposVencimento) {
+			Long validadeAposVencimento) {
 		super();
 		this.criacao = criacao;
 		this.apresentacao = apresentacao;
 		this.expiracao = expiracao;
 		this.dataDeVencimento = dataDeVencimento;
-		this.validaAposVencimento = validaAposVencimento;
+		this.validadeAposVencimento = validadeAposVencimento;
 	}
 
 	public String getCriacao() {
@@ -70,12 +70,12 @@ public class Calendario {
 		this.dataDeVencimento = dataDeVencimento;
 	}
 
-	public Long getValidaAposVencimento() {
-		return validaAposVencimento;
+	public Long getValidadeAposVencimento() {
+		return validadeAposVencimento;
 	}
 
-	public void setValidaAposVencimento(Long validaAposVencimento) {
-		this.validaAposVencimento = validaAposVencimento;
+	public void setValidadeAposVencimento(Long validadeAposVencimento) {
+		this.validadeAposVencimento = validadeAposVencimento;
 	}
 
 }

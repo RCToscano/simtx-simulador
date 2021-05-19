@@ -3,7 +3,10 @@
   "classificacao": "ASSINATURA_INTERMEDIARIA",
   "assinantes": [
     {
-      "cpf": 0
+      "cpf": 99999999999
+    },
+    {
+      "cpf": 88888888888
     }
   ],
   "token_autenticacao": "{TOKEN}"

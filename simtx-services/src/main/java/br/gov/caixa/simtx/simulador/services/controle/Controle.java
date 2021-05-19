@@ -88,7 +88,7 @@ public abstract class Controle {
 		}  
 	}
 	
-	public String requisicaoHttpHttps(String uri, String metodo, String token, String requisicao) throws Exception {
+	public String requisicaoHttpHttps(String uri, String metodo, String token, String requisicao) throws IOException {
 		if(uri.contains("https")) {
 			return requisicaoHttps(uri, metodo, token, requisicao);
 		}
@@ -97,7 +97,7 @@ public abstract class Controle {
 		}
 	}
 	
-	public String requisicaoHttp(String uri, String metodo, String token, String requisicao) throws Exception {
+	public String requisicaoHttp(String uri, String metodo, String token, String requisicao) throws IOException {
 		try {
 			URL url = new URL(uri);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -128,13 +128,13 @@ public abstract class Controle {
 			
 			return retornoTransacional;
 		} 
-		catch (Exception e) {
+		catch (IOException e) {
 			logger.error(e);
 			throw e;
 		}
 	}
 	
-	public String requisicaoHttps(String uri, String metodo, String token, String requisicao) throws Exception {
+	public String requisicaoHttps(String uri, String metodo, String token, String requisicao) throws IOException {
 		try {
 			SSLSocketFactory sslsocketfactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
 
@@ -168,7 +168,7 @@ public abstract class Controle {
 			
 			return retornoTransacional;
 		} 
-		catch (Exception e) {
+		catch (IOException e) {
 			logger.error(e);
 			throw e;
 		}

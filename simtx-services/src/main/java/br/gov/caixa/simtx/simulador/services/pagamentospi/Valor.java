@@ -3,9 +3,6 @@ package br.gov.caixa.simtx.simulador.services.pagamentospi;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.gson.annotations.SerializedName;
-
 public class Valor {
 
 	@NotNull(message = "original nao informado")
@@ -30,8 +27,6 @@ public class Valor {
 
 	@NotNull(message = "valorFinal nao informado")
 	@Size(min = 1, message = "valorFinal nao informado corretamente")
-	@JsonProperty("final")
-	@SerializedName("final")
 	private String valorFinal;
 
 

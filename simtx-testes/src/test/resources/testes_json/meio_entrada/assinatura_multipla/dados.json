@@ -1,0 +1,18 @@
+{
+  "tipo":"ASSINATURA_MULTIPLA",
+  "dadosAssinaturaEletronica": {
+    "cpf": "45645624955",
+    "assinatura":  {
+      "tipo": "MULTIPLA",
+      "codigo": "3BDD5A1E1747CE0E"
+    },
+    "servico": "123",
+    "codigoDispositivo": "85A0FE14C1F8DD36",
+    "dispositivo": "ANDROID_PHONE",
+    "descricaoTransacao": "cli-mob-nbm",
+    "apelido": "TESTESMT06",
+    "enderecoIp": "200.201.162.188",
+    "token": "TESTESMT06          jGFPmKQJTcrD6XBKSjT9Peya3Uj6uG1h4w6jvVAKghrNRhGYHeIftJEBeUQu",                                          
+    "sessionId": "mtP6hGPZlkOIuwM-M3unDcqv.sinbc04"
+  }
+}

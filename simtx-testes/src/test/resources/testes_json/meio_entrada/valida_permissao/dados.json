@@ -1,0 +1,10 @@
+{
+  "tipo": "VALIDA_PERMISSAO",
+  "dadosAssinaturaEletronica": {
+    "cpf": "51597505099",
+    "sessionId": "0qBG2sP9AY3eKnzeVTuk0n1U.sinbc13",
+    "enderecoIp": "10.1.1.102",
+    "token": "TESTENBM073         51RDU79E4DmBc2kQhu4bc8bZNSkr1Np82V23aazigFrusy7Cf57j454EI9YX",
+    "servico": 1
+  }
+}

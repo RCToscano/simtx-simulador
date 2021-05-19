@@ -10,7 +10,7 @@ public class SimuladorConfig extends Application {
 	public Set<Class<?>> getClasses() {
 		final Set<Class<?>> resources = new java.util.HashSet<>();
 		resources.add(br.gov.caixa.simtx.simulador.services.permissao.ValidaPermissaoControle.class);
-		resources.add(br.gov.caixa.simtx.simulador.services.assinatura.AssinaturaSimplesControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.assinatura.simples.AssinaturaSimplesControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.comprovante.DetalheComprovanteControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.feriados.ConsultaFeriadosControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.pagamentospi.PagamentoSPIControle.class);

@@ -1,7 +1,8 @@
-package br.gov.caixa.simtx.simulador.services.assinatura;
+package br.gov.caixa.simtx.simulador.services.assinatura.multipla;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -16,6 +17,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 
 import br.gov.caixa.simtx.simulador.services.controle.Controle;
+import br.gov.caixa.simtx.simulador.util.data.DataUtil;
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
 
 @Path("/sibar/valida-permissao")
@@ -36,21 +38,30 @@ public class ValidaAssinaturaControle extends Controle {
 			validarAtributosCampos(requisicao);
 			
 			String resposta = "";
-			if(requisicao.getClassificacao().equals(ClassificacaoAssinaturaEnum.PRIMEIRA_ASSINATURA)) {
-				
+			if (ClassificacaoAssinaturaEnum.PRIMEIRA_ASSINATURA.equals(requisicao.getClassificacao())
+					&& !requisicao.getAssinatura().equals(ClassificacaoAssinaturaEnum.ASSINATURA_FINAL.getValue())) {
+
 				InputStream input = getClass().getClassLoader().getResourceAsStream(BASE_PATH_JSON + PATH + "/V1/200.json");
 				resposta = IOUtils.toString(input, StandardCharsets.UTF_8);
-				
-				
+			} 
+			else if ((ClassificacaoAssinaturaEnum.PRIMEIRA_ASSINATURA.equals(requisicao.getClassificacao())
+					|| ClassificacaoAssinaturaEnum.ASSINATURA_INTERMEDIARIA.equals(requisicao.getClassificacao()))
+					&& requisicao.getAssinatura().equals(ClassificacaoAssinaturaEnum.ASSINATURA_FINAL.getValue())) {
+
+				InputStream input = getClass().getClassLoader().getResourceAsStream(BASE_PATH_JSON + PATH + "/V1/200_assinatura_final.json");
+				resposta = IOUtils.toString(input, StandardCharsets.UTF_8);
+			} 
+			else if (ClassificacaoAssinaturaEnum.ASSINATURA_INTERMEDIARIA.equals(requisicao.getClassificacao())
+					&& !requisicao.getAssinatura().equals(ClassificacaoAssinaturaEnum.ASSINATURA_FINAL.getValue())) {
+
+				InputStream input = getClass().getClassLoader().getResourceAsStream(BASE_PATH_JSON + PATH + "/V1/200_assinatura_intermediaria.json");
+				resposta = IOUtils.toString(input, StandardCharsets.UTF_8);
 			}
-			else if(requisicao.getClassificacao().equals(ClassificacaoAssinaturaEnum.ASSINATURA_INTERMEDIARIA)) {
-				
-			}
-			
-			
-			
-			return Response.ok().header("Content-Type", "application/json; charset=utf-8")
-					.entity("").build();
+
+			resposta = resposta.replace("{DATA_TRANSACAO}", DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_XML));
+			resposta = resposta.replace("{TOKEN}", requisicao.getToken());
+
+			return Response.ok().header("Content-Type", "application/json; charset=utf-8").entity(resposta).build();
 		} 
 		catch (ControleException e) {
 			logger.error(e.getMensagem());
