@@ -29,7 +29,7 @@
 				<artifactId>simtx-util</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>br.gov.caixa.simtx</groupId>
 				<artifactId>simtx-services</artifactId>
@@ -40,6 +40,12 @@
 				<groupId>br.gov.caixa.simtx</groupId>
 				<artifactId>simtx-testes</artifactId>
 				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.oracle.jdbc</groupId>
+				<artifactId>ojdbc14</artifactId>
+				<version>10.2.0.3.0</version>
 			</dependency>
 
 			<dependency>
@@ -78,6 +84,18 @@
 						<artifactId>validation-api</artifactId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.el</groupId>
+				<artifactId>javax.el-api</artifactId>
+				<version>2.2.4</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.glassfish.web</groupId>
+				<artifactId>javax.el</artifactId>
+				<version>2.2.4</version>
 			</dependency>
 
 			<dependency>

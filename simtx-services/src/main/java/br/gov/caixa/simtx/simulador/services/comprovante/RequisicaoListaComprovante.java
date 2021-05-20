@@ -3,7 +3,6 @@ package br.gov.caixa.simtx.simulador.services.comprovante;
 import java.util.List;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,7 +23,6 @@ public class RequisicaoListaComprovante {
 	private String dataFim;
 
 	@NotNull(message = "listNuServico nao informada")
-	@NotEmpty(message = "listNuServico nao informada")
 	private List<Long> listNuServico;
 
 

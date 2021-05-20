@@ -1,0 +1,9 @@
+{
+  "conta": "{CONTA}",
+  "outras_marcas_conta": [
+    "string"
+  ],
+  "marcas_impeditivas_encontradas": [
+    "string"
+  ]
+}

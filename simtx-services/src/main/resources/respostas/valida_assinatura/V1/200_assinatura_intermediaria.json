@@ -1,4 +1,5 @@
 {
+  "nsu_siper": 999999,
   "data_transacao": "{DATA_TRANSACAO}",
   "classificacao": "ASSINATURA_INTERMEDIARIA",
   "assinantes": [

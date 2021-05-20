@@ -5,6 +5,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class RequisicaoAtualizacao {
+	
+	@Size(min = 10, max = 10, message = "dataTransacao deve ser informada e ter o seguinte formato yyyy-MM-dd")
+	private String dataTransacao;
 
 	@NotNull(message = "dataHora nao informada")
 	@Size(min = 23, max = 23, message = "dataHora deve ser informada e ter o seguinte formato yyyy-MM-ddTHH:mm:ss.sss")
@@ -31,6 +34,14 @@ public class RequisicaoAtualizacao {
 	@Valid
 	private Qrcode qrCode;
 
+
+	public String getDataTransacao() {
+		return dataTransacao;
+	}
+
+	public void setDataTransacao(String dataTransacao) {
+		this.dataTransacao = dataTransacao;
+	}
 
 	public String getDataHora() {
 		return dataHora;

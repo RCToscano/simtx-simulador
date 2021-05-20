@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.sql.Connection;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -67,10 +68,10 @@ public abstract class BaseTeste {
 		}
 	}
 	
-	public void validarTabelasBase(Long nsuTransacao) {
-		assertTrue("Registro nao encontrada na tabela MTXTB014_TRANSACAO", tabelas.possuiTransacao(nsuTransacao) != null);
-		assertTrue("Registro nao encontrado na tabela MTXTB016_ITERACAO_CANAL", tabelas.possuiIteracaoCanal(nsuTransacao));
-		assertTrue("Registro nao encontrada na tabela MTXTB017_VERSAO_SRVCO_TRNSO", tabelas.possuiServicoTransacao(nsuTransacao));
+	public void validarTabelasBase(Long nsuTransacao, Connection connection) {
+		assertTrue("Registro nao encontrada na tabela MTXTB014_TRANSACAO", tabelas.possuiTransacao(nsuTransacao, connection) != null);
+		assertTrue("Registro nao encontrado na tabela MTXTB016_ITERACAO_CANAL", tabelas.possuiIteracaoCanal(nsuTransacao, connection));
+		assertTrue("Registro nao encontrada na tabela MTXTB017_VERSAO_SRVCO_TRNSO", tabelas.possuiServicoTransacao(nsuTransacao, connection));
 	}
 	
 	public String codificaBase64(String informacoes) {

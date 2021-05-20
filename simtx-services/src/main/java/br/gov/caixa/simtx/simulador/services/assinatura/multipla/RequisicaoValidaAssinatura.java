@@ -60,14 +60,11 @@ public class RequisicaoValidaAssinatura {
 	@SerializedName("data_prevista_efetivacao")
 	private String dataPrevistaEfetivacao;
 
-	@NotNull(message = "nsu_siper nao informado")
-	@Min(value = 1, message= "nsu_siper nao informado")
 	@Max(value = 999999999l, message= "nsu_siper deve ser informado e ter no maximo 9 caracteres")
 	@JsonProperty("nsu_siper")
 	@SerializedName("nsu_siper")
 	private Long nsuSiper;
 
-	@NotNull(message = "dispositivo nao informado")
 	@Valid
 	private Dispositivo dispositivo;
 

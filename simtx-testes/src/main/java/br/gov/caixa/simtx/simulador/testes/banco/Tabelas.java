@@ -16,11 +16,10 @@ public class Tabelas {
 
 	private static final Logger logger = Logger.getLogger(Tabelas.class);
 
-	public Transacao possuiTransacao(Long nsuTransacao) {
-		String query = "SELECT T.NU_NSU_TRANSACAO FROM MTX.MTXTB014_TRANSACAO T WHERE T.NU_NSU_TRANSACAO = ?";
+	public Transacao possuiTransacao(Long nsuTransacao, Connection connection) {
+		String query = "SELECT T.NU_NSU_TRANSACAO, T.IC_SITUACAO FROM MTX.MTXTB014_TRANSACAO T WHERE T.NU_NSU_TRANSACAO = ?";
 
-		try (Connection connection = Conexao.obterConexao();
-				PreparedStatement statement = connection.prepareStatement(query);) {
+		try (PreparedStatement statement = connection.prepareStatement(query);) {
 
 			statement.setLong(1, nsuTransacao);
 
@@ -37,11 +36,10 @@ public class Tabelas {
 		}
 	}
 
-	public boolean possuiIteracaoCanal(Long nsuTransacao) {
+	public boolean possuiIteracaoCanal(Long nsuTransacao, Connection connection) {
 		String query = "SELECT T.NU_NSU_TRANSACAO_014 FROM MTX.MTXTB016_ITERACAO_CANAL T WHERE T.NU_NSU_TRANSACAO_014 = ?";
 
-		try (Connection connection = Conexao.obterConexao();
-				PreparedStatement statement = connection.prepareStatement(query);) {
+		try (PreparedStatement statement = connection.prepareStatement(query);) {
 
 			statement.setLong(1, nsuTransacao);
 
@@ -55,11 +53,10 @@ public class Tabelas {
 		}
 	}
 
-	public boolean possuiServicoTransacao(Long nsuTransacao) {
+	public boolean possuiServicoTransacao(Long nsuTransacao, Connection connection) {
 		String query = "SELECT T.NU_NSU_TRANSACAO_014 FROM MTX.MTXTB017_VERSAO_SRVCO_TRNSO T WHERE T.NU_NSU_TRANSACAO_014 = ?";
 
-		try (Connection connection = Conexao.obterConexao();
-				PreparedStatement statement = connection.prepareStatement(query);) {
+		try (PreparedStatement statement = connection.prepareStatement(query);) {
 
 			statement.setLong(1, nsuTransacao);
 
@@ -73,12 +70,11 @@ public class Tabelas {
 		}
 	}
 
-	public List<Tarefa> possuiTarefasTransacao(Long nsuTransacao) {
+	public List<Tarefa> possuiTarefasTransacao(Long nsuTransacao, Connection connection) {
 
 		String query = "SELECT T.NU_TAREFA_012, NU_VERSAO_TAREFA_012 FROM MTX.MTXTB015_SRVCO_TRNSO_TARFA T WHERE T.NU_NSU_TRANSACAO_017 = ?";
 
-		try (Connection connection = Conexao.obterConexao();
-				PreparedStatement statement = connection.prepareStatement(query);) {
+		try (PreparedStatement statement = connection.prepareStatement(query);) {
 
 			statement.setLong(1, nsuTransacao);
 

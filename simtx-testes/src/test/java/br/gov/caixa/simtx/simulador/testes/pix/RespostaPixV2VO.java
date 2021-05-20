@@ -5,7 +5,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class RespostaPixVO {
+public class RespostaPixV2VO {
 
 	@NotNull(message = "idFimAFim nao informado")
 	@Size(min = 10, message = "idFimAFim nao informado corretamente")
@@ -16,8 +16,8 @@ public class RespostaPixVO {
 	@Max(value = 999999999999999l, message = "nsuTransacao deve ser informado e ter no maximo 15 caracteres")
 	private Long nsuTransacao;
 
-	@NotNull(message = "dataTransacao nao informada")
-	@Size(min = 10, max = 10, message = "dataTransacao deve ser informada e ter o seguinte formato aaaa-mm-dd")
+//	@NotNull(message = "dataTransacao nao informada")
+//	@Size(min = 10, max = 10, message = "dataTransacao deve ser informada e ter o seguinte formato aaaa-mm-dd")
 	private String dataTransacao;
 
 	public String getIdFimAFim() {

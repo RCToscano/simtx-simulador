@@ -20,7 +20,7 @@ import br.gov.caixa.simtx.simulador.services.controle.Controle;
 import br.gov.caixa.simtx.simulador.util.data.DataUtil;
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
 
-@Path("/sibar/valida-permissao")
+@Path("/sibar/contas/assinaturas-eletronicas")
 @Consumes("application/json")
 @Produces("application/json")
 public class ValidaAssinaturaControle extends Controle {

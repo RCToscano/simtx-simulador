@@ -20,7 +20,7 @@ public class RequisicaoSSH {
 		Session session = null;
 		ChannelExec channel = null;
 		try {
-			session = new JSch().getSession("f747250", "10.116.88.73", 22);
+			session = new JSch().getSession("f747250", "10.116.82.126", 22);
 			session.setPassword("16830Rafael");
 
 			Properties config = new java.util.Properties();
