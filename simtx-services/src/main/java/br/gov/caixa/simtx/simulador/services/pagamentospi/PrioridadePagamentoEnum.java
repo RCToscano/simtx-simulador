@@ -3,6 +3,7 @@ package br.gov.caixa.simtx.simulador.services.pagamentospi;
 public enum PrioridadePagamentoEnum {
 
 	LOW("LOW"),
+	NORM("NORM"),
 	HIGH("HIGH");
 	
 	private String value;
