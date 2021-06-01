@@ -1,11 +1,11 @@
 package br.gov.caixa.simtx.simulador.services.pagamentospi.v2;
 
 public enum TipoPrioridadePagamentoEnum {
-	
-	IPAY("IPAY"),
-	GSCB("GSCB"),
-	OTHR("OTHR");
-	
+
+	PAGPRI("PAGPRI"),
+	PAGFRD("PAGFRD"),
+	PAGAGD("PAGAGD");
+
 	private String value;
 
 	private TipoPrioridadePagamentoEnum(String value) {
