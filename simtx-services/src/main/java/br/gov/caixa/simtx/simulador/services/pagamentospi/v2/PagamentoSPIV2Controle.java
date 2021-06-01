@@ -12,6 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.apache.log4j.Logger;
 
@@ -68,7 +69,7 @@ public class PagamentoSPIV2Controle extends Controle {
 			    }
 			}).start();
 
-			return Response.ok().header("Content-Type", "application/json; charset=utf-8").build();
+			return Response.status(Status.CREATED).header("Content-Type", "application/json; charset=utf-8").build();
 		} 
 		catch (ControleException e) {
 			logger.error(e.getMensagem());

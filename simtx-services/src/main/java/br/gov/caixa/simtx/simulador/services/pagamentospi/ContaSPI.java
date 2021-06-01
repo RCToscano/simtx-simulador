@@ -25,7 +25,7 @@ public class ContaSPI {
 	@Max(value = 9999, message = "produto deve ter no maximo 4 caracteres")
 	private Integer produto;
 
-	@NotNull(message = "numeroConta nao informada")
+	@NotNull(message = "tipoConta nao informado")
 	@Valid
 	private TipoContaEnum tipoConta;
 
