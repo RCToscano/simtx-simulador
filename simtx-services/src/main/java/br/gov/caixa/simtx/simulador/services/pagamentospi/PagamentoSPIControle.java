@@ -30,7 +30,7 @@ public class PagamentoSPIControle extends Controle {
 	
 	private static final String PATH = "pix/pagamento";
 	
-	private static final String PACOTE = "/pagamentos-instantaneos02";
+	private static final String PACOTE = "/pagamentos-instantaneos";
 	
 	private RequisicaoPagamentoSpi requisicao;
 	

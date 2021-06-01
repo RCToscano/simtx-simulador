@@ -19,12 +19,10 @@ import org.apache.log4j.Logger;
 import br.gov.caixa.simtx.simulador.services.controle.Controle;
 import br.gov.caixa.simtx.simulador.services.pagamentospi.Calendario;
 import br.gov.caixa.simtx.simulador.services.pagamentospi.Devedor;
-import br.gov.caixa.simtx.simulador.services.pagamentospi.FormaIniciacaoPagamentoEnum;
 import br.gov.caixa.simtx.simulador.services.pagamentospi.InfoAdicionais;
 import br.gov.caixa.simtx.simulador.services.pagamentospi.Qrcode;
 import br.gov.caixa.simtx.simulador.services.pagamentospi.Recebedor;
 import br.gov.caixa.simtx.simulador.services.pagamentospi.RequisicaoAtualizacao;
-import br.gov.caixa.simtx.simulador.services.pagamentospi.RequisicaoPagamentoSpi;
 import br.gov.caixa.simtx.simulador.services.pagamentospi.SituacaoPagamentoSPIEnum;
 import br.gov.caixa.simtx.simulador.services.pagamentospi.Valor;
 import br.gov.caixa.simtx.simulador.util.data.DataUtil;
@@ -40,9 +38,11 @@ public class PagamentoSPIV2Controle extends Controle {
 	
 	private static final String PATH = "pix/pagamento";
 	
-	private static final String PACOTE = "/pagamentos-instantaneos02";
+	private static final String PACOTE = "/pagamentos-instantaneos";
 	
-	private RequisicaoPagamentoSpi requisicao;
+	private static final String PACOTE_AGENDAMENTO = "/pagamento-instantaneo-api";
+	
+	private RequisicaoPagamentoSpiV2 requisicao;
 	
 	private String token;
 	
@@ -60,11 +60,11 @@ public class PagamentoSPIV2Controle extends Controle {
 			
 			new Thread(new Runnable() {
 			    public void run() {
-			    	if(requisicao.getFormaIniciacaoPagamento().equals(FormaIniciacaoPagamentoEnum.QR_CODE_DINAMICO_PIX_COBRANCA)) {
-			    		executarAtualizaV2();
+			    	if(requisicao.getTipoPrioridadePagamento().equals(TipoPrioridadePagamentoEnum.PAGAGD)) {
+			    		executarAgendamentoV1();
 			    	}
 			    	else {
-			    		executarAtualizaV1();
+			    		executarAtualizaV2();
 			    	}
 			    }
 			}).start();
@@ -87,10 +87,10 @@ public class PagamentoSPIV2Controle extends Controle {
 		}
 	}
 
-	public void executarAtualizaV1() {
+	public void executarAgendamentoV1() {
 		try {
 			Thread.sleep(5000);
-			logger.info("[SIMULADOR] Executando Atualiza Pagamento Instantaneo V1");
+			logger.info("[SIMULADOR] Executando Atualiza Agendamento Pagamento Instantaneo V1");
 			RequisicaoAtualizacao atualizacao = new RequisicaoAtualizacao();
 			atualizacao.setDataTransacao(DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_XML));
 			atualizacao.setDataHora(DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_YYYY_MM_DD_HIFEN_JSON));
@@ -101,6 +101,54 @@ public class PagamentoSPIV2Controle extends Controle {
 				atualizacao.setSituacaoDaTransacao(SituacaoPagamentoSPIEnum.ACSC);
 				atualizacao.setDataContabil(DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_YYYY_MM_DD_HIFEN_JSON));
 				atualizacao.setDataHoraLiquidacao(DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_YYYY_MM_DD_HIFEN_JSON));
+				
+				Valor valor = new Valor(requisicao.getValor().toString(), "0", "0", "0", "0",
+						requisicao.getValor().toString());
+				
+				Recebedor recebedor = null;
+				if(requisicao.getUsuarioRecebedor().getCnpj() != null) {
+					recebedor = new Recebedor(requisicao.getUsuarioRecebedor().getCpf().toString(),
+							requisicao.getUsuarioRecebedor().getCnpj().toString(),
+							requisicao.getUsuarioRecebedor().getNome(),
+							requisicao.getUsuarioRecebedor().getNome() + " FANTASIA", "LOGR", "SAO PAULO", "SP",
+							"99999999");
+				}
+				else {
+					recebedor = new Recebedor(requisicao.getUsuarioRecebedor().getCpf().toString(),
+							requisicao.getUsuarioRecebedor().getNome(), "LOGR", "SAO PAULO", "SP", "99999999");
+				}
+				
+				Devedor devedor = null;
+				if (requisicao.getUsuarioPagador().getCnpj() != null) {
+					devedor = new Devedor(requisicao.getUsuarioPagador().getCpf().toString(),
+							requisicao.getUsuarioPagador().getCnpj().toString(),
+							requisicao.getUsuarioPagador().getNome());
+				} 
+				else {
+					devedor = new Devedor(requisicao.getUsuarioPagador().getCpf().toString(),
+							requisicao.getUsuarioPagador().getNome());
+				}
+				
+				Calendario calendario = new Calendario("Y", "X", 9L, DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_XML), 9L);
+				
+				InfoAdicionais infoAdicionais1 = new InfoAdicionais(requisicao.getUsuarioPagador().getNome(), "DESC1");
+				InfoAdicionais infoAdicionais2 = new InfoAdicionais(requisicao.getUsuarioRecebedor().getNome(), "DESC2");
+				List<InfoAdicionais> infoAdicionais = new ArrayList<>();
+				infoAdicionais.add(infoAdicionais1);
+				infoAdicionais.add(infoAdicionais2);
+
+				Qrcode qrCode = new Qrcode();
+				qrCode.setRevisao(99l);
+				qrCode.setChave(requisicao.getUsuarioPagador().getCpf().toString() + requisicao.getIdFimAFim());
+				qrCode.setSolicitacaoPagador("S");
+				qrCode.setTxid(requisicao.getTxId());
+				qrCode.setCalendario(calendario);
+				qrCode.setDevedor(devedor);
+				qrCode.setRecebedor(recebedor);
+				qrCode.setValor(valor);
+				qrCode.setInfoAdicionais(infoAdicionais);
+				atualizacao.setQrCode(qrCode);
+				
 			} 
 			else if (requisicao.getInformacoesEntreUsuarios() != null
 					&& requisicao.getInformacoesEntreUsuarios().contains("HOLD")) {
@@ -109,12 +157,12 @@ public class PagamentoSPIV2Controle extends Controle {
 			else {
 				atualizacao.setSituacaoDaTransacao(SituacaoPagamentoSPIEnum.RJCT);
 				atualizacao.setCodigoDeErro("99RJCT");
-				atualizacao.setDetalhamentoDoErro("Teste Rejeitado");
+				atualizacao.setDetalhamentoDoErro("Rejeitado pelo simulador");
 			}
 			
 			String[] url = uri.split("/");
-			uri = url[0].concat("//").concat(url[2]).concat(PACOTE + "/v1/pagamentos/").concat(requisicao.getNsu().toString());
-
+			uri = url[0].concat("//").concat(url[2]).concat(PACOTE_AGENDAMENTO + "/v1/agendamentos/").concat(requisicao.getNsu().toString());
+			
 			requisicaoHttpHttps(uri, "PUT", token, gson.toJson(atualizacao));
 			
 		} 
