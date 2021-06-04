@@ -10,6 +10,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class RequisicaoPagamentoSpi {
+	
+	@NotNull(message = "clientIdCanal nao informado")
+	@Size(min = 11, max = 11, message = "clientIdCanal nao informado corretamente. espera cli-ser-xxx")
+	private String clientIdCanal;
 
 	@NotNull(message = "idFimAFim nao informado")
 	@Size(min = 10, message = "idFimAFim nao informado corretamente")
@@ -72,6 +76,14 @@ public class RequisicaoPagamentoSpi {
 	private String txId;
 
 
+
+	public String getClientIdCanal() {
+		return clientIdCanal;
+	}
+
+	public void setClientIdCanal(String clientIdCanal) {
+		this.clientIdCanal = clientIdCanal;
+	}
 
 	public String getIdFimAFim() {
 		return idFimAFim;
