@@ -21,6 +21,9 @@ public class SimuladorConfig extends Application {
 		resources.add(br.gov.caixa.simtx.simulador.services.validamarcas.ValidaMarcasControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.titular.ValidaTitularControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.limite.validar.ValidaLimiteControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.limite.efetivar.EfetivaLimiteControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.limite.desfazer.DesfazLimiteControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.enviopush.EnvioPushCanalControle.class);
 		return resources;
 	}
 }

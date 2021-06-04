@@ -17,6 +17,7 @@ public class ContaDestino {
 	@Max(value = 99999, message= "agencia deve ser informada e ter no maximo 5 caracteres")
 	private Integer agencia;
 
+	@Max(value = 9999, message= "agencia deve ter no maximo 4 caracteres")
 	private Integer produto;
 
 	@NotNull(message = "numero nao informado")
