@@ -39,7 +39,7 @@ import br.gov.caixa.simtx.simulador.util.http.TipoGeracaoToken;
 import br.gov.caixa.simtx.simulador.util.http.TokenTransacaoSaida;
 import br.gov.caixa.simtx.simulador.util.ssh.RequisicaoSSH;
 
-public class PixTest extends BaseTeste {
+public class AgendamentoPixTest extends BaseTeste {
 	
 	private Connection connection;
 	
@@ -48,9 +48,10 @@ public class PixTest extends BaseTeste {
 	private static final String PATH = "pix/";
 	
 //	private static final String URI = "https://simtx.pagamentopix.des.caixa/pagamentos-instantaneos/v1/pagamentos";
-	private static final String URI = "https://simtx02.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
+//	private static final String URI = "https://simtx02.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
 //	private static final String URI = "https://simtx03.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
 //	private static final String URI = "https://simtx.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
+	private static final String URI = "http://localhost:8080/pagamento-instantaneo-api/v1/agendamentos";
 	
 	private static final String URI_IDFIMAFIM = "https://sispi-container-backend-des-esteiras.nprd2.caixa/sispi-api-war/api/v1/ids-pagamento";
 	
