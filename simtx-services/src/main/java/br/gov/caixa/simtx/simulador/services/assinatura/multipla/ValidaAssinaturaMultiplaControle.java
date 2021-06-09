@@ -31,7 +31,7 @@ public class ValidaAssinaturaMultiplaControle extends Controle {
 	
 
 	@POST
-	@Path("/V2/assinatura-multipla/{cpf}/validar")
+	@Path("/v1/assinatura-multipla/{cpf}/validar")
 	public Response validarServico(@Context HttpServletRequest httpRequest, @PathParam("cpf") String cpf, String json) {
 		try {
 			RequisicaoValidaAssinaturaMultipla requisicao = gson.fromJson(json, RequisicaoValidaAssinaturaMultipla.class);

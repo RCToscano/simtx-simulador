@@ -8,5 +8,5 @@
     }
   ],
   "token_autenticacao": "{TOKEN}",
-  "tipo_login": "SIMPLES"
+  "tipo_login": "QRCODE"
 }

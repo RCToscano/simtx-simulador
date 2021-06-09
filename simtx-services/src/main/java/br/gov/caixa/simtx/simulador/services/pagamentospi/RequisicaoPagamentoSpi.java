@@ -71,8 +71,6 @@ public class RequisicaoPagamentoSpi {
 	@Valid
 	private FormaIniciacaoPagamentoEnum formaIniciacaoPagamento;
 
-	@NotNull(message = "txId nao informado")
-	@Size(min = 1, message = "txId nao informado corretamente")
 	private String txId;
 
 

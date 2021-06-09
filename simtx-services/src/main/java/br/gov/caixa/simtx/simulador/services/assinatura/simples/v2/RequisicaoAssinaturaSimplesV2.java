@@ -26,7 +26,6 @@ public class RequisicaoAssinaturaSimplesV2 {
 	@Size(min = 1, max = 16, message= "assinatura deve ser informada e ter no maximo 16 caracteres")
 	private String assinatura;
 
-	@NotNull(message = "data_prevista_efetivacao nao informada")
 	@Size(min = 10, max = 10, message= "data_prevista_efetivacao deve ser informada e ter o seguinte formato aaaa-mm-dd")
 	@JsonProperty("data_prevista_efetivacao")
 	@SerializedName("data_prevista_efetivacao")
@@ -69,7 +68,6 @@ public class RequisicaoAssinaturaSimplesV2 {
 	@SerializedName("session_id")
 	private String sessionId;
 
-	@NotNull(message = "dispositivo nao informado")
 	@Valid
 	private Dispositivo dispositivo;
 

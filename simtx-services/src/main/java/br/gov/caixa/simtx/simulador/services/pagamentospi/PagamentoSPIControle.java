@@ -43,6 +43,8 @@ public class PagamentoSPIControle extends Controle {
 	public Response validarServico(@Context HttpServletRequest httpRequest, String json) {
 		try {
 			requisicao = mapper.readerFor(RequisicaoPagamentoSpi.class).readValue(json);
+			String clientIdCanal = httpRequest.getHeader("clientIdCanal");
+			requisicao.setClientIdCanal(clientIdCanal);
 			validarAtributosCampos(requisicao);
 
 			token = httpRequest.getHeader(JWTUtil.TOKEN_HEADER);

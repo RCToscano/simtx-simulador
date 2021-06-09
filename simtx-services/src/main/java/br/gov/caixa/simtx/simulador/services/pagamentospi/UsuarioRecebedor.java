@@ -16,8 +16,6 @@ public class UsuarioRecebedor {
 	@Max(value = 99999999999999l, message = "cnpj recebedor deve ter 14 caracteres")
 	private Long cnpj;
 
-	@NotNull(message = "cpf recebedor nao informado")
-	@Min(value = 1, message = "cpf recebedor deve ser informado e ter 11 caracteres")
 	@Max(value = 99999999999l, message = "cpf recebedor deve ser informado e ter 11 caracteres")
 	private Long cpf;
 

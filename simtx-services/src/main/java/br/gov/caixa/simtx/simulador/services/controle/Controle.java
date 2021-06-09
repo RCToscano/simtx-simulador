@@ -57,7 +57,7 @@ public abstract class Controle {
 			Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 			Set<ConstraintViolation<Object>> violations = validator.validate(objeto);
 			if(!violations.isEmpty() ) {
-				String mensagem = "Campos invalidos:";
+				String mensagem = "[SIMULADOR] Campos invalidos:";
 				for (Iterator<ConstraintViolation<Object>> iter = violations.iterator(); iter.hasNext();) {
 					ConstraintViolation<Object> erro = iter.next();
 					mensagem = mensagem.concat(" | ").concat(erro.getMessage());
