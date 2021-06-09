@@ -1,9 +1,10 @@
-package br.gov.caixa.simtx.simulador.testes.pix;
+package br.gov.caixa.simtx.simulador.testes.pix.agendamento;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -27,8 +28,11 @@ import br.gov.caixa.simtx.simulador.testes.banco.Conexao;
 import br.gov.caixa.simtx.simulador.testes.base.BaseTeste;
 import br.gov.caixa.simtx.simulador.testes.base.Constantes;
 import br.gov.caixa.simtx.simulador.testes.base.RespostaErroSIMTX;
+import br.gov.caixa.simtx.simulador.testes.pix.IdFimaFimVO;
+import br.gov.caixa.simtx.simulador.testes.pix.RespostaPixV1VO;
 import br.gov.caixa.simtx.simulador.testes.tabelas.Tarefa;
 import br.gov.caixa.simtx.simulador.testes.tabelas.Transacao;
+import br.gov.caixa.simtx.simulador.testes.tabelas.TransacaoAgendamento;
 import br.gov.caixa.simtx.simulador.util.data.DataUtil;
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
 import br.gov.caixa.simtx.simulador.util.http.ClientID;
@@ -43,7 +47,7 @@ public class AgendamentoPixTest extends BaseTeste {
 	
 	private Connection connection;
 	
-	private static final boolean UTILIZARHTTP = false;
+	private static final boolean UTILIZARHTTP = true;
 	
 	private static final String PATH = "pix/";
 	
@@ -55,7 +59,7 @@ public class AgendamentoPixTest extends BaseTeste {
 	
 	private static final String URI_IDFIMAFIM = "https://sispi-container-backend-des-esteiras.nprd2.caixa/sispi-api-war/api/v1/ids-pagamento";
 	
-	private static final Long[] TAREFAS_NEGOCIAIS = { 100109l, 100103l };
+	private static final Long[] TAREFAS_NEGOCIAIS = { 100103l, 100129l, 100130l, 100131l };
 	
 	private String token;
 	
@@ -106,11 +110,13 @@ public class AgendamentoPixTest extends BaseTeste {
 		}
 	}
 	
-	public String executarRequisicao(String path, String token, String meioEntrada, String dadosAntiFraude) {
+	public String executarRequisicao(String path, String token, String meioEntrada, String dadosAntiFraude, int qtdeDiasDtEfetivacao) {
 		if(UTILIZARHTTP) {
-			String jsonPagamento = recuperarJson(BASE_PATH_JSON.concat(PATH).concat("pagamento/").concat(path));
+			String jsonPagamento = recuperarJson(BASE_PATH_JSON.concat(PATH).concat("agendamento/").concat(path));
 			jsonPagamento = jsonPagamento.replace("{IDFIMAFIM}", idFimAFim);
 			jsonPagamento = jsonPagamento.replace("{DATAHORA}", DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_YYYY_MM_DD_HIFEN_JSON).concat("Z"));
+			jsonPagamento = jsonPagamento.replace("{DATAEFETIVACAO}", DataUtil
+					.getDataFormatada(DataUtil.obterDataFutura(qtdeDiasDtEfetivacao), DataUtil.FORMATO_DATA_XML));
 			
 			ClientResponse resposta = RequisicaoHTTP.requestPostApi(URI, token, jsonPagamento, meioEntrada, dadosAntiFraude);
 			assertNotNull(Constantes.SEM_RESPOSTA_HTTP, resposta);
@@ -123,13 +129,15 @@ public class AgendamentoPixTest extends BaseTeste {
 		else {
 			path = path.replace(".json", "_curl.json");
 
-			String jsonPagamento = recuperarJson(BASE_PATH_JSON.concat(PATH).concat("pagamento/").concat(path));
+			String jsonPagamento = recuperarJson(BASE_PATH_JSON.concat(PATH).concat("agendamento/").concat(path));
 			jsonPagamento = jsonPagamento.replace("{URI}", URI);
 			jsonPagamento = jsonPagamento.replace("{TOKEN}", tokenTransacao);
 			jsonPagamento = jsonPagamento.replace("{MEIOENTRADA}", meioEntrada);
 			jsonPagamento = jsonPagamento.replace("{ANTIFRAUDE}", dadosAntiFraude);
 			jsonPagamento = jsonPagamento.replace("{IDFIMAFIM}", idFimAFim);
 			jsonPagamento = jsonPagamento.replace("{DATAHORA}", DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_YYYY_MM_DD_HIFEN_JSON).concat("Z"));
+			jsonPagamento = jsonPagamento.replace("{DATAEFETIVACAO}", DataUtil
+					.getDataFormatada(DataUtil.obterDataFutura(qtdeDiasDtEfetivacao), DataUtil.FORMATO_DATA_XML));
 
 			String resposta = RequisicaoSSH.requisicao(jsonPagamento);
 			assertNotNull(Constantes.SEM_RESPOSTA, resposta);
@@ -154,21 +162,20 @@ public class AgendamentoPixTest extends BaseTeste {
 		String pathTeste001 = "V1/todosCampos.json";
 		List<Long> tarefas = new ArrayList<>();
 		tarefas.addAll(Arrays.asList(TAREFAS_NEGOCIAIS));
-		tarefas.add(100110l);
 		tarefas.add(100113l);
 
 		String meioEntrada = recuperarJson(BASE_PATH_JSON.concat(PATH_MEIO_ENTRADA).concat("assinatura_simples/dados.json"));
 		meioEntrada = codificaBase64(meioEntrada);
 
-		String saida = executarRequisicao(pathTeste001, tokenTransacao, meioEntrada, dadosAntiFraude);
-//		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS, saida.contains("null"));
+		String saida = executarRequisicao(pathTeste001, tokenTransacao, meioEntrada, dadosAntiFraude, 1);
+		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS, saida.contains("null"));
 
-		RespostaPixV1VO respostasPixVO = mapper.readerFor(RespostaPixV1VO.class).readValue(saida);
+		RespostaAgendamentoPixV1VO respostasPixVO = mapper.readerFor(RespostaAgendamentoPixV1VO.class).readValue(saida);
 		validarAtributosCampos(respostasPixVO);
 
 		Transacao transacao = tabelas.possuiTransacao(respostasPixVO.getNsuTransacao(), this.connection);
 		assertNotNull(Constantes.REGISTRO_N_ENCONTRADO_TB14, transacao);
-		assertEquals(Constantes.SITUACAO_TB14_DIVERGENTE, 3, transacao.getIcSituacao());
+		assertEquals(Constantes.SITUACAO_TB14_DIVERGENTE, 1, transacao.getIcSituacao());
 
 		assertTrue(Constantes.REGISTRO_N_ENCONTRADO_TB16,
 				tabelas.possuiIteracaoCanal(respostasPixVO.getNsuTransacao(), this.connection));
@@ -178,14 +185,21 @@ public class AgendamentoPixTest extends BaseTeste {
 
 		List<Tarefa> listTarefas = tabelas.possuiTarefasTransacao(respostasPixVO.getNsuTransacao(), this.connection);
 		assertFalse(Constantes.REGISTRO_N_ENCONTRADO_TB15, listTarefas.isEmpty());
-		assertEquals(Constantes.QTDE_TAREFAS_DIVERGENTE_TB15, 4,
-				listTarefas.size());
+		assertEquals(Constantes.QTDE_TAREFAS_DIVERGENTE_TB15, tarefas.size(), listTarefas.size());
 		for (int i = 0; i < listTarefas.size(); i++) {
 			assertTrue(Constantes.TAREFA_GRAVADA_ERRADA,
 					tarefas.contains(Long.valueOf(listTarefas.get(i).getNuTarefa())));
+			assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS,
+					listTarefas.get(i).getDeXmlRequisicao().contains("null"));
 		}
+
+		TransacaoAgendamento transacaoAgendamento = tabelas.possuiTransacaoAgendamento(respostasPixVO.getNsuTransacao(), this.connection);
+		assertNotNull(Constantes.REGISTRO_N_ENCONTRADO_TB34, transacaoAgendamento);
+		assertEquals(Constantes.SITUACAO_TB34_DIVERGENTE, 1, transacaoAgendamento.getIcSituacaoAgendamento());
+		assertNotNull(Constantes.VALOR_NULO_TB34, transacaoAgendamento.getValorTransacao());
+		assertFalse(Constantes.VALOR_NULO_TB34, transacaoAgendamento.getValorTransacao().intValue() <= 0);
 	}
-	
+
 	@Test
 	public void testNBMSucesso() throws IOException {
 		try {
@@ -197,8 +211,8 @@ public class AgendamentoPixTest extends BaseTeste {
 			String meioEntrada = recuperarJson(BASE_PATH_JSON.concat(PATH_MEIO_ENTRADA).concat("token_transacao/dados.json"));
 			meioEntrada = codificaBase64(meioEntrada);
 	
-			String saida = executarRequisicao(pathTeste001, tokenTransacao, meioEntrada, dadosAntiFraude);
-	//		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS + saida, saida.contains("null"));
+			String saida = executarRequisicao(pathTeste001, tokenTransacao, meioEntrada, dadosAntiFraude, 1);
+			assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS + saida, saida.contains("null"));
 	
 			RespostaPixV1VO respostasPixVO = mapper.readerFor(RespostaPixV1VO.class).readValue(saida);
 			validarAtributosCampos(respostasPixVO);
@@ -215,17 +229,25 @@ public class AgendamentoPixTest extends BaseTeste {
 	
 			List<Tarefa> listTarefas = tabelas.possuiTarefasTransacao(respostasPixVO.getNsuTransacao(), this.connection);
 			assertFalse(Constantes.REGISTRO_N_ENCONTRADO_TB15, listTarefas.isEmpty());
-			assertEquals(Constantes.QTDE_TAREFAS_DIVERGENTE_TB15, 3, listTarefas.size());
+			assertEquals(Constantes.QTDE_TAREFAS_DIVERGENTE_TB15, tarefas.size(), listTarefas.size());
 			for (int i = 0; i < listTarefas.size(); i++) {
 				assertTrue(Constantes.TAREFA_GRAVADA_ERRADA,
 						tarefas.contains(Long.valueOf(listTarefas.get(i).getNuTarefa())));
+				assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS,
+						listTarefas.get(i).getDeXmlRequisicao().contains("null"));
 			}
+			
+			TransacaoAgendamento transacaoAgendamento = tabelas.possuiTransacaoAgendamento(respostasPixVO.getNsuTransacao(), this.connection);
+			assertNotNull(Constantes.REGISTRO_N_ENCONTRADO_TB34, transacaoAgendamento);
+			assertEquals(Constantes.SITUACAO_TB34_DIVERGENTE, 1, transacaoAgendamento.getIcSituacaoAgendamento());
+			assertNotNull(Constantes.VALOR_NULO_TB34, transacaoAgendamento.getValorTransacao());
+			assertFalse(Constantes.VALOR_NULO_TB34, transacaoAgendamento.getValorTransacao().intValue() <= 0);
 		} 
 		catch (ControleException e) {
 			assertTrue(e.getMensagem(), e.getMensagem().isEmpty());
 		}
 	}
-	
+
 	@Test
 	public void testCPFDiferenteConta() throws IOException, ControleException {
 		String pathTeste001 = "V1/cpfDiferenteConta.json";
@@ -240,7 +262,7 @@ public class AgendamentoPixTest extends BaseTeste {
 		jsonPagamento = jsonPagamento.replace("{DATAHORA}",
 				DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_YYYY_MM_DD_HIFEN_JSON));
 
-		String saida = executarRequisicao(pathTeste001, pathTeste001, meioEntrada, jsonPagamento);
+		String saida = executarRequisicao(pathTeste001, pathTeste001, meioEntrada, jsonPagamento, 1);
 		
 		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS, saida.contains("null"));
 
@@ -264,7 +286,80 @@ public class AgendamentoPixTest extends BaseTeste {
 		for (int i = 0; i < listTarefas.size(); i++) {
 			assertTrue(Constantes.TAREFA_GRAVADA_ERRADA,
 					tarefas.contains(Long.valueOf(listTarefas.get(i).getNuTarefa())));
+			assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS,
+					listTarefas.get(i).getDeXmlRequisicao().contains("null"));
 		}
+	}
+	
+	/**
+	 * Verifica se o Sistema nao esta permitindo agendar para o mesmo dia.
+	 */
+	@Test
+	public void testDtEfetivacaoMesmoDia() throws IOException, ControleException {
+		String pathTeste001 = "V1/todosCampos.json";
+		List<Long> tarefas = new ArrayList<>();
+		tarefas.addAll(Arrays.asList(TAREFAS_NEGOCIAIS));
+
+		String meioEntrada = recuperarJson(BASE_PATH_JSON.concat(PATH_MEIO_ENTRADA).concat("assinatura_simples/dados.json"));
+		meioEntrada = codificaBase64(meioEntrada);
+
+		String saida = executarRequisicao(pathTeste001, tokenTransacao, meioEntrada, dadosAntiFraude, 0);
+		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS, saida.contains("null"));
+
+		RespostaErroSIMTX erroSIMTX = mapper.readerFor(RespostaErroSIMTX.class).readValue(saida);
+		validarAtributosCampos(erroSIMTX);
+
+		Transacao transacao = tabelas.possuiTransacao(erroSIMTX.getNsu(), this.connection);
+		assertNotNull(Constantes.REGISTRO_N_ENCONTRADO_TB14, transacao);
+		assertEquals(Constantes.SITUACAO_TB14_DIVERGENTE, 2, transacao.getIcSituacao());
+
+		assertTrue(Constantes.REGISTRO_N_ENCONTRADO_TB16,
+				tabelas.possuiIteracaoCanal(erroSIMTX.getNsu(), this.connection));
+
+		assertTrue(Constantes.REGISTRO_N_ENCONTRADO_TB17,
+				tabelas.possuiServicoTransacao(erroSIMTX.getNsu(), this.connection));
+
+		List<Tarefa> listTarefas = tabelas.possuiTarefasTransacao(erroSIMTX.getNsu(), this.connection);
+		assertTrue(Constantes.REGISTRO_N_ENCONTRADO_TB15, listTarefas.isEmpty());
+
+		TransacaoAgendamento transacaoAgendamento = tabelas.possuiTransacaoAgendamento(erroSIMTX.getNsu(), this.connection);
+		assertNull(Constantes.REGISTRO_N_ENCONTRADO_TB34, transacaoAgendamento);
+	}
+	
+	/**
+	 * Verifica se o Sistema esta validando a data limite para um agendamento.
+	 * O limite é de 540 dias. 
+	 */
+	@Test
+	public void testDtEfetivacaoMaiorQueLimite() throws IOException, ControleException {
+		String pathTeste001 = "V1/todosCampos.json";
+		List<Long> tarefas = new ArrayList<>();
+		tarefas.addAll(Arrays.asList(TAREFAS_NEGOCIAIS));
+
+		String meioEntrada = recuperarJson(BASE_PATH_JSON.concat(PATH_MEIO_ENTRADA).concat("assinatura_simples/dados.json"));
+		meioEntrada = codificaBase64(meioEntrada);
+
+		String saida = executarRequisicao(pathTeste001, tokenTransacao, meioEntrada, dadosAntiFraude, 541);
+		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS, saida.contains("null"));
+
+		RespostaErroSIMTX erroSIMTX = mapper.readerFor(RespostaErroSIMTX.class).readValue(saida);
+		validarAtributosCampos(erroSIMTX);
+
+		Transacao transacao = tabelas.possuiTransacao(erroSIMTX.getNsu(), this.connection);
+		assertNotNull(Constantes.REGISTRO_N_ENCONTRADO_TB14, transacao);
+		assertEquals(Constantes.SITUACAO_TB14_DIVERGENTE, 2, transacao.getIcSituacao());
+
+		assertTrue(Constantes.REGISTRO_N_ENCONTRADO_TB16,
+				tabelas.possuiIteracaoCanal(erroSIMTX.getNsu(), this.connection));
+
+		assertTrue(Constantes.REGISTRO_N_ENCONTRADO_TB17,
+				tabelas.possuiServicoTransacao(erroSIMTX.getNsu(), this.connection));
+
+		List<Tarefa> listTarefas = tabelas.possuiTarefasTransacao(erroSIMTX.getNsu(), this.connection);
+		assertTrue(Constantes.REGISTRO_N_ENCONTRADO_TB15, listTarefas.isEmpty());
+
+		TransacaoAgendamento transacaoAgendamento = tabelas.possuiTransacaoAgendamento(erroSIMTX.getNsu(), this.connection);
+		assertNull(Constantes.REGISTRO_N_ENCONTRADO_TB34, transacaoAgendamento);
 	}
 	
 }

@@ -1,0 +1,34 @@
+{
+  "dataHora": "{DATAHORA}",
+  "idFimAFim": "{IDFIMAFIM}",
+  "dataEfetivacao": "{DATAEFETIVACAO}",
+  "informacoesEntreUsuarios": "Teste Automatizado",
+  "usuarioPagador": {
+    "nome": "Teste Automatizado",
+    "cpf": "10986435775",
+    "conta": {
+      "agencia": "0238",
+      "numeroConta": "2",
+      "produto": "001",
+      "dv": "0",
+      "ispb": "00360305"
+    }
+  },
+  "usuarioRecebedor": {
+    "nome": "RIBAMAR DA CAIXA",
+    "cpf": "11666543543",
+    "conta": {
+      "agencia": "2",
+      "numeroConta": "988227687",
+      "produto": "1288",
+      "dv": "9",
+      "ispb": "00360305"
+    }
+  },
+  "valor": 25,
+  "participanteTarifado": "SLEV",
+  "metodoLiquidacao": "CLRG",
+  "transactionCurrency": "BRL",
+  "formaIniciacaoPagamento": "MANUAL_SEM_CHAVE",
+  "finalidadeTransacao": "IPAY"
+}

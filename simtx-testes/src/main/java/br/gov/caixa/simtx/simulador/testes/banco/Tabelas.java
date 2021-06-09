@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import br.gov.caixa.simtx.simulador.testes.tabelas.Tarefa;
 import br.gov.caixa.simtx.simulador.testes.tabelas.Transacao;
+import br.gov.caixa.simtx.simulador.testes.tabelas.TransacaoAgendamento;
 
 public class Tabelas {
 
@@ -72,7 +73,7 @@ public class Tabelas {
 
 	public List<Tarefa> possuiTarefasTransacao(Long nsuTransacao, Connection connection) {
 
-		String query = "SELECT T.NU_TAREFA_012, NU_VERSAO_TAREFA_012 FROM MTX.MTXTB015_SRVCO_TRNSO_TARFA T WHERE T.NU_NSU_TRANSACAO_017 = ?";
+		String query = "SELECT T.NU_TAREFA_012, T.NU_VERSAO_TAREFA_012, T.DE_XML_REQUISICAO FROM MTX.MTXTB015_SRVCO_TRNSO_TARFA T WHERE T.NU_NSU_TRANSACAO_017 = ?";
 
 		try (PreparedStatement statement = connection.prepareStatement(query);) {
 
@@ -83,7 +84,7 @@ public class Tabelas {
 				List<Tarefa> lista = new ArrayList<>();
 
 				while (rs.next()) {
-					Tarefa tarefa = new Tarefa(rs.getInt("NU_TAREFA_012"), rs.getInt("NU_VERSAO_TAREFA_012"));
+					Tarefa tarefa = new Tarefa(rs.getInt("NU_TAREFA_012"), rs.getInt("NU_VERSAO_TAREFA_012"), rs.getString("DE_XML_REQUISICAO"));
 					lista.add(tarefa);
 				}
 				return lista;
@@ -94,5 +95,53 @@ public class Tabelas {
 			return new ArrayList<>();
 		}
 	}
+	
+	public TransacaoAgendamento possuiTransacaoAgendamento(Long nsuTransacao, Connection connection) {
+		String query = "SELECT T.NU_NSU_EFETIVACAO, " + 
+				"T.DT_REFERENCIA, " + 
+				"T.DT_EFETIVACAO, " + 
+				"T.DE_IDENTIFICACAO_TRANSACAO, " + 
+				"T.IC_SITUACAO_AGENDAMENTO, " + 
+				"T.NU_SERVICO, " + 
+				"T.NU_VERSAO_SERVICO, " + 
+				"T.NU_CANAL, " + 
+				"T.VR_TRANSACAO, " + 
+				"T.IC_CONTA_SOLUCAO, " + 
+				"T.NU_UNIDADE, " + 
+				"T.NU_PRODUTO, " + 
+				"T.NU_CONTA, " + 
+				"T.NU_DV_CONTA FROM MTX.MTXTB034_TRANSACAO_AGENDAMENTO T WHERE T.NU_NSU_TRANSACAO_AGENDAMENTO = ?";
+
+		try (PreparedStatement statement = connection.prepareStatement(query);) {
+
+			statement.setLong(1, nsuTransacao);
+
+			try (ResultSet rs = statement.executeQuery()) {
+				if(rs.next()) {
+					return new TransacaoAgendamento(nsuTransacao, 
+							rs.getLong("NU_NSU_EFETIVACAO"), 
+							rs.getDate("DT_REFERENCIA"),
+							rs.getDate("DT_EFETIVACAO"), 
+							rs.getString("DE_IDENTIFICACAO_TRANSACAO"), 
+							rs.getInt("IC_SITUACAO_AGENDAMENTO"), 
+							rs.getInt("NU_SERVICO"), 
+							rs.getInt("NU_VERSAO_SERVICO"),
+							rs.getInt("NU_CANAL"), 
+							rs.getBigDecimal("VR_TRANSACAO"), 
+							rs.getInt("NU_UNIDADE"), 
+							rs.getInt("NU_PRODUTO"), 
+							rs.getLong("NU_CONTA"), 
+							rs.getInt("NU_DV_CONTA"), 
+							rs.getInt("IC_CONTA_SOLUCAO"));
+				}
+			}
+			return null;
+		} 
+		catch (SQLException e) {
+			logger.error(e);
+			return null;
+		}
+	}
+
 
 }

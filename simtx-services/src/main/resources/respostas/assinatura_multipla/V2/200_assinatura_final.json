@@ -1,0 +1,17 @@
+{
+  "nsu_siper": 999999,
+  "data_transacao": "{DATA_TRANSACAO}",
+  "classificacao": "ASSINATURA_FINAL",
+  "assinantes": [
+    {
+      "cpf": 99999999999
+    },
+    {
+      "cpf": 88888888888
+    },
+    {
+      "cpf": 77777777777
+    }
+  ],
+  "token_autenticacao": "{TOKEN}"
+}

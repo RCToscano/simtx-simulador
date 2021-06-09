@@ -19,6 +19,8 @@ public class Constantes {
 	
 	public static final String SITUACAO_TB14_DIVERGENTE = "Situacao da tabela MTXTB014_TRANSACAO divergente";
 	
+	public static final String SITUACAO_TB34_DIVERGENTE = "Situacao da tabela MTXTB034_TRANSACAO_AGENDAMENTO divergente";
+	
 	public static final String REGISTRO_N_ENCONTRADO_TB14 = "Registro nao encontrada na tabela MTXTB014_TRANSACAO";
 	
 	public static final String REGISTRO_N_ENCONTRADO_TB16 = "Registro nao encontrado na tabela MTXTB016_ITERACAO_CANAL";
@@ -27,6 +29,8 @@ public class Constantes {
 	
 	public static final String REGISTRO_N_ENCONTRADO_TB15 = "Nenhum Tarefa encontrada na tabela MTXTB015_SRVCO_TRNSO_TARFA";
 	
+	public static final String REGISTRO_N_ENCONTRADO_TB34 = "Registro nao encontrada na tabela MTXTB034_TRANSACAO_AGENDAMENTO";
+	
 	public static final String N_DEVE_TER_REGISTRO_TB15 = "Nao espera-se registros na tabela MTXTB015_SRVCO_TRNSO_TARFA";
 	
 	public static final String QTDE_TAREFAS_DIVERGENTE_TB15 = "Quantidade de tarefas gravadas na tabela MTXTB015_SRVCO_TRNSO_TARFA esta divergente";
@@ -34,5 +38,7 @@ public class Constantes {
 	public static final String TAREFA_GRAVADA_ERRADA = "Tarefa nao deveria estar gravada na tabela";
 	
 	public static final String MSG_NEGOCIAL_DIFERENTE = "Mensagem Negocial diferente do esperado";
+	
+	public static final String VALOR_NULO_TB34 = "Valor na tabela MTXTB034_TRANSACAO_AGENDAMENTO nao pode ser nulo ou zero";
 
 }

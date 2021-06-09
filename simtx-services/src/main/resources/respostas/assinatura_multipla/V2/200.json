@@ -1,0 +1,11 @@
+{
+  "nsu_siper": 999999,
+  "data_transacao": "{DATA_TRANSACAO}",
+  "classificacao": "PRIMEIRA_ASSINATURA",
+  "assinantes": [
+    {
+      "cpf": 99999999999
+    }
+  ],
+  "token_autenticacao": "{TOKEN}"
+}

@@ -1,4 +1,4 @@
-package br.gov.caixa.simtx.simulador.services.assinatura.multipla;
+package br.gov.caixa.simtx.simulador.services.assinatura.multipla.v2;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -16,6 +16,8 @@ import javax.ws.rs.core.Response;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 
+import br.gov.caixa.simtx.simulador.services.assinatura.multipla.ClassificacaoAssinaturaEnum;
+import br.gov.caixa.simtx.simulador.services.assinatura.multipla.RequisicaoValidaAssinaturaMultipla;
 import br.gov.caixa.simtx.simulador.services.controle.Controle;
 import br.gov.caixa.simtx.simulador.util.data.DataUtil;
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
@@ -23,18 +25,18 @@ import br.gov.caixa.simtx.simulador.util.exception.ControleException;
 @Path("/sibar/contas/assinaturas-eletronicas")
 @Consumes("application/json")
 @Produces("application/json")
-public class ValidaAssinaturaControle extends Controle {
+public class ValidaAssinaturaMultiplaV2Controle extends Controle {
 
-	private static final Logger logger = Logger.getLogger(ValidaAssinaturaControle.class);
+	private static final Logger logger = Logger.getLogger(ValidaAssinaturaMultiplaV2Controle.class);
 	
-	private static final String PATH = "valida_assinatura";
+	private static final String PATH = "assinatura_multipla";
 	
 
 	@POST
-	@Path("/v1/assinatura-multipla/{cpf}/validar")
+	@Path("/v2/assinatura-multipla/{cpf}/validar")
 	public Response validarServico(@Context HttpServletRequest httpRequest, @PathParam("cpf") String cpf, String json) {
 		try {
-			RequisicaoValidaAssinatura requisicao = gson.fromJson(json, RequisicaoValidaAssinatura.class);
+			RequisicaoValidaAssinaturaMultipla requisicao = gson.fromJson(json, RequisicaoValidaAssinaturaMultipla.class);
 			validarAtributosCampos(requisicao);
 			
 			String resposta = "";

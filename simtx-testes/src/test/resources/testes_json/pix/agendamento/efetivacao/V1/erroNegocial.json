@@ -1,0 +1,21 @@
+{
+  "nuNsuTransacaoAgendamento": {NSUTRANSACAO},
+  "nuNsuEfetivacao": null,
+  "dtReferencia": 1623110400000,
+  "dtEfetivacao": 1623110400000,
+  "deIdentificacaoTransacao": null,
+  "icSituacaoAgendamento": 1,
+  "nuServico": 110032,
+  "nuVersaoServico": 1,
+  "nuCanal": 106,
+  "valorTransacao": 275,
+  "nuUnidade": 612,
+  "nuProduto": 1288,
+  "nuConta": 990010354,
+  "dvConta": 3,
+  "icTipoConta": 2,
+  "deXmlAgendamento": "{\n  \"dataHora\": \"2021-06-01T16:23:05.806-03\",\n  \"informacoesEntreUsuarios\": \"\",\n  \"usuarioPagador\": {\n    \"nome\": \"JOSE ALMEIDA\",\n    \"cpf\": \"60652686311\",\n    \"conta\": {\n      \"agencia\": \"0917\",\n      \"numeroConta\": \"000986202396\",\n\"produto\": \"1288\",\n      \"dv\": \"7\",\n      \"tipoConta\": \"SVGS\",\n      \"ispb\": \"00360305\"\n    }\n  },\n  \"usuarioRecebedor\": {\n    \"nome\": \"JOSE ALMEIDA  \",\n    \"cpf\": \"60652686311\",\n    \"conta\": {\n      \"agencia\": \"0242\",\n      \"numeroConta\": \"984214749\",\n      \"produto\": \"1288\",\n \"dv\": \"0\",\n      \"tipoConta\": \"SVGS\",\n      \"ispb\": \"00360305\"\n    }\n  },\n  \"valor\": 2000,\n  \"participanteTarifado\": \"SLEV\",\n  \"metodoLiquidacao\": \"CLRG\",\n  \"transactionCurrency\": \"BRL\",\n  \"formaIniciacaoPagamento\": \"MANUAL_SEM_CHAVE\",\n  \"txId\": \"123\",\n  \"finalidadeTransacao\": \"IPAY\",\n  \"valorCompra\": 999999999999.99,\n  \"valorDinheiroEspecie\": 999999999999.99,\n  \"pagamentoSiaafDto\": {\n    \"titularidade\": \"\",\n    \"categoriaConta\": \"\",\n    \"jurosMulta\": \"\",\n    \"descontoAbatimento\": \"\",\n    \"dataVencimentoPagamento\": \"\",\n    \"detalhesPagamento\": \"\",\n    \"tempoExpiracaoQrCode\": \"\",\n    \"pointInitiationMethod\": \"\",\n    \"merchantAccountInformation\": \"\",\n    \"merchantName\": \"\",\n    \"merchantCategoryCode\": \"\",\n    \"merchantCity\": \"\",\n    \"countryCode\": \"\",\n    \"finalidade\": \"\",\n    \"identificacao\": \"\",\n    \"codigoResposta\": \"\",\n    \"codigoAcesso\": \"\",\n    \"ipDispositivo\": \"189.68.241.73\",\n    \"portaDispositivo\": \"59562\",\n    \"idMobileFirst\": \"267FBA85EA8E117D\",\n    \"latitude\": \"-23.59880286\",\n    \"longitude\": \"-46.68371601\",\n    \"precisao\": \"48.898968\",\n    \"timeStampGeo\": \"1601753753000\",\n    \"sistOperacionalDispositivo\": \"ANDROID\",\n    \"sistOperacionalVersao\": \"10\",\n    \"tipoDeDispositivo\": \"ANDROID PHONE\",\n    \"aplicativoVersao\": \"3.6.0\",\n    \"tipoDeAutenticacao\": \"2\",\n    \"vm\": \"Falso\",\n    \"root\": \"Falso\",\n    \"nuCartao\": \"\",\n    \"agenciaVinculacaoTerminal\": \"\",\n    \"nuATM\": \"\",\n    \"nuConveniado\": \"\",\n    \"nuTerminalLoterico\": \"\",\n    \"nuOperadorTerminal\": \"\",\n    \"nuEstacaoFinanceiraOperacional\": \"\",\n    \"ipURA\": \"\",\n    \"mdcu\": \"\",\n    \"nuTelefone\": \"\",\n  \"nuOperadorEstacaoFinanceiraOperacional\": \"\",\n    \"nuAutorizadorEstacaoFinanceiraOperacional\": \"\"\n  }\n}",
+  "nuCategoriaMensagem051": null,
+  "dhUltimaExecucao": null,
+  "deXmlEfetivacao": ""
+}

@@ -1,4 +1,4 @@
-package br.gov.caixa.simtx.simulador.services.assinatura.simples;
+package br.gov.caixa.simtx.simulador.services.assinatura.simples.v2;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
 
 import br.gov.caixa.simtx.simulador.services.assinatura.multipla.Dispositivo;
+import br.gov.caixa.simtx.simulador.services.assinatura.simples.Transacao;
 import br.gov.caixa.simtx.simulador.util.vo.ContaAgencia;
 
 public class RequisicaoAssinaturaSimplesV2 {

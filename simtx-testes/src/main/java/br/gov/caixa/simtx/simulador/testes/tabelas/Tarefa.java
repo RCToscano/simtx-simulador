@@ -47,6 +47,8 @@ public class Tarefa {
 	private List<Mensagem> listaMsg;
 	
 	private List<Regra> listaRegras;
+	
+	private String deXmlRequisicao;
 
 	
 	public Tarefa() {
@@ -56,6 +58,13 @@ public class Tarefa {
 		super();
 		this.nuTarefa = nuTarefa;
 		this.nuVersao = nuVersao;
+	}
+	
+	public Tarefa(int nuTarefa, int nuVersao, String deXmlRequisicao) {
+		super();
+		this.nuTarefa = nuTarefa;
+		this.nuVersao = nuVersao;
+		this.deXmlRequisicao = deXmlRequisicao;
 	}
 
 	public int getNuTarefa() {
@@ -233,30 +242,13 @@ public class Tarefa {
 	public void setListaRegras(List<Regra> listaRegras) {
 		this.listaRegras = listaRegras;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + nuTarefa;
-		result = prime * result + nuVersao;
-		return result;
+	
+	public String getDeXmlRequisicao() {
+		return deXmlRequisicao;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Tarefa other = (Tarefa) obj;
-		if (nuTarefa != other.nuTarefa)
-			return false;
-		if (nuVersao != other.nuVersao)
-			return false;
-		return true;
+	public void setDeXmlRequisicao(String deXmlRequisicao) {
+		this.deXmlRequisicao = deXmlRequisicao;
 	}
 
 }

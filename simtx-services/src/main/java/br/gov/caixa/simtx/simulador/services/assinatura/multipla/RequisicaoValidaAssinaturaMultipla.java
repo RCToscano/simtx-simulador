@@ -1,5 +1,7 @@
 package br.gov.caixa.simtx.simulador.services.assinatura.multipla;
 
+import java.math.BigDecimal;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -11,7 +13,7 @@ import com.google.gson.annotations.SerializedName;
 
 import br.gov.caixa.simtx.simulador.util.vo.ContaAgencia;
 
-public class RequisicaoValidaAssinatura {
+public class RequisicaoValidaAssinaturaMultipla {
 
 	@NotNull(message = "conta nao informada")
 	@Valid
@@ -179,6 +181,8 @@ public class RequisicaoValidaAssinatura {
 		private String resumo;
 
 		private String data;
+		
+		private BigDecimal valor;
 
 		public String getResumo() {
 			return resumo;
@@ -194,6 +198,14 @@ public class RequisicaoValidaAssinatura {
 
 		public void setData(String data) {
 			this.data = data;
+		}
+
+		public BigDecimal getValor() {
+			return valor;
+		}
+
+		public void setValor(BigDecimal valor) {
+			this.valor = valor;
 		}
 	}
 
