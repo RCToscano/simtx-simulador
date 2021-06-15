@@ -1,0 +1,29 @@
+{
+  "dataHora": "{DATATRANSACAO}T18:03:28.930",
+  "idFimAFim": "{IDFIMAFIM}",
+  "situacaoDaTransacao": "ACSC",
+  "dataTransacao": "{DATATRANSACAO}",
+  "qrcode": {
+    "revisao": 0,
+    "calendario": {
+      "criacao": "{DATATRANSACAO} 18:02:23.0",
+      "apresentacao": "{DATATRANSACAO} 18:02:23.0",
+      "validadeAposVencimento": 43200
+    },
+    "devedor": {
+      "cnpj": "81763286000169",
+      "nome": "CANAL LOTERICO"
+    },
+    "valor": {
+      "original": "30"
+    },
+    "chave": "81763286000169",
+    "txid": "20210610N0769275107T0000022077",
+    "infoAdicionais": [
+      {
+        "nome": "NSU",
+        "descricao": "769275107"
+      }
+    ]
+  }
+}

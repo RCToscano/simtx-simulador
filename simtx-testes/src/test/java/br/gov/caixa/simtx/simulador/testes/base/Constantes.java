@@ -40,5 +40,7 @@ public class Constantes {
 	public static final String MSG_NEGOCIAL_DIFERENTE = "Mensagem Negocial diferente do esperado";
 	
 	public static final String VALOR_NULO_TB34 = "Valor na tabela MTXTB034_TRANSACAO_AGENDAMENTO nao pode ser nulo ou zero";
+	
+	public static final String JSON_TAREFAS_CONTEM_CAMPOS_NULOS = "JSON da Tarefa contem campos nulos";
 
 }

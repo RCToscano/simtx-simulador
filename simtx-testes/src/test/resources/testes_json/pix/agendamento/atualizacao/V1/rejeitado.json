@@ -1,0 +1,8 @@
+{
+  "dataHora": "{DATATRANSACAO}T23:42:52.745Z",
+  "idFimAFim": "{IDFIMAFIM}",
+  "situacaoDaTransacao": "RJCT",
+  "codigoDeErro": "99",
+  "detalhamentoDoErro": "TESTE RJCT SIMULADOR",
+  "dataTransacao": "{DATATRANSACAO}"
+}

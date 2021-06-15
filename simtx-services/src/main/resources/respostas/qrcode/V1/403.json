@@ -1,0 +1,14 @@
+{
+  "type": "tipo",
+  "title": "titulo",
+  "status": 99,
+  "detail": "detalhe erro",
+  "correlationId": "123",
+  "violacoes": [
+    {
+      "razao": "ERRO",
+      "propriedade": "prop",
+      "valor": "1"
+    }
+  ]
+}

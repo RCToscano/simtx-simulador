@@ -25,7 +25,7 @@ public class Transacao {
 	}
 	
 	public Transacao(Long nsuTransacao, Long nsuTransacaoOrigem, int icSituacao, int icEnvio, int icRetorno,
-			String coTransacaoExterna, Date dtReferencia) {
+			String coTransacaoExterna, java.sql.Date dtReferencia) {
 		super();
 		this.nsuTransacao = nsuTransacao;
 		this.nsuTransacaoOrigem = nsuTransacaoOrigem;
@@ -33,7 +33,7 @@ public class Transacao {
 		this.icEnvio = icEnvio;
 		this.icRetorno = icRetorno;
 		this.coTransacaoExterna = coTransacaoExterna;
-		this.dtReferencia = dtReferencia;
+		this.dtReferencia = new java.util.Date(dtReferencia.getTime());
 	}
 
 

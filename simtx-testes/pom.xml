@@ -17,11 +17,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.oracle.jdbc</groupId>
-			<artifactId>ojdbc14</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 		</dependency>

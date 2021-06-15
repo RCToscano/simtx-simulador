@@ -18,7 +18,13 @@ public class Tabelas {
 	private static final Logger logger = Logger.getLogger(Tabelas.class);
 
 	public Transacao possuiTransacao(Long nsuTransacao, Connection connection) {
-		String query = "SELECT T.NU_NSU_TRANSACAO, T.IC_SITUACAO FROM MTX.MTXTB014_TRANSACAO T WHERE T.NU_NSU_TRANSACAO = ?";
+		String query = "SELECT T.NU_NSU_TRANSACAO_ORIGEM, " +
+					"T.IC_SITUACAO, " +
+					"T.IC_ENVIO, " +
+					"T.IC_RETORNO, " +
+					"T.CO_TRANSACAO_EXTERNO, " +
+					"T.DT_REFERENCIA " +
+					"FROM MTX.MTXTB014_TRANSACAO T WHERE T.NU_NSU_TRANSACAO = ?";
 
 		try (PreparedStatement statement = connection.prepareStatement(query);) {
 
@@ -26,7 +32,13 @@ public class Tabelas {
 
 			try (ResultSet rs = statement.executeQuery()) {
 				if(rs.next()) {
-					return new Transacao(nsuTransacao, rs.getInt("IC_SITUACAO"));
+					return new Transacao(nsuTransacao, 
+							rs.getLong("NU_NSU_TRANSACAO_ORIGEM"), 
+							rs.getInt("IC_SITUACAO"), 
+							rs.getInt("IC_ENVIO"), 
+							rs.getInt("IC_RETORNO"), 
+							rs.getString("CO_TRANSACAO_EXTERNO"), 
+							rs.getDate("DT_REFERENCIA"));
 				}
 			}
 			return null;

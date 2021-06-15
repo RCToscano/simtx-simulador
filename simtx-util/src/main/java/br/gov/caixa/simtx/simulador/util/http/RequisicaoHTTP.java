@@ -136,6 +136,27 @@ public class RequisicaoHTTP {
 		}
 	}
 	
+	public static ClientResponse requestPutApi(String uri, String token, String request) {
+		try {
+			ClientConfig clientConfig = new DefaultClientConfig();
+			((DefaultClientConfig) clientConfig).getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING,
+					Boolean.TRUE);
+
+			Client client = Client.create(clientConfig);
+			client.setConnectTimeout(3000);
+			client.setReadTimeout(10000);
+			WebResource webResource = client.resource(uri);
+
+			return webResource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON)
+					.header("Authorization", "Bearer " + token)
+					.put(ClientResponse.class, request);
+		} 
+		catch (Exception e) {
+			logger.error(e);
+			return null;
+		}
+	}
+	
 	public static TokenServicoSaida gerarToken(TipoGeracaoToken tipoGeracao, String clientId, String clientSecret) throws ControleException {
 		try {
 			String uri = "https://logindes.caixa.gov.br/auth/realms/internet/protocol/openid-connect/token";

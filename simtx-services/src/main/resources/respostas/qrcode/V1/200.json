@@ -1,0 +1,23 @@
+{
+  "revisao": 0,
+  "calendario": {
+    "criacao": "{DATAHORA}",
+    "apresentacao": "{DATAHORA}",
+    "validadeAposVencimento": 43200
+  },
+  "devedor": {
+    "cnpj": "81763286000169",
+    "nome": "CANAL LOTERICO"
+  },
+  "valor": {
+    "original": "45"
+  },
+  "chave": "81763286000169",
+  "txid": "20210615N0770208653T0000021311",
+  "infoAdicionais": [
+    {
+      "nome": "NSU",
+      "descricao": "770208653"
+    }
+  ]
+}

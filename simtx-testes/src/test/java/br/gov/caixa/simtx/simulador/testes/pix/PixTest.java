@@ -48,8 +48,8 @@ public class PixTest extends BaseTeste {
 	private static final String PATH = "pix/";
 	
 //	private static final String URI = "https://simtx.pagamentopix.des.caixa/pagamentos-instantaneos/v1/pagamentos";
-	private static final String URI = "https://simtx02.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
-//	private static final String URI = "https://simtx03.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
+//	private static final String URI = "https://simtx02.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
+	private static final String URI = "https://simtx03.webservices.des.caixa/pagamentos-instantaneos/v3/pagamentos";
 //	private static final String URI = "https://simtx.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
 	
 	private static final String URI_IDFIMAFIM = "https://sispi-container-backend-des-esteiras.nprd2.caixa/sispi-api-war/api/v1/ids-pagamento";
@@ -153,14 +153,13 @@ public class PixTest extends BaseTeste {
 		String pathTeste001 = "V1/todosCampos.json";
 		List<Long> tarefas = new ArrayList<>();
 		tarefas.addAll(Arrays.asList(TAREFAS_NEGOCIAIS));
-		tarefas.add(100110l);
 		tarefas.add(100113l);
 
 		String meioEntrada = recuperarJson(BASE_PATH_JSON.concat(PATH_MEIO_ENTRADA).concat("assinatura_simples/dados.json"));
 		meioEntrada = codificaBase64(meioEntrada);
 
 		String saida = executarRequisicao(pathTeste001, tokenTransacao, meioEntrada, dadosAntiFraude);
-//		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS, saida.contains("null"));
+		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS, saida.contains("null"));
 
 		RespostaPixV1VO respostasPixVO = mapper.readerFor(RespostaPixV1VO.class).readValue(saida);
 		validarAtributosCampos(respostasPixVO);
@@ -177,8 +176,7 @@ public class PixTest extends BaseTeste {
 
 		List<Tarefa> listTarefas = tabelas.possuiTarefasTransacao(respostasPixVO.getNsuTransacao(), this.connection);
 		assertFalse(Constantes.REGISTRO_N_ENCONTRADO_TB15, listTarefas.isEmpty());
-		assertEquals(Constantes.QTDE_TAREFAS_DIVERGENTE_TB15, 4,
-				listTarefas.size());
+		assertEquals(Constantes.QTDE_TAREFAS_DIVERGENTE_TB15, tarefas.size(), listTarefas.size());
 		for (int i = 0; i < listTarefas.size(); i++) {
 			assertTrue(Constantes.TAREFA_GRAVADA_ERRADA,
 					tarefas.contains(Long.valueOf(listTarefas.get(i).getNuTarefa())));
@@ -197,7 +195,7 @@ public class PixTest extends BaseTeste {
 			meioEntrada = codificaBase64(meioEntrada);
 	
 			String saida = executarRequisicao(pathTeste001, tokenTransacao, meioEntrada, dadosAntiFraude);
-	//		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS + saida, saida.contains("null"));
+			assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS + saida, saida.contains("null"));
 	
 			RespostaPixV1VO respostasPixVO = mapper.readerFor(RespostaPixV1VO.class).readValue(saida);
 			validarAtributosCampos(respostasPixVO);
@@ -214,7 +212,7 @@ public class PixTest extends BaseTeste {
 	
 			List<Tarefa> listTarefas = tabelas.possuiTarefasTransacao(respostasPixVO.getNsuTransacao(), this.connection);
 			assertFalse(Constantes.REGISTRO_N_ENCONTRADO_TB15, listTarefas.isEmpty());
-			assertEquals(Constantes.QTDE_TAREFAS_DIVERGENTE_TB15, 3, listTarefas.size());
+			assertEquals(Constantes.QTDE_TAREFAS_DIVERGENTE_TB15, tarefas.size(), listTarefas.size());
 			for (int i = 0; i < listTarefas.size(); i++) {
 				assertTrue(Constantes.TAREFA_GRAVADA_ERRADA,
 						tarefas.contains(Long.valueOf(listTarefas.get(i).getNuTarefa())));

@@ -26,6 +26,7 @@ public class SimuladorConfig extends Application {
 		resources.add(br.gov.caixa.simtx.simulador.services.limite.efetivar.EfetivaLimiteControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.limite.desfazer.DesfazLimiteControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.enviopush.EnvioPushCanalControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.qrcode.consulta.ConsultaQRCodeControle.class);
 		return resources;
 	}
 }

@@ -24,6 +24,7 @@ import br.gov.caixa.simtx.simulador.testes.banco.Conexao;
 import br.gov.caixa.simtx.simulador.testes.base.BaseTeste;
 import br.gov.caixa.simtx.simulador.testes.base.Constantes;
 import br.gov.caixa.simtx.simulador.testes.base.RespostaErroSIMTX;
+import br.gov.caixa.simtx.simulador.testes.pix.RespostaPixV1VO;
 import br.gov.caixa.simtx.simulador.testes.tabelas.Tarefa;
 import br.gov.caixa.simtx.simulador.testes.tabelas.Transacao;
 import br.gov.caixa.simtx.simulador.testes.tabelas.TransacaoAgendamento;
@@ -33,7 +34,7 @@ import br.gov.caixa.simtx.simulador.util.http.RequisicaoHTTP;
 import br.gov.caixa.simtx.simulador.util.http.TipoGeracaoToken;
 import br.gov.caixa.simtx.simulador.util.ssh.RequisicaoSSH;
 
-public class EfetivacaoAgendamentoPixTest extends BaseTeste {
+public class AtualizaEfetivacaoAgendamentoPixTest extends BaseTeste {
 	
 	private Connection connection;
 	
@@ -72,10 +73,10 @@ public class EfetivacaoAgendamentoPixTest extends BaseTeste {
 	
 	public String executarRequisicao(String path, String token) {
 		if(UTILIZARHTTP) {
-			String jsonPagamento = recuperarJson(BASE_PATH_JSON.concat(PATH).concat("agendamento/efetivacao/").concat(path));
+			String jsonPagamento = recuperarJson(BASE_PATH_JSON.concat(PATH).concat("agendamento/atualizacao/").concat(path));
 			jsonPagamento = jsonPagamento.replace("{NSUTRANSACAO}", NSU_TRANSACAO.toString());
 			
-			ClientResponse resposta = RequisicaoHTTP.requestPostApi(URI, token, jsonPagamento, "", "");
+			ClientResponse resposta = RequisicaoHTTP.requestPutApi(URI, token, jsonPagamento);
 			assertNotNull(Constantes.SEM_RESPOSTA_HTTP, resposta);
 
 			String saida = resposta.getEntity(String.class);
@@ -86,7 +87,7 @@ public class EfetivacaoAgendamentoPixTest extends BaseTeste {
 		else {
 			path = path.replace(".json", "_curl.json");
 
-			String jsonPagamento = recuperarJson(BASE_PATH_JSON.concat(PATH).concat("agendamento/efetivacao/").concat(path));
+			String jsonPagamento = recuperarJson(BASE_PATH_JSON.concat(PATH).concat("agendamento/atualizacao/").concat(path));
 			jsonPagamento = jsonPagamento.replace("{URI}", URI);
 			jsonPagamento = jsonPagamento.replace("{NSUTRANSACAO}", NSU_TRANSACAO.toString());
 
@@ -110,7 +111,7 @@ public class EfetivacaoAgendamentoPixTest extends BaseTeste {
 
 	@Test
 	public void testSucesso() throws InterruptedException {
-		String pathTeste001 = "V1/todosCampos.json";
+		String pathTeste001 = "V1/sucesso.json";
 		List<Long> tarefas = new ArrayList<>();
 		tarefas.addAll(Arrays.asList(TAREFAS_NEGOCIAIS));
 
@@ -149,18 +150,53 @@ public class EfetivacaoAgendamentoPixTest extends BaseTeste {
 		}
 	}
 	
+	@Test
+	public void testSemCamposObrigatorios() {
+		
+	}
+	
+	@Test
+	public void testDominioNaoPermitido() {
+		
+	}
+	
+	
+	@Test
+	public void testClientIdNaoPermitido() {
+		
+	}
+	
 	/**
-	 * Deve ser realizada apenas uma tentativa de efetivação de agendamento de Pix caso a transação 
-	 * seja recusada (por saldo insuficiente, por exemplo).
+	 * O sistema pode permitir atualizacao se o status for igual a Situacao da Transacao Finalizada.
 	 */
 	@Test
-	public void testErroNegocial() throws InterruptedException {
+	public void testTransacaoFinalizada() {
+		
+	}
+	
+	
+	/**
+	 * O sistema nao pode permitir atualizacao com status diferente da Situacao da Transacao.
+	 */
+	@Test
+	public void testStatusDiferenteSituacaoTransacao() {
+		
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void testRJCT() {
 		String pathTeste001 = "V1/erroNegocial.json";
 		List<Long> tarefas = new ArrayList<>();
 		tarefas.addAll(Arrays.asList(TAREFAS_NEGOCIAIS));
 
-		executarRequisicao(pathTeste001, token);
-		Thread.sleep(3000);
+		String saida = executarRequisicao(pathTeste001, token);
+		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS, saida.contains("null"));
+		
+//		RespostaPixV1VO respostasPixVO = mapper.readerFor(RespostaPixV1VO.class).readValue(saida);
+//		validarAtributosCampos(respostasPixVO);
 
 		TransacaoAgendamento transacaoAgendamento = tabelas.possuiTransacaoAgendamento(NSU_TRANSACAO, this.connection);
 		assertNotNull(Constantes.REGISTRO_N_ENCONTRADO_TB34, transacaoAgendamento);
@@ -193,13 +229,16 @@ public class EfetivacaoAgendamentoPixTest extends BaseTeste {
 	 * de infraestrutura.
 	 */
 	@Test
-	public void testErroInterno() throws InterruptedException {
+	public void testHOLD() {
 		String pathTeste001 = "V1/erroInterno.json";
 		List<Long> tarefas = new ArrayList<>();
 		tarefas.addAll(Arrays.asList(TAREFAS_NEGOCIAIS));
 
-		executarRequisicao(pathTeste001, token);
-		Thread.sleep(3000);
+		String saida = executarRequisicao(pathTeste001, token);
+		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS, saida.contains("null"));
+		
+//		RespostaPixV1VO respostasPixVO = mapper.readerFor(RespostaPixV1VO.class).readValue(saida);
+//		validarAtributosCampos(respostasPixVO);
 
 		TransacaoAgendamento transacaoAgendamento = tabelas.possuiTransacaoAgendamento(NSU_TRANSACAO, this.connection);
 		assertNotNull(Constantes.REGISTRO_N_ENCONTRADO_TB34, transacaoAgendamento);

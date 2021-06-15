@@ -1,0 +1,8 @@
+{
+  "dataHora": "{DATATRANSACAO}T12:45:03.739Z",
+  "idFimAFim": "{IDFIMAFIM}",
+  "situacaoDaTransacao": "HOLD",
+  "codigoDeErro": "50",
+  "detalhamentoDoErro": "TESTE HOLD SIMULADOR",
+  "dataTransacao": "{DATATRANSACAO}"
+}
