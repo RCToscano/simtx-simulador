@@ -32,7 +32,7 @@ public class ConsultaQRCodeControle extends Controle {
 		try {
 			logger.info("[SIMULADOR] Mensagem recebida: "+ txid);
 			String resposta = recuperarJson(BASE_PATH_JSON + PATH + "/V1/200.json");
-			resposta = resposta.replace("{DATA_ATUAL}", DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_PADRAO_BR_HORA));
+			resposta = resposta.replace("{DATAHORA}", DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_PADRAO_BR_HORA));
 			return Response.ok().entity(resposta).build();
 		} 
 		catch (Exception e) {
