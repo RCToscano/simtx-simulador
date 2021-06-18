@@ -34,7 +34,6 @@ public class RequisicaoEfetivaLimite {
 	@Valid
 	private TipoAutenticacaoEnum autenticacao;
 
-	@NotNull(message = "conta_destino nao informada")
 	@Valid
 	@JsonProperty("conta_destino")
 	@SerializedName("conta_destino")
