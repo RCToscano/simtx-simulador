@@ -12,7 +12,6 @@ public class ContaDestino {
 
 	private Integer banco;
 
-	@NotNull(message = "agencia nao informada")
 	@Min(value = 1, message= "agencia deve ser informada e ter no maximo 5 caracteres")
 	@Max(value = 99999, message= "agencia deve ser informada e ter no maximo 5 caracteres")
 	private Integer agencia;
