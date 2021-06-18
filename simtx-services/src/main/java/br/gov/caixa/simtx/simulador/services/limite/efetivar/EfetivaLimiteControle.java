@@ -25,7 +25,7 @@ public class EfetivaLimiteControle extends Controle {
 	
 
 	@POST
-	@Path("/v1/{conta}/desfazer")
+	@Path("/v1/{conta}/efetivar")
 	public Response validarServico(@Context HttpServletRequest httpRequest, @PathParam("id_conta") String conta, String json) {
 		try {
 			RequisicaoEfetivaLimite requisicao = gson.fromJson(json, RequisicaoEfetivaLimite.class);
