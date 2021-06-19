@@ -12,7 +12,6 @@ import javax.ws.rs.core.Response;
 import org.apache.log4j.Logger;
 
 import br.gov.caixa.simtx.simulador.services.controle.Controle;
-import br.gov.caixa.simtx.simulador.services.enviopush.EnvioPushCanalControle;
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
 
 @Path("sibar/contas/assinaturas-eletronicas/v1")
@@ -20,7 +19,7 @@ import br.gov.caixa.simtx.simulador.util.exception.ControleException;
 @Produces("application/json")
 public class AtualizaSituacaoAssinaturaMultiplaApiControle extends Controle {
 	
-	private static final Logger logger = Logger.getLogger(EnvioPushCanalControle.class);
+	private static final Logger logger = Logger.getLogger(AtualizaSituacaoAssinaturaMultiplaApiControle.class);
 	
 	@PUT
 	@Path("/assinatura-multipla/{id_conta}/transacoes-pendentes/{nsu_siper}")
