@@ -1,4 +1,4 @@
-package br.gov.caixa.simtx.simulador.services.atualizaSituacaoAssinaturaMultipla;
+package br.gov.caixa.simtx.simulador.services.atualizasituacaosssinaturamultipla;
 
 
 import javax.validation.constraints.NotNull;
