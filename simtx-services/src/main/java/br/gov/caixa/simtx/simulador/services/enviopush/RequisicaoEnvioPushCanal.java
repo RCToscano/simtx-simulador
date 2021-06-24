@@ -1,14 +1,17 @@
 package br.gov.caixa.simtx.simulador.services.enviopush;
 
+import java.math.BigDecimal;
+
 import javax.validation.Valid;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class RequisicaoEnvioPushCanal {
 
 	@NotNull(message = "identificador nao informado")
-	@Size(min = 11, max = 21, message = "identificador deve ser informado e ter no maximo 21 caracteres")
-	private String identificador;
+	@Digits(integer = 21, fraction = 0, message = "identificador deve ser informado e ter no maximo 21 caracteres")
+	private BigDecimal identificador;
 
 	@NotNull(message = "canal nao informado")
 	@Size(min = 1, message = "canal deve ser informado")
@@ -24,11 +27,11 @@ public class RequisicaoEnvioPushCanal {
 
 
 
-	public String getIdentificador() {
+	public BigDecimal getIdentificador() {
 		return identificador;
 	}
 
-	public void setIdentificador(String identificador) {
+	public void setIdentificador(BigDecimal identificador) {
 		this.identificador = identificador;
 	}
 

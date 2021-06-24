@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -15,7 +16,6 @@ import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.io.BaseEncoding;
 
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
 import br.gov.caixa.simtx.simulador.util.token.ChaveSSO;
@@ -65,34 +65,32 @@ public class JWTUtil {
 		try {
 			logger.info("[SIMULADOR] Validando Token: "+token);
 			TokenServico tokenServico = quebraToken(token);
-			recuperarValidarChave(token, tokenServico);
+//			recuperarValidarChave(token, tokenServico);
 			return tokenServico;
 		}
 		catch (ExpiredJwtException e) {
 			logger.error("[SIMULADOR] Token Expirado");
 			throw new ControleException("TOKEN EXPIRADO", "SIMULADOR");
 		}
-		catch (MalformedJwtException | SignatureException | UnsupportedJwtException
-				| NoSuchAlgorithmException | InvalidKeySpecException e) {
-			logger.error("[SIMULADOR] Token Invalido");
-			throw new ControleException("TOKEN INVALIDO", "SIMULADOR");
-		} 
+//		catch (MalformedJwtException | SignatureException | UnsupportedJwtException
+//				| NoSuchAlgorithmException | InvalidKeySpecException e) {
+//			logger.error("[SIMULADOR] Token Invalido");
+//			throw new ControleException("TOKEN INVALIDO", "SIMULADOR");
+//		} 
 	}
 
 	private static TokenServico quebraToken(String tokenJwt) throws ControleException {
 		try {
-			logger.info("Quebrando token");
-	    	String[] splitString = tokenJwt.replace("Bearer ", "").split("\\.");
+	    	String[] splitString = tokenJwt.split("\\.");
 			String base64EncodedHeader = splitString[0];
 			String base64EncodedBody = splitString[1];
 			
-			String header = new String(BaseEncoding.base64().decode(base64EncodedHeader));
-			String body = new String(BaseEncoding.base64().decode(base64EncodedBody));
+			String header = new String(Base64.getDecoder().decode(base64EncodedHeader));
+			String body = new String(Base64.getDecoder().decode(base64EncodedBody));
 			
 			ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			TokenServicoHeader tokenServicoHeader = mapper.readValue(header, TokenServicoHeader.class);
 			
-			logger.info("Token tipo SSO");
 			TokenServicoBody tokenServicoBody = mapper.readValue(body, TokenServicoBody.class);
 			return new TokenServico(tokenServicoHeader, tokenServicoBody);
 			

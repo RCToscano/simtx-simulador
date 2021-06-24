@@ -24,7 +24,6 @@ import br.gov.caixa.simtx.simulador.testes.banco.Conexao;
 import br.gov.caixa.simtx.simulador.testes.base.BaseTeste;
 import br.gov.caixa.simtx.simulador.testes.base.Constantes;
 import br.gov.caixa.simtx.simulador.testes.base.RespostaErroSIMTX;
-import br.gov.caixa.simtx.simulador.testes.pix.RespostaPixV1VO;
 import br.gov.caixa.simtx.simulador.testes.tabelas.Tarefa;
 import br.gov.caixa.simtx.simulador.testes.tabelas.Transacao;
 import br.gov.caixa.simtx.simulador.testes.tabelas.TransacaoAgendamento;

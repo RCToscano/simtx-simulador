@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -17,11 +18,13 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 
 import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientHandlerException;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
@@ -153,6 +156,36 @@ public class RequisicaoHTTP {
 		} 
 		catch (Exception e) {
 			logger.error(e);
+			return null;
+		}
+	}
+	
+	public static ClientResponse requestGetApi(String uri, String token, MultivaluedMap<String, String> parametros) {
+		try {
+			ClientConfig clientConfig = new DefaultClientConfig();
+			((DefaultClientConfig) clientConfig).getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING,
+					Boolean.TRUE);
+
+			Client client = Client.create(clientConfig);
+			client.setConnectTimeout(1000);
+			client.setReadTimeout(5000);
+			WebResource webResource = client.resource(uri);
+
+			return webResource.queryParams(parametros).accept(MediaType.APPLICATION_JSON)
+					.type(MediaType.APPLICATION_JSON).header("Authorization", "Bearer " + token)
+					.get(ClientResponse.class);
+		} 
+		catch (ClientHandlerException e) {
+			if (e.getCause() instanceof SocketTimeoutException) {
+				logger.error("Nao foi possivel se comunicar com a API: " + uri, e);
+				return null;
+		    }
+			else {
+				throw e;
+			}		    
+		}
+		catch (Exception e) {
+			logger.error("Ocorreu um erro na execucao da API: " + uri, e);
 			return null;
 		}
 	}

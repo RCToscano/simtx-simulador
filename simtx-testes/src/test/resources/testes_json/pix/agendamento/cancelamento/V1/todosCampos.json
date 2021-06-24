@@ -1,0 +1,10 @@
+{
+  "dataEfetivacao": "2021-06-21",
+  "conta": {
+    "agencia": "0238",
+    "numeroConta": "2",
+    "produto": "001",
+    "dv": "0"
+  },
+  "valor": 25
+}

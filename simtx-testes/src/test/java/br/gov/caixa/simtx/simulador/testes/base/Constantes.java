@@ -33,13 +33,19 @@ public class Constantes {
 	
 	public static final String N_DEVE_TER_REGISTRO_TB15 = "Nao espera-se registros na tabela MTXTB015_SRVCO_TRNSO_TARFA";
 	
+	public static final String N_DEVE_TER_REGISTRO_TB34 = "Nao espera-se registro na tabela MTXTB034_TRANSACAO_AGENDAMENTO";
+	
 	public static final String QTDE_TAREFAS_DIVERGENTE_TB15 = "Quantidade de tarefas gravadas na tabela MTXTB015_SRVCO_TRNSO_TARFA esta divergente";
 	
 	public static final String TAREFA_GRAVADA_ERRADA = "Tarefa nao deveria estar gravada na tabela";
 	
 	public static final String MSG_NEGOCIAL_DIFERENTE = "Mensagem Negocial diferente do esperado";
 	
+	public static final String MSG_TECNICA_DIFERENTE = "Mensagem Tecnica diferente do esperado";
+	
 	public static final String VALOR_NULO_TB34 = "Valor na tabela MTXTB034_TRANSACAO_AGENDAMENTO nao pode ser nulo ou zero";
+	
+	public static final String IDENTIFICACAO_NULO_TB34 = "Identificacao na tabela MTXTB034_TRANSACAO_AGENDAMENTO nao pode ser nulo ou vazio";
 	
 	public static final String JSON_TAREFAS_CONTEM_CAMPOS_NULOS = "JSON da Tarefa contem campos nulos";
 
