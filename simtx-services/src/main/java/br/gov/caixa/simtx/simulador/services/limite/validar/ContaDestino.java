@@ -12,8 +12,7 @@ public class ContaDestino {
 
 	private Integer banco;
 
-	@Min(value = 1, message= "agencia deve ser informada e ter no maximo 5 caracteres")
-	@Max(value = 99999, message= "agencia deve ser informada e ter no maximo 5 caracteres")
+	@Max(value = 99999, message= "agencia deve ter no maximo 5 caracteres")
 	private Integer agencia;
 
 	@Max(value = 9999, message= "agencia deve ter no maximo 4 caracteres")
