@@ -25,7 +25,7 @@ public class RequisicaoEfetivaLimite {
 	private BigDecimal valor;
 
 	@NotNull(message = "data_efetivacao nao informada")
-	@Size(min = 10, max = 10, message = "data_efetivacaa deve ser informada e ter o seguinte formato yyyy-MM-dd")
+	@Size(min = 10, max = 10, message = "data_efetivacao deve ser informada e ter o seguinte formato yyyy-MM-dd")
 	@JsonProperty("data_efetivacao")
 	@SerializedName("data_efetivacao")
 	private String dataEfetivacao;

@@ -9,10 +9,13 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import br.gov.caixa.simtx.simulador.services.validation.NotEqual;
+
 public class RequisicaoPagamentoSpi {
 	
 	@NotNull(message = "clientIdCanal nao informado")
 	@Size(min = 11, max = 11, message = "clientIdCanal nao informado corretamente. espera cli-ser-xxx")
+	@NotEqual(secondValue = "cli-ser-mtx", message = "clientIdCanal nao pode ser do simtx")
 	private String clientIdCanal;
 
 	@NotNull(message = "idFimAFim nao informado")
