@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,6 +15,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.junit.jupiter.api.AfterEach;
@@ -28,6 +30,7 @@ import br.gov.caixa.simtx.simulador.testes.banco.Conexao;
 import br.gov.caixa.simtx.simulador.testes.base.BaseTeste;
 import br.gov.caixa.simtx.simulador.testes.base.Constantes;
 import br.gov.caixa.simtx.simulador.testes.base.RespostaErroSIMTX;
+import br.gov.caixa.simtx.simulador.testes.pix.IdFimaFimVO;
 import br.gov.caixa.simtx.simulador.testes.pix.RespostaPixV1VO;
 import br.gov.caixa.simtx.simulador.testes.pix.agendamento.vo.RespostaAgendamentoPixV1VO;
 import br.gov.caixa.simtx.simulador.testes.tabelas.Tarefa;
@@ -35,7 +38,12 @@ import br.gov.caixa.simtx.simulador.testes.tabelas.Transacao;
 import br.gov.caixa.simtx.simulador.testes.tabelas.TransacaoAgendamento;
 import br.gov.caixa.simtx.simulador.util.data.DataUtil;
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
+import br.gov.caixa.simtx.simulador.util.http.ClientID;
+import br.gov.caixa.simtx.simulador.util.http.PropriedadesHTTP;
 import br.gov.caixa.simtx.simulador.util.http.RequisicaoHTTP;
+import br.gov.caixa.simtx.simulador.util.http.RespostaHTTP;
+import br.gov.caixa.simtx.simulador.util.http.TipoGeracaoToken;
+import br.gov.caixa.simtx.simulador.util.http.TokenTransacaoSaida;
 import br.gov.caixa.simtx.simulador.util.ssh.RequisicaoSSH;
 
 
@@ -69,30 +77,32 @@ class AgendamentoPixTest extends BaseTeste {
 	
 	@BeforeEach
 	public void inicializarDados() throws ControleException, SQLException {
-//		token = RequisicaoHTTP
-//				.gerarToken(TipoGeracaoToken.NOVO_TOKEN, ClientID.SINBC.getId(), ClientID.SINBC.getSecret())
-//				.getAccessToken();
+		if (!URI.contains("localhost")) {
+			token = RequisicaoHTTP
+					.gerarToken(TipoGeracaoToken.NOVO_TOKEN, ClientID.SINBC.getId(), ClientID.SINBC.getSecret())
+					.getAccessToken();
 
-//		String comando = recuperarJson(BASE_PATH_JSON.concat(PATH_MEIO_ENTRADA).concat("token_transacao/curl.json"));
-//
-//		String tokenSaida = RequisicaoSSH.requisicao(comando);
-//		assertNotNull(Constantes.ERRO_GERAR_TOKEN, tokenSaida);
-//		assertTrue(Constantes.ERRO_GERAR_TOKEN, tokenSaida.contains("token"));
-//
-//		TokenTransacaoSaida tokenTransacaoSaida = gson.fromJson(tokenSaida, TokenTransacaoSaida.class);
-//		tokenTransacao = tokenTransacaoSaida.getToken();
+			String comando = recuperarJson(
+					BASE_PATH_JSON.concat(PATH_MEIO_ENTRADA).concat("token_transacao/curl.json"));
 
-//		String jsonIdFimAFim = recuperarJson(BASE_PATH_JSON.concat(PATH).concat("idFim/pagamento.json"));
-//
-//		RespostaHTTP respidFimAFim = RequisicaoHTTP.realizarEnvioHttps(URI_IDFIMAFIM, jsonIdFimAFim,
-//				PropriedadesHTTP.METODO_POST, 
-//				new PropriedadesHTTP("Content-Type", MediaType.APPLICATION_JSON),
-//				new PropriedadesHTTP("Authorization", "Bearer ".concat(token)));
-//		
-//		assertNotEquals("IdFimAFim nao gerado. Resposta status: " + respidFimAFim.getStatus(),
-//				respidFimAFim.getMensagem(), "");
-//
-//		idFimAFim = gson.fromJson(respidFimAFim.getMensagem(), IdFimaFimVO.class).getId();
+			String tokenSaida = RequisicaoSSH.requisicao(comando);
+			assertNotNull(Constantes.ERRO_GERAR_TOKEN, tokenSaida);
+			assertTrue(Constantes.ERRO_GERAR_TOKEN, tokenSaida.contains("token"));
+
+			TokenTransacaoSaida tokenTransacaoSaida = gson.fromJson(tokenSaida, TokenTransacaoSaida.class);
+			tokenTransacao = tokenTransacaoSaida.getToken();
+
+			String jsonIdFimAFim = recuperarJson(BASE_PATH_JSON.concat(PATH).concat("idFim/pagamento.json"));
+
+			RespostaHTTP respidFimAFim = RequisicaoHTTP.realizarEnvioHttps(URI_IDFIMAFIM, jsonIdFimAFim,
+					PropriedadesHTTP.METODO_POST, new PropriedadesHTTP("Content-Type", MediaType.APPLICATION_JSON),
+					new PropriedadesHTTP("Authorization", "Bearer ".concat(token)));
+
+			assertNotEquals("IdFimAFim nao gerado. Resposta status: " + respidFimAFim.getStatus(),
+					respidFimAFim.getMensagem(), "");
+
+			idFimAFim = gson.fromJson(respidFimAFim.getMensagem(), IdFimaFimVO.class).getId();
+		}
 
 		dadosAntiFraude = recuperarJson(BASE_PATH_JSON.concat(PATH).concat("anti_fraude/dados.json"));
 		dadosAntiFraude = codificaBase64(dadosAntiFraude);
@@ -107,7 +117,8 @@ class AgendamentoPixTest extends BaseTeste {
 		}
 	}
 	
-	public String executarRequisicao(String path, String token, String meioEntrada, String dadosAntiFraude, int qtdeDiasDtEfetivacao) {
+	public String executarRequisicao(String path, String token, String meioEntrada, String dadosAntiFraude,
+			int statusEsperado, int qtdeDiasDtEfetivacao) {
 		if(UTILIZARHTTP) {
 			String jsonPagamento = recuperarJson(BASE_PATH_JSON.concat(PATH).concat("agendamento/").concat(path));
 			jsonPagamento = jsonPagamento.replace("{IDFIMAFIM}", idFimAFim);
@@ -117,6 +128,8 @@ class AgendamentoPixTest extends BaseTeste {
 			
 			ClientResponse resposta = RequisicaoHTTP.requestPostApi(URI, token, jsonPagamento, meioEntrada, dadosAntiFraude);
 			assertNotNull(Constantes.SEM_RESPOSTA_HTTP, resposta);
+			assertEquals(Constantes.RESPOSTA_DIVERGENTE_HTTP + resposta.getStatus() + "] " + resposta, statusEsperado,
+					resposta.getStatus());
 
 			return resposta.getEntity(String.class);
 		}
@@ -150,6 +163,10 @@ class AgendamentoPixTest extends BaseTeste {
 			return resposta;
 		}
 	}
+	
+	private void validarSICCO(Long nsuTransacao) {
+		
+	}
 
 	@Test
 	void testIBCSucesso() throws IOException {
@@ -162,7 +179,7 @@ class AgendamentoPixTest extends BaseTeste {
 		String meioEntrada = recuperarJson(BASE_PATH_JSON.concat(PATH_MEIO_ENTRADA).concat("assinatura_simples/dados.json"));
 		meioEntrada = codificaBase64(meioEntrada);
 
-		String saida = executarRequisicao(pathTeste001, token, meioEntrada, dadosAntiFraude, 2);
+		String saida = executarRequisicao(pathTeste001, token, meioEntrada, dadosAntiFraude, Response.Status.CREATED.getStatusCode(), 2);
 		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS, saida.contains("null"));
 
 		RespostaAgendamentoPixV1VO respostasPixVO = mapper.readerFor(RespostaAgendamentoPixV1VO.class).readValue(saida);
@@ -207,7 +224,8 @@ class AgendamentoPixTest extends BaseTeste {
 			String meioEntrada = recuperarJson(BASE_PATH_JSON.concat(PATH_MEIO_ENTRADA).concat("token_transacao/dados.json"));
 			meioEntrada = codificaBase64(meioEntrada);
 	
-			String saida = executarRequisicao(pathTeste001, tokenTransacao, meioEntrada, dadosAntiFraude, 1);
+			String saida = executarRequisicao(pathTeste001, tokenTransacao, meioEntrada, dadosAntiFraude,
+					Response.Status.CREATED.getStatusCode(), 1);
 			assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS + saida, saida.contains("null"));
 	
 			RespostaPixV1VO respostasPixVO = mapper.readerFor(RespostaPixV1VO.class).readValue(saida);
@@ -258,7 +276,7 @@ class AgendamentoPixTest extends BaseTeste {
 		jsonPagamento = jsonPagamento.replace("{DATAHORA}",
 				DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_YYYY_MM_DD_HIFEN_JSON));
 
-		String saida = executarRequisicao(pathTeste001, pathTeste001, meioEntrada, jsonPagamento, 1);
+		String saida = executarRequisicao(pathTeste001, pathTeste001, meioEntrada, jsonPagamento, Response.Status.CREATED.getStatusCode(), 1);
 		
 		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS, saida.contains("null"));
 
@@ -299,7 +317,7 @@ class AgendamentoPixTest extends BaseTeste {
 		String meioEntrada = recuperarJson(BASE_PATH_JSON.concat(PATH_MEIO_ENTRADA).concat("assinatura_simples/dados.json"));
 		meioEntrada = codificaBase64(meioEntrada);
 
-		String saida = executarRequisicao(pathTeste001, token, meioEntrada, dadosAntiFraude, 0);
+		String saida = executarRequisicao(pathTeste001, token, meioEntrada, dadosAntiFraude, Response.Status.BAD_REQUEST.getStatusCode(), 0);
 		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS, saida.contains("null"));
 
 		RespostaErroSIMTX erroSIMTX = mapper.readerFor(RespostaErroSIMTX.class).readValue(saida);
@@ -335,7 +353,7 @@ class AgendamentoPixTest extends BaseTeste {
 		String meioEntrada = recuperarJson(BASE_PATH_JSON.concat(PATH_MEIO_ENTRADA).concat("assinatura_simples/dados.json"));
 		meioEntrada = codificaBase64(meioEntrada);
 
-		String saida = executarRequisicao(pathTeste001, token, meioEntrada, dadosAntiFraude, 549);
+		String saida = executarRequisicao(pathTeste001, token, meioEntrada, dadosAntiFraude,  Response.Status.BAD_REQUEST.getStatusCode(), 549);
 		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS, saida.contains("null"));
 
 		RespostaErroSIMTX erroSIMTX = mapper.readerFor(RespostaErroSIMTX.class).readValue(saida);
@@ -373,7 +391,7 @@ class AgendamentoPixTest extends BaseTeste {
 		String meioEntrada = recuperarJson(BASE_PATH_JSON.concat(PATH_MEIO_ENTRADA).concat("assinatura_simples/dados.json"));
 		meioEntrada = codificaBase64(meioEntrada);
 
-		String saida = executarRequisicao(pathTeste001, token, meioEntrada, dadosAntiFraude, 1);
+		String saida = executarRequisicao(pathTeste001, token, meioEntrada, dadosAntiFraude, Response.Status.CREATED.getStatusCode(), 1);
 		assertFalse(Constantes.RESPOSTA_CONTEM_CAMPOS_NULOS, saida.contains("null"));
 
 		RespostaAgendamentoPixV1VO respostasPixVO = mapper.readerFor(RespostaAgendamentoPixV1VO.class).readValue(saida);

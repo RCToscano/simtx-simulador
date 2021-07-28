@@ -1,6 +1,6 @@
 {
   "dataHora": "{DATATRANSACAO}T18:03:28.930",
-  "idFimAFim": "{IDFIMAFIM}",
+  "idFimAFim": "E00360305202106172040551b70991ac",
   "situacaoDaTransacao": "ACSC",
   "dataTransacao": "{DATATRANSACAO}",
   "qrcode": {
@@ -11,11 +11,12 @@
       "validadeAposVencimento": 43200
     },
     "devedor": {
-      "cnpj": "81763286000169",
-      "nome": "CANAL LOTERICO"
+      "cnpj": "23423423423",
+      "nome": "CANAL TESTE"
     },
     "valor": {
-      "original": "30"
+      "original": "133",
+      "valorFinal": "99999"
     },
     "chave": "81763286000169",
     "txid": "20210610N0769275107T0000022077",

@@ -6,7 +6,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
-import br.gov.caixa.simtx.simulador.services.pagamentospi.RequisicaoPagamentoSpi;
+import br.gov.caixa.simtx.simulador.services.spi.pagamento.RequisicaoPagamentoSpi;
 
 public class RequisicaoPagamentoSpiV2 extends RequisicaoPagamentoSpi {
 

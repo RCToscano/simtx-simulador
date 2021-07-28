@@ -1,7 +1,6 @@
 {
   "paginacao": {
-    "indicador_continuacao": "NAO",
-    "offset": 0
+    "indicador_continuacao": "NAO"
   },
   "conta": {
     "tipo": "{TIPO}",

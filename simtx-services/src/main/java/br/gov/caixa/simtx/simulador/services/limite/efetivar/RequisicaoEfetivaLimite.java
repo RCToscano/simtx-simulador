@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName;
 
 import br.gov.caixa.simtx.simulador.services.limite.validar.ContaDestino;
 import br.gov.caixa.simtx.simulador.services.limite.validar.ServicoEnum;
-import br.gov.caixa.simtx.simulador.services.pagamentospi.TipoAutenticacaoEnum;
+import br.gov.caixa.simtx.simulador.services.spi.pagamento.TipoAutenticacaoEnum;
 
 public class RequisicaoEfetivaLimite {
 
