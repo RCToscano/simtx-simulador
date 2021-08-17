@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 import br.gov.caixa.simtx.simulador.services.controle.Controle;
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
 
-@Path("sibar/contas/assinaturas-eletronicas/v1")
+@Path("sibar/contas/assinaturas-eletronicas")
 @Consumes("application/json")
 @Produces("application/json")
 public class AtualizaSituacaoAssinaturaMultiplaApiControle extends Controle {
@@ -22,7 +22,7 @@ public class AtualizaSituacaoAssinaturaMultiplaApiControle extends Controle {
 	private static final Logger logger = Logger.getLogger(AtualizaSituacaoAssinaturaMultiplaApiControle.class);
 	
 	@PUT
-	@Path("/assinatura-multipla/{id_conta}/transacoes-pendentes/{nsu_siper}")
+	@Path("/v1/assinatura-multipla/{id_conta}/transacoes-pendentes/{nsu_siper}")
 	public Response validarServico(@Context HttpServletRequest httpRequest, @PathParam("id_conta") String idConta, @PathParam("nsu_siper") Integer nsuSiper, String json) {
 		try {
 			RequisicaoAtualizaSituacaoAssinatuaMultiplaApiV1 requisicao = gson.fromJson(json, RequisicaoAtualizaSituacaoAssinatuaMultiplaApiV1.class);

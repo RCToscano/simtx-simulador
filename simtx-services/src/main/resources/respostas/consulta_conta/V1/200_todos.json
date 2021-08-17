@@ -1,7 +1,6 @@
 {
   "paginacao": {
-    "indicador_continuacao": "NAO",
-    "offset": 0
+    "indicador_continuacao": "NAO"
   },
   "conta": {
     "tipo": "{TIPO}",
@@ -29,6 +28,34 @@
       "tipo_pessoa": "FISICA",
       "cocli": 1770061696177,
       "cpf": 10986435775,
+      "identidade": {
+        "numero": "295141475649",
+        "orgao_emissor": "SSP",
+        "uf": "SP",
+        "data_expedicao": "1989-11-05"
+      },
+      "tipo_assinatura": 1
+    },
+    {
+      "titular": "TERCEIRO",
+      "nome": "MARI ANNE",
+      "tipo_pessoa": "FISICA",
+      "cocli": 1770061696177,
+      "cpf": 14078208690,
+      "identidade": {
+        "numero": "295141475649",
+        "orgao_emissor": "SSP",
+        "uf": "SP",
+        "data_expedicao": "1989-11-05"
+      },
+      "tipo_assinatura": 1
+    },
+    {
+      "titular": "TERCEIRO",
+      "nome": "MARI ANNE",
+      "tipo_pessoa": "FISICA",
+      "cocli": 1770061696177,
+      "cnpj": 61148870000105,
       "identidade": {
         "numero": "295141475649",
         "orgao_emissor": "SSP",

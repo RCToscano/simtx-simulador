@@ -20,8 +20,8 @@ public class RequisicaoSSH {
 		Session session = null;
 		ChannelExec channel = null;
 		try {
-			session = new JSch().getSession("f747250", "10.116.82.126", 22);
-			session.setPassword("16830Rafael");
+			session = new JSch().getSession("f747250", "10.116.95.194", 22);
+			session.setPassword("16831Rafael");
 
 			Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");

@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.SerializedName;
 
-import br.gov.caixa.simtx.simulador.services.pagamentospi.TipoAutenticacaoEnum;
+import br.gov.caixa.simtx.simulador.services.spi.pagamento.TipoAutenticacaoEnum;
 
 public class RequisicaoValidaLimite {
 

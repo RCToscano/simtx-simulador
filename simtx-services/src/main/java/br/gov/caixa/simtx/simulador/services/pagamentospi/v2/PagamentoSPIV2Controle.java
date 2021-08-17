@@ -17,14 +17,14 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.log4j.Logger;
 
 import br.gov.caixa.simtx.simulador.services.controle.Controle;
-import br.gov.caixa.simtx.simulador.services.pagamentospi.Calendario;
-import br.gov.caixa.simtx.simulador.services.pagamentospi.Devedor;
-import br.gov.caixa.simtx.simulador.services.pagamentospi.InfoAdicionais;
-import br.gov.caixa.simtx.simulador.services.pagamentospi.Qrcode;
-import br.gov.caixa.simtx.simulador.services.pagamentospi.Recebedor;
-import br.gov.caixa.simtx.simulador.services.pagamentospi.RequisicaoAtualizacao;
-import br.gov.caixa.simtx.simulador.services.pagamentospi.SituacaoPagamentoSPIEnum;
-import br.gov.caixa.simtx.simulador.services.pagamentospi.Valor;
+import br.gov.caixa.simtx.simulador.services.spi.pagamento.Calendario;
+import br.gov.caixa.simtx.simulador.services.spi.pagamento.Devedor;
+import br.gov.caixa.simtx.simulador.services.spi.pagamento.InfoAdicionais;
+import br.gov.caixa.simtx.simulador.services.spi.pagamento.Qrcode;
+import br.gov.caixa.simtx.simulador.services.spi.pagamento.Recebedor;
+import br.gov.caixa.simtx.simulador.services.spi.pagamento.RequisicaoAtualizacao;
+import br.gov.caixa.simtx.simulador.services.spi.pagamento.SituacaoPagamentoSPIEnum;
+import br.gov.caixa.simtx.simulador.services.spi.pagamento.Valor;
 import br.gov.caixa.simtx.simulador.util.data.DataUtil;
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
 import br.gov.caixa.simtx.simulador.util.jwt.JWTUtil;
@@ -40,7 +40,7 @@ public class PagamentoSPIV2Controle extends Controle {
 	
 	private static final String PACOTE = "/pagamentos-instantaneos";
 	
-	private static final String PACOTE_AGENDAMENTO = "/pagamento-instantaneo-api";
+	private static final String PACOTE_AGENDAMENTO = "/pagamento-instantaneo-agendado-api";
 	
 	private RequisicaoPagamentoSpiV2 requisicao;
 	

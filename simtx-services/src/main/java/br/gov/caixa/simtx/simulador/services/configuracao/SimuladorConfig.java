@@ -16,9 +16,9 @@ public class SimuladorConfig extends Application {
 		resources.add(br.gov.caixa.simtx.simulador.services.assinatura.multipla.v2.ValidaAssinaturaMultiplaV2Controle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.comprovante.DetalheComprovanteControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.feriados.ConsultaFeriadosControle.class);
-		resources.add(br.gov.caixa.simtx.simulador.services.pagamentospi.PagamentoSPIControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.spi.pagamento.PagamentoSPIControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.pagamentospi.v2.PagamentoSPIV2Controle.class);
-		resources.add(br.gov.caixa.simtx.simulador.services.pagamentospi.AtualizacaoSPIControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.spi.pagamento.AtualizacaoSPIControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.consultaconta.ConsultaContaControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.validamarcas.ValidaMarcasControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.titular.ValidaTitularControle.class);
@@ -28,6 +28,8 @@ public class SimuladorConfig extends Application {
 		resources.add(br.gov.caixa.simtx.simulador.services.enviopush.EnvioPushCanalControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.qrcode.consulta.ConsultaQRCodeControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.atualizasituacaosssinaturamultipla.AtualizaSituacaoAssinaturaMultiplaApiControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.assinatura.multipla.lista.ListaAssinaturaMultiplaControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.spi.cancelamento.controle.CancelamentoSPIControle.class);
 		return resources;
 	}
 }
