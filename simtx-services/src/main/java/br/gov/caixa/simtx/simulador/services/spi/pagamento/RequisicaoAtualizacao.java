@@ -34,6 +34,8 @@ public class RequisicaoAtualizacao {
 	@Valid
 	private Qrcode qrCode;
 
+	private String paymentId;
+
 
 	public String getDataTransacao() {
 		return dataTransacao;
@@ -105,6 +107,14 @@ public class RequisicaoAtualizacao {
 
 	public void setQrCode(Qrcode qrCode) {
 		this.qrCode = qrCode;
+	}
+
+	public String getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(String paymentId) {
+		this.paymentId = paymentId;
 	}
 
 }

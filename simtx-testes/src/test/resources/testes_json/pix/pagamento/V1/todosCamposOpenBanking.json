@@ -1,0 +1,40 @@
+{
+  "dataHora": "{DATAHORA}",
+  "idFimAFim": "{IDFIMAFIM}",
+  "informacoesEntreUsuarios": "Teste Automatizado",
+  "usuarioPagador": {
+    "nome": "LANCHES G",
+    "cnpj": "61148870000105",
+    "cpf": "45645624955",
+    "conta": {
+      "agencia": "0326",
+      "numeroConta": "00200919",
+      "produto": "0003",
+      "dv": "3",
+      "tipoConta": "TRAN",
+      "ispb": "00360305"
+    }
+  },
+  "usuarioRecebedor": {
+    "nome": "DEBITO AUTO OITO",
+    "cpf": "10072018780",
+    "conta": {
+      "chave": "+5511972438308",
+      "agencia": "0326",
+      "numeroConta": "988227687",
+      "produto": "0001",
+      "dv": "0",
+      "tipoConta": "CACC",
+      "ispb": "00360305"
+    }
+  },
+  "valor": 44.44,
+  "participanteTarifado": "SLEV",
+  "metodoLiquidacao": "CLRG",
+  "transactionCurrency": "BRL",
+  "formaIniciacaoPagamento": "INIC",
+  "finalidadeTransacao": "IPAY",
+  "cnpjIniciadorPagamento":"61148870000105",
+  "nomeIniciadorPagamento": "Americanas",
+  "paymentId": "TXpRMU9UQTROMWhZV2xSU1FUazJSMDl"
+}

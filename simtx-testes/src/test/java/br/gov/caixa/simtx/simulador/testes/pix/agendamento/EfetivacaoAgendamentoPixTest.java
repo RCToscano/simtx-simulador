@@ -39,7 +39,7 @@ public class EfetivacaoAgendamentoPixTest extends BaseTeste {
 	
 	private static final boolean UTILIZARHTTP = true;
 	
-	private static final Long NSU_TRANSACAO = 359L;
+	private static final Long NSU_TRANSACAO = 674L;
 	
 	private static final String PATH = "pix/";
 	
@@ -47,7 +47,7 @@ public class EfetivacaoAgendamentoPixTest extends BaseTeste {
 //	private static final String URI = "https://simtx02.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
 //	private static final String URI = "https://simtx03.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
 //	private static final String URI = "https://simtx.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
-	private static final String URI = "http://localhost:8080/pagamento-instantaneo-agendado-api/v1/efetivacao";
+	private static final String URI = "http://localhost:48080/agendamento/v1/efetivacao";
 	
 	private static final Long[] TAREFAS_NEGOCIAIS = { 100109l };
 	

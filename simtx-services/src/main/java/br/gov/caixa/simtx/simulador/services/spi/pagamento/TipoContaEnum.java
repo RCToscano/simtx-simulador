@@ -4,7 +4,8 @@ public enum TipoContaEnum {
 
 	CACC("CACC"),
 	SLRY("SLRY"),
-	SVGS("SVGS");
+	SVGS("SVGS"),
+	TRAN("TRAN");
 	
 	private String value;
 	
