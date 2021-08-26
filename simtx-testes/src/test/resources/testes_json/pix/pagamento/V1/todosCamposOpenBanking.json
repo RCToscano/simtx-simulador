@@ -23,7 +23,6 @@
       "agencia": "0326",
       "numeroConta": "988227687",
       "produto": "0001",
-      "dv": "0",
       "tipoConta": "CACC",
       "ispb": "00360305"
     }
@@ -35,6 +34,5 @@
   "formaIniciacaoPagamento": "INIC",
   "finalidadeTransacao": "IPAY",
   "cnpjIniciadorPagamento":"61148870000105",
-  "nomeIniciadorPagamento": "Americanas",
   "paymentId": "TXpRMU9UQTROMWhZV2xSU1FUazJSMDl"
 }
