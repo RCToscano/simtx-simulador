@@ -164,6 +164,12 @@
 			</dependency>
 
 			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>4.5.4</version>
+			</dependency>
+
+			<dependency>
 				<artifactId>guava</artifactId>
 				<groupId>com.google.guava</groupId>
 				<type>jar</type>

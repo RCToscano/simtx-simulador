@@ -1,8 +1,7 @@
 package br.gov.caixa.simtx.simulador.util.http;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
@@ -20,6 +19,12 @@ import javax.net.ssl.X509TrustManager;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,7 +42,21 @@ public class RequisicaoHTTP {
 	
 	private static final Logger logger = Logger.getLogger(RequisicaoHTTP.class);
 	
+	public static final String AUTHORIZATION = "Authorization";
+
+	public static final String BEARER = "Bearer ";
+
+	public static final String CONTENT_TYPE = "Content-Type";
+	
 	private static final String ERRO_TOKEN = "ERRO TOKEN";
+	
+	private static final String REQUEST = "Realizando request da url: ";
+
+	private static final String REQUISICAO = "Requisicao: ";
+	
+	private static final String ERRO_ABRIR_CONEXAO = "Nao foi possivel abrir uma comunicacao com a API: ";
+	
+	private static final String FALHA_CONEXAO = "Falha na comunicacao com a API: ";
 	
 	private RequisicaoHTTP() {}
 	
@@ -108,11 +127,18 @@ public class RequisicaoHTTP {
 	
 	private static String recebeMensagem(HttpURLConnection connection) throws IOException {
 		String retorno = "";
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-			while ((retorno = reader.readLine()) != null) {
-				return retorno;
-			}
-		}
+		
+		InputStream in = connection.getInputStream();
+		String encoding = connection.getContentEncoding();
+		encoding = encoding == null ? "UTF-8" : encoding;
+		retorno = IOUtils.toString(in, encoding);
+		
+//        try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+//			while ((retorno = reader.readLine()) != null) {
+//				return retorno;
+//			}
+//		}
+		System.out.println(retorno);
         return retorno;
 	}
 	
@@ -187,6 +213,42 @@ public class RequisicaoHTTP {
 		catch (Exception e) {
 			logger.error("Ocorreu um erro na execucao da API: " + uri, e);
 			return null;
+		}
+	}
+	
+	public static HttpResponse requestGet(String uri, String token, int timeout, PropriedadesHTTP... propriedadesHTTPs)
+			throws ControleException {
+		try {
+			logger.info(REQUEST + uri);
+
+			ConnectionsPool connectionsPool = new ConnectionsPool();
+			CloseableHttpClient httpClient = HttpClients.createDefault();
+
+			HttpGet httpGet = new HttpGet(uri);
+			httpGet.addHeader("Content-Type", MediaType.APPLICATION_JSON);
+			httpGet.addHeader("Authorization", BEARER + token);
+			for (PropriedadesHTTP propriedadesHTTP : propriedadesHTTPs) {
+				httpGet.addHeader(propriedadesHTTP.getChave(), propriedadesHTTP.getValor());
+			}
+
+			RequestConfig requestConfig = RequestConfig.custom()
+					.setConnectTimeout(1000)
+					.setSocketTimeout(timeout * 10)
+					.build();
+			httpGet.setConfig(requestConfig);
+			return httpClient.execute(httpGet);
+		} 
+		catch (SocketTimeoutException e) {
+			logger.error(ERRO_ABRIR_CONEXAO + uri, e);
+			return null;
+		} 
+		catch (IOException e) {
+			logger.error(FALHA_CONEXAO + uri, e);
+			throw new ControleException(e.getMessage(), FALHA_CONEXAO);
+		} 
+		catch (Exception e) {
+			logger.error(e);
+			throw new ControleException(e.getMessage(), "ERRO REQUISICAO HTTP");
 		}
 	}
 	
