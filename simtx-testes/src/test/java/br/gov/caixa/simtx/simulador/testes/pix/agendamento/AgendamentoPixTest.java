@@ -17,7 +17,11 @@ import java.util.List;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.bind.DatatypeConverter;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.ParseException;
+import org.apache.http.util.EntityUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -56,11 +60,11 @@ class AgendamentoPixTest extends BaseTeste {
 	
 	private static final String PATH = "pix/";
 	
-//	private static final String URI = "https://simtx.pagamentopix.des.caixa/pagamentos-instantaneos/v1/pagamentos";
+	private static final String URI = "https://simtx.pagamentopix.des.caixa/pagamentos-instantaneos/v1/pagamentos";
 //	private static final String URI = "https://simtx02.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
 //	private static final String URI = "https://simtx03.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
 //	private static final String URI = "https://simtx.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
-	private static final String URI = "http://localhost:8080/pagamento-instantaneo-agendado-api/v1/agendamentos";
+//	private static final String URI = "http://localhost:8080/pagamento-instantaneo-agendado-api/v1/agendamentos";
 	
 	private static final String URI_IDFIMAFIM = "https://sispi-container-backend-des-esteiras.nprd2.caixa/sispi-api-war/api/v1/ids-pagamento";
 	
@@ -164,8 +168,33 @@ class AgendamentoPixTest extends BaseTeste {
 		}
 	}
 	
-	private void validarSICCO(Long nsuTransacao) {
-		
+	@Test
+	void validarSICCO() throws ControleException {
+		String url = "https://des.barramento.caixa/sibar/corporativo/administrativo/v1/bancos?situacao=ATIVOS";
+		String usuario = "smtxsd01";
+		String encoded = DatatypeConverter.printBase64Binary((usuario.concat(":123")).getBytes());
+
+		RespostaHTTP resposta = RequisicaoHTTP.realizarEnvioHttps(url, "",
+				PropriedadesHTTP.METODO_GET, 
+				new PropriedadesHTTP("Content-Type", "application/json"),
+				new PropriedadesHTTP("Accept-Encoding", "gzip,deflate"),
+				new PropriedadesHTTP("Authorization", "Basic "+encoded),
+				new PropriedadesHTTP("Connection", "Keep-Alive"),
+				new PropriedadesHTTP("User-Agent", "Apache-HttpClient/4.1.1 (java 1.5)"));
+		System.out.println(resposta.getMensagem());
+	}
+
+	@Test
+	void validarSICCO2() throws ControleException, ParseException, IOException {
+		String url = "http://des.barramento.caixa/sibar/corporativo/administrativo/v1/bancos?situacao=ATIVOS";
+		String usuario = "smtxsd01";
+		String encoded = DatatypeConverter.printBase64Binary((usuario.concat(":123")).getBytes());
+
+		HttpResponse retorno = RequisicaoHTTP.requestGet(url, "",
+				10000,
+				new PropriedadesHTTP("Authorization", "Basic "+encoded));
+		String resposta = EntityUtils.toString(retorno.getEntity(), "UTF-8");
+		System.out.println(resposta);
 	}
 
 	@Test

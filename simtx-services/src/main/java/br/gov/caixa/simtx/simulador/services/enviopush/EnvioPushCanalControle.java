@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 import br.gov.caixa.simtx.simulador.services.controle.Controle;
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
 
-@Path("/api")
+@Path("/api/Envio")
 @Consumes("application/json")
 @Produces("application/json")
 public class EnvioPushCanalControle extends Controle {
@@ -22,7 +22,7 @@ public class EnvioPushCanalControle extends Controle {
 
 
 	@POST
-	@Path("/Envio/v2")
+	@Path("/v2")
 	public Response validarServico(@Context HttpServletRequest httpRequest, String json) {
 		try {
 			RequisicaoEnvioPushCanal requisicao = gson.fromJson(json, RequisicaoEnvioPushCanal.class);
