@@ -1,0 +1,14 @@
+{
+  "errors": [
+    {
+      "code": "99",
+      "title": "Transacao negada",
+      "detail": "Transacao negada"
+    }
+  ],
+  "meta": {
+    "totalRecords": 1,
+    "totalPages": 1,
+    "requestDateTime": "2021-10-25T08:30:00Z"
+  }
+}
