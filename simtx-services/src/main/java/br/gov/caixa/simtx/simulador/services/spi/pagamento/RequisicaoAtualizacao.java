@@ -1,5 +1,7 @@
 package br.gov.caixa.simtx.simulador.services.spi.pagamento;
 
+import java.math.BigDecimal;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -35,6 +37,8 @@ public class RequisicaoAtualizacao {
 	private Qrcode qrCode;
 
 	private String paymentId;
+	
+	private BigDecimal valorTarifa;
 
 
 	public String getDataTransacao() {
@@ -115,6 +119,14 @@ public class RequisicaoAtualizacao {
 
 	public void setPaymentId(String paymentId) {
 		this.paymentId = paymentId;
+	}
+
+	public BigDecimal getValorTarifa() {
+		return valorTarifa;
+	}
+
+	public void setValorTarifa(BigDecimal valorTarifa) {
+		this.valorTarifa = valorTarifa;
 	}
 
 }
