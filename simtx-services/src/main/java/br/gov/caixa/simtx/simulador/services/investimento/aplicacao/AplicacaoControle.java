@@ -27,7 +27,7 @@ public class AplicacaoControle extends Controle {
 
 	private static final Logger logger = Logger.getLogger(AplicacaoControle.class);
 	
-	private static final String PATH = "fundos_aplicacao/aplicacao";
+	private static final String PATH = "fundo_investimentos/aplicacao";
 	
 	@POST
 	@Path("v1/contas/{id_conta}/aplicacoes")

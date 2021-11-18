@@ -27,7 +27,7 @@ public class ResgateControle extends Controle {
 
 	private static final Logger logger = Logger.getLogger(ResgateControle.class);
 	
-	private static final String PATH = "fundos_aplicacao/resgate";
+	private static final String PATH = "fundo_investimentos/resgate";
 	
 	@POST
 	@Path("v1/{id_conta}/resgates")

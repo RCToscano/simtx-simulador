@@ -27,7 +27,7 @@ public class CancelamentoAplicacaoControle extends Controle {
 
 	private static final Logger logger = Logger.getLogger(CancelamentoAplicacaoControle.class);
 	
-	private static final String PATH = "fundos_aplicacao/cancelamento_aplicacao";
+	private static final String PATH = "fundo_investimentos/cancelamento_aplicacao";
 
 	@POST
 	@Path("v1/contas/{id_conta}/aplicacoes/cancelar")

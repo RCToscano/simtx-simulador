@@ -29,7 +29,7 @@ public class CancelamentoResgateControle extends Controle {
 
 	private static final Logger logger = Logger.getLogger(CancelamentoResgateControle.class);
 	
-	private static final String PATH = "fundos_aplicacao/cancelamento_resgate";
+	private static final String PATH = "fundo_investimentos/cancelamento_resgate";
 
 	@POST
 	@Path("/v1/contas/{id_conta}/resgates/cancelar")
