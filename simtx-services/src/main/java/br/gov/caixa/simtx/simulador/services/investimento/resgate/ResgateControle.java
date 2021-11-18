@@ -12,6 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -43,18 +44,22 @@ public class ResgateControle extends Controle {
 			
 			resposta = resposta.replace("{DATA_TRANSACAO}", DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_XML));
 
-			return Response.ok().header("Content-Type", "application/json; charset=utf-8").entity(resposta).build();
+			return Response.status(Status.CREATED).header("Content-Type", "application/json; charset=utf-8").entity(resposta).build();
 		} 
 		catch (ControleException e) {
 			logger.error(e.getMensagem());
-			return Response.status(Response.Status.BAD_REQUEST)
-					.entity(montarMsgErro(BASE_PATH_JSON + "/erro_generico_sibar.json", e.getMensagem())).build();
+			String msg = montarMsgErro(BASE_PATH_JSON + PATH + "/V1/400.json", e.getMensagem());
+			msg = msg.replace("{DATAHORA}",
+					DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_YYYY_MM_DD_HIFEN_JSON));
+			return Response.status(Response.Status.BAD_REQUEST).entity(msg).build();
 		} 
 		catch (Exception e) {
-			logger.error(e);
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity(montarMsgErro(BASE_PATH_JSON + "/erro_generico_sibar.json", e.getMessage())).build();
-		}
+			logger.error(SIMULADOR_ERRO, e);
+			String msg = montarMsgErro(BASE_PATH_JSON + PATH + "/V1/500.json", e.getMessage());
+			msg = msg.replace("{DATAHORA}",
+					DataUtil.getDataFormatada(new Date(), DataUtil.FORMATO_DATA_YYYY_MM_DD_HIFEN_JSON));
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(msg).build();
+		}	
 	}
 
 }

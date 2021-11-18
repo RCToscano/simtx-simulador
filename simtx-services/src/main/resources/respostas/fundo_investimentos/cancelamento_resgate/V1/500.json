@@ -1,0 +1,6 @@
+{
+  "timestamp": "{DATAHORA}",
+  "status": 99,
+  "cause": "ERRO",
+  "message": "{MSG}"
+}
