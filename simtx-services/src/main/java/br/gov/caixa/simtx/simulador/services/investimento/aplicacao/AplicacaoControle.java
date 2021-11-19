@@ -20,7 +20,7 @@ import br.gov.caixa.simtx.simulador.services.controle.Controle;
 import br.gov.caixa.simtx.simulador.util.data.DataUtil;
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
 
-@Path("/sibar/investimentos/resgate/fundos")
+@Path("/sibar/investimentos/aplicacao/fundos")
 @Consumes("application/json")
 @Produces("application/json")
 public class AplicacaoControle extends Controle {
@@ -30,7 +30,7 @@ public class AplicacaoControle extends Controle {
 	private static final String PATH = "fundo_investimentos/aplicacao";
 	
 	@POST
-	@Path("v1/contas/{id_conta}/aplicacoes")
+	@Path("/v1/contas/{id_conta}/aplicacoes")
 	public Response validarServico(@Context HttpServletRequest httpRequest, @PathParam("id_conta") String idConta, String json) {
 		try {
 			RequisicaoAplicacao requisicao = gson.fromJson(json, RequisicaoAplicacao.class);

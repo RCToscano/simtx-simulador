@@ -30,7 +30,7 @@ public class ResgateControle extends Controle {
 	private static final String PATH = "fundo_investimentos/resgate";
 	
 	@POST
-	@Path("v1/{id_conta}/resgates")
+	@Path("/v1/contas/{id_conta}/resgates")
 	public Response validarServico(@Context HttpServletRequest httpRequest, @PathParam("id_conta") String idConta, String json) {
 		try {
 			RequisicaoResgate requisicao = gson.fromJson(json, RequisicaoResgate.class);

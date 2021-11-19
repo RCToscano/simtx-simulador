@@ -34,7 +34,11 @@ public class SimuladorConfig extends Application {
 		resources.add(br.gov.caixa.simtx.simulador.services.spi.cancelamento.controle.CancelamentoSPIControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.openbaking.AtrualizaPixOpenBankingControle.class);
 		resources.add(br.gov.caixa.simtx.simulador.services.diautil.ConsultaDiaUtil.class);
-		resources.add(br.gov.caixa.simtx.simulador.services.openbaking.ConsultaPixPendenteBSAV1Controle.class);		
+		resources.add(br.gov.caixa.simtx.simulador.services.openbaking.ConsultaPixPendenteBSAV1Controle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.investimento.aplicacao.AplicacaoControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.investimento.cancelamentoaplicacao.CancelamentoAplicacaoControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.investimento.resgate.ResgateControle.class);
+		resources.add(br.gov.caixa.simtx.simulador.services.investimento.cancelamentoresgate.CancelamentoResgateControle.class);
 		return resources;
 	}
 }

@@ -30,7 +30,7 @@ public class CancelamentoAplicacaoControle extends Controle {
 	private static final String PATH = "fundo_investimentos/cancelamento_aplicacao";
 
 	@POST
-	@Path("v1/contas/{id_conta}/aplicacoes/cancelar")
+	@Path("/v1/contas/{id_conta}/aplicacoes/cancelar")
 	public Response validarServico(@Context HttpServletRequest httpRequest, @PathParam("id_conta") String idConta, String json) {
 		try {
 			RequisicaoCancelamentoAplicacao requisicao = gson.fromJson(json, RequisicaoCancelamentoAplicacao.class);
