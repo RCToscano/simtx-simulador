@@ -13,11 +13,9 @@
 // */
 //
 //@WebService(
-//          serviceName = "PagamentoBoletoLoteImplService",
-//          portName = "PagamentoBoletoLoteSOAPPort",
-//          targetNamespace = "http://caixa.gov.br/simtx/pagamento_boleto_lote/v1/ns",
-//          wsdlLocation = "file:/C:/Caixa/SIMTX/GIT/simtx-api/simtx-roteador-api/src/main/webapp/WEB-INF/wsdl/Pagamento_Boleto_Lote.wsdl",
-//          endpointInterface = "br.gov.caixa.simtx.pagamento_boleto_lote.v1.ns.PagamentoBoletoLoteImplService")
+//          serviceName = "ValidaConta",
+//          targetNamespace = "http://caixa.gov.br/siatr/limite/efetiva",
+//          endpointInterface = "br.gov.caixa.simtx.simulador.services.sitax.ConsultaContaSITAXService")
 //public class ConsultaContaSITAX implements ConsultaContaSITAXService {
 //
 //    private static final Logger LOG = Logger.getLogger(ConsultaContaSITAX.class.getName());

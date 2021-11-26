@@ -12,14 +12,14 @@
 // * Generated source version: 3.1.17
 // * 
 // */
-//@WebService(targetNamespace = "http://caixa.gov.br/simtx/pagamento_boleto_lote/v1/ns", name = "PagamentoBoletoLoteImplService")
+//@WebService
 //@SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 //public interface ConsultaContaSITAXService {
 //
-//    @WebMethod(action = "http://caixa.gov.br/simtx/pagamento_boleto_lote/v1/ns/Cadastrar")
-//    @WebResult(name = "SERVICO_SAIDA", targetNamespace = "http://caixa.gov.br/simtx/consulta_boleto/regras/v1/ns", partName = "parameters")
+//    @WebMethod(action = "http://caixa.gov.br/siatr/limite/efetiva/req")
+//    @WebResult(name = "SERVICO_SAIDA", targetNamespace = "http://caixa.gov.br/siatr/limite/efetiva/resp", partName = "parameters")
 //    public ConsultaRegrasBoletoSaida cadastrar(
-//        @WebParam(partName = "parameters", name = "SERVICO_ENTRADA", targetNamespace = "http://caixa.gov.br/simtx/consulta_boleto/regras/v1/ns")
+//        @WebParam(partName = "parameters", name = "SERVICO_ENTRADA", targetNamespace = "http://caixa.gov.br/siatr/limite/efetiva/req")
 //        ConsultaRegrasBoletoEntrada parameters
 //    );
 //}
