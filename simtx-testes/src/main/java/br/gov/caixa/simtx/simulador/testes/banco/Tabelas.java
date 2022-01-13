@@ -1,5 +1,6 @@
 package br.gov.caixa.simtx.simulador.testes.banco;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +17,25 @@ import br.gov.caixa.simtx.simulador.testes.tabelas.TransacaoAgendamento;
 public class Tabelas {
 
 	private static final Logger logger = Logger.getLogger(Tabelas.class);
+	
+	public BigDecimal gerarNsuTransacao(Connection connection) {
+		BigDecimal nuNsuCoordenador = null;
+		String query = "SELECT MTX.MTXSQ014_NU_NSU_TRANSACAO.NEXTVAL AS NSU_TRANSACAO FROM DUAL";
+    	
+		try (PreparedStatement statement1 = connection.prepareStatement(query);) {
+			
+			try (ResultSet rs = statement1.executeQuery()) {
+			    while(rs.next()) {
+			    	nuNsuCoordenador = rs.getBigDecimal("NSU_TRANSACAO");
+			    }
+			}
+			return nuNsuCoordenador;
+		} 
+		catch (SQLException e) {
+			logger.error(e);
+			return null;
+		}
+	}
 
 	public Transacao possuiTransacao(Long nsuTransacao, Connection connection) {
 		String query = "SELECT T.NU_NSU_TRANSACAO_ORIGEM, " +

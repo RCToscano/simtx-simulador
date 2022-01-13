@@ -22,7 +22,7 @@ public class RequisicaoSSH {
 		try {
 			session = new JSch().getSession("f747250", "10.116.95.194", 22);
 
-			session.setPassword("SaoPaulo15");
+			session.setPassword("SaoPaulo16");
 			Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			config.put("Compression", "yes");

@@ -21,6 +21,7 @@ import com.google.common.io.BaseEncoding;
 import com.google.gson.Gson;
 
 import br.gov.caixa.simtx.simulador.testes.banco.Tabelas;
+import br.gov.caixa.simtx.simulador.testes.banco.TabelasSicco;
 import br.gov.caixa.simtx.simulador.util.exception.ControleException;
 
 
@@ -32,9 +33,13 @@ public abstract class BaseTeste {
 
 	protected static final String BASE_PATH_JSON = "testes_json/";
 	
+	protected static final String BASE_PATH_XML = "testes_xml/";
+	
 	protected static final String PATH_MEIO_ENTRADA = "meio_entrada/";
 	
 	protected Tabelas tabelas = new Tabelas();
+	
+	protected TabelasSicco tabelasSicco = new TabelasSicco();
 
 	protected Gson gson = new Gson();
 

@@ -12,10 +12,6 @@ public class TarefasSicco {
 
 	private int nuVersao;
 
-	private int nuServico;
-
-	private int nuVersaoServico;
-
 	private Long nsuCorporativo;
 
 	private String coRetornoTarefa;
@@ -32,15 +28,12 @@ public class TarefasSicco {
 
 
 	@JsonCreator
-	public TarefasSicco(Long nsuTransacao, int nuTarefa, int nuVersao, int nuServico, int nuVersaoServico,
-			Long nsuCorporativo, String coRetornoTarefa, int nuRetornoStatus, String xmlRequisicao, String xmlResposta,
-			int nuMensagem, java.sql.Date dtReferencia) {
+	public TarefasSicco(Long nsuTransacao, int nuTarefa, int nuVersao, Long nsuCorporativo, String coRetornoTarefa,
+			int nuRetornoStatus, String xmlRequisicao, String xmlResposta, int nuMensagem, java.sql.Date dtReferencia) {
 		super();
 		this.nsuTransacao = nsuTransacao;
 		this.nuTarefa = nuTarefa;
 		this.nuVersao = nuVersao;
-		this.nuServico = nuServico;
-		this.nuVersaoServico = nuVersaoServico;
 		this.nsuCorporativo = nsuCorporativo;
 		this.coRetornoTarefa = coRetornoTarefa;
 		this.nuRetornoStatus = nuRetornoStatus;
@@ -72,22 +65,6 @@ public class TarefasSicco {
 
 	public void setNuVersao(int nuVersao) {
 		this.nuVersao = nuVersao;
-	}
-
-	public int getNuServico() {
-		return nuServico;
-	}
-
-	public void setNuServico(int nuServico) {
-		this.nuServico = nuServico;
-	}
-
-	public int getNuVersaoServico() {
-		return nuVersaoServico;
-	}
-
-	public void setNuVersaoServico(int nuVersaoServico) {
-		this.nuVersaoServico = nuVersaoServico;
 	}
 
 	public Long getNsuCorporativo() {

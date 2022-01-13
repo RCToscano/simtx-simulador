@@ -60,7 +60,7 @@ class AgendamentoPixTest extends BaseTeste {
 	
 	private static final String PATH = "pix/";
 	
-	private static final String URI = "https://simtx.pagamentopix.des.caixa/pagamentos-instantaneos/v1/pagamentos";
+	private static final String URI = "https://simtx.pagamentopix.des.caixa/pagamentos-instantaneos/v2/pagamentos";
 //	private static final String URI = "https://simtx02.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
 //	private static final String URI = "https://simtx03.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";
 //	private static final String URI = "https://simtx.webservices.des.caixa/pagamentos-instantaneos/v1/pagamentos";

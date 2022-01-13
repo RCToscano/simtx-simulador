@@ -1,0 +1,59 @@
+<REQUISICAO>
+	<OPERACAO>UNICA</OPERACAO>
+</REQUISICAO>
+<break_pmac/>{"nsuCanal":0,"dataHora":"2022-01-03T17:46:50.982Z","idFimAFim":"E00360305202201031446d970617d3d6","dataEfetivacao":"2022-01-07","informacoesEntreUsuarios":"Teste","usuarioPagador":{"nome":"TESTE RUMMENIGG5","cpf":"87544495884","conta":{"chave":"","agencia":"3880","numeroConta":"983186465","produto":"1288","dv":"0","tipoConta":"SVGS","ispb":"00360305"}},"usuarioRecebedor":{"nome":"THIAGO TIROLLI DORTA","cpf":"31344007821","conta":{"chave":"31344007821","agencia":"3880","numeroConta":"000000987083992","produto":"1288","dv":"0","tipoConta":"SVGS","ispb":"00360305"}},"valor":2.07,"participanteTarifado":"SLEV","metodoLiquidacao":"CLRG","transactionCurrency":"BRL","formaIniciacaoPagamento":"QR_CODE_ESTATICO","finalidadeTransacao":"IPAY","txId":"***","nsuValidacao":3000425557,"dataValidacao":"2022-01-03"}<break_pmac/>{"idFimAFim":"E00360305202201031446d970617d3d6","nsuTransacao":3000425577,"dataTransacao":"2022-01-07"}<break_pmac/>
+<TRANSACAO>
+	<NSU>{{nsuMtx}}</NSU>
+	<NSU_ORIGEM>3000425557</NSU_ORIGEM>
+	<CODIGO_SERVICO>110138</CODIGO_SERVICO>
+	<VERSAO_SERVICO>2</VERSAO_SERVICO>
+	<NOME_SERVICO>-</NOME_SERVICO>
+	<CO_CANAL>115</CO_CANAL>
+	<CO_CANAL_ORIGEM>115</CO_CANAL_ORIGEM>
+	<DT_REFERENCIA>03/01/2022</DT_REFERENCIA>
+	<DH_TRANSACAO_CANAL>03/01/2022 14:46:51</DH_TRANSACAO_CANAL>
+	<DT_CONTABIL/>
+	<DH_MULTICANAL>03/01/2022 14:46:51</DH_MULTICANAL>
+	<IC_SITUACAO>1</IC_SITUACAO>
+	<TAREFAS>4</TAREFAS>
+</TRANSACAO>
+<break_pmac/>100116<break_param_tarefa/>1<break_param_tarefa/>2022-01-03 14:46:51.705<break_param_tarefa/>{"dv":"0","produto":"1288","conta":"983186465","unidade":"3880"}<break_param_tarefa/>{"nuTarefa":100116,"nuVersaoTarefa":1,"nome":"validaTitular","codigoHttp":200,"codigo":"00","origemRetorno":"SIBAR","mensagem":"TRANSACAO REALIZADA COM SUCESSO","nsuCorp":0,"entradaApi":null,"saidaApi":"{\"tipo_conta\":\"NSGD\",\"titularidade\":1}"}<break_tarefa_pmac/>100143<break_param_tarefa/>1<break_param_tarefa/>2022-01-03 14:46:51.796<break_param_tarefa/>
+<WsAtrwsvcl xmlns="http://caixa.gov.br/siatr/limite/valida/req">
+	<wsvcl_entrada>
+		<wsvcl_e_versao>1</wsvcl_e_versao>
+		<wsvcl_e_tipo_solicitacao>3</wsvcl_e_tipo_solicitacao>
+		<wsvcl_e_sigla_serv>DSP</wsvcl_e_sigla_serv>
+		<wsvcl_e_sg_canal_origem>SINBM</wsvcl_e_sg_canal_origem>
+		<wsvcl_e_nu_nsu_mtx>3000425577</wsvcl_e_nu_nsu_mtx>
+		<wsvcl_e_agencia>3880</wsvcl_e_agencia>
+		<wsvcl_e_produto>1288</wsvcl_e_produto>
+		<wsvcl_e_conta>983186465</wsvcl_e_conta>
+		<wsvcl_e_dv_conta>0</wsvcl_e_dv_conta>
+		<wsvcl_e_vr_transacao>2.07</wsvcl_e_vr_transacao>
+		<wsvcl_e_dt_transacao>20220103</wsvcl_e_dt_transacao>
+		<wsvcl_e_dt_movimento>20220107</wsvcl_e_dt_movimento>
+		<wsvcl_e_tp_autenticacao>1</wsvcl_e_tp_autenticacao>
+		<wsvcl_e_cpf_cnpj_tit_tran>87544495884</wsvcl_e_cpf_cnpj_tit_tran>
+		<wsvcl_e_ic_agendamento>1</wsvcl_e_ic_agendamento>
+		<wsvcl_e_dados_destino>
+			<wsvcl_e_destino_pix>
+				<wsvcl_e_forma_iniciacao>3</wsvcl_e_forma_iniciacao>
+				<wsvcl_e_tipo_pessoa>1</wsvcl_e_tipo_pessoa>
+				<wsvcl_e_cpf_cnpj_recebedor>31344007821</wsvcl_e_cpf_cnpj_recebedor>
+				<wsvcl_e_chave_recebedor>31344007821</wsvcl_e_chave_recebedor>
+				<wsvcl_e_ispb_recebedor>360305</wsvcl_e_ispb_recebedor>
+				<wsvcl_e_agencia_recebedor>3880</wsvcl_e_agencia_recebedor>
+				<wsvcl_e_produto_recebedor>1288</wsvcl_e_produto_recebedor>
+				<wsvcl_e_conta_recebedor>000000987083992</wsvcl_e_conta_recebedor>
+				<wsvcl_e_dv_conta_recebedor>0</wsvcl_e_dv_conta_recebedor>
+			</wsvcl_e_destino_pix>
+			<wsvcl_e_destino_tev>
+				<wsvcl_e_agencia_dest_tev>0</wsvcl_e_agencia_dest_tev>
+				<wsvcl_e_produto_dest_tev>0</wsvcl_e_produto_dest_tev>
+				<wsvcl_e_conta_dest_tev>0</wsvcl_e_conta_dest_tev>
+				<wsvcl_e_dv_conta_dest_tev>0</wsvcl_e_dv_conta_dest_tev>
+			</wsvcl_e_destino_tev>
+		</wsvcl_e_dados_destino>
+	</wsvcl_entrada>
+</WsAtrwsvcl>
+<break_param_tarefa/>{"nuTarefa":100143,"nuVersaoTarefa":1,"nome":"EfetivaLimiteWS","codigoHttp":null,"codigo":"00","origemRetorno":"SIATR","mensagem":"TRANSACAO REALIZADA COM SUCESSO","nsuCorp":8828795,"entradaApi":null,"saidaApi":"<WsAtrwsvcl xmlns=\"http://caixa.gov.br/siatr/limite/valida/resp\"><wsvcl_s_saida><wsvcl_s_cod_retorno>0</wsvcl_s_cod_retorno><wsvcl_s_nsu_siatr>8828795</wsvcl_s_nsu_siatr><wsvcl_s_msg/><wsvcl_s_vr_uso_crot>0.00</wsvcl_s_vr_uso_crot><wsvcl_s_nome_cliente_tit>DANILO COSTA DE CARVALHO</wsvcl_s_nome_cliente_tit><wsvcl_s_tipo_pessoa_tit>1</wsvcl_s_tipo_pessoa_tit><wsvcl_s_cpf_cnpj_conta>87544495884</wsvcl_s_cpf_cnpj_conta><wsvcl_s_agencia_mig>0</wsvcl_s_agencia_mig><wsvcl_s_produto_mig>0</wsvcl_s_produto_mig><wsvcl_s_conta_mig>0</wsvcl_s_conta_mig><wsvcl_s_dv_conta_mig>0</wsvcl_s_dv_conta_mig><wsvcl_s_dt_contabil>20220103</wsvcl_s_dt_contabil><wsvcl_s_sistema_original>N</wsvcl_s_sistema_original><wsvcl_s_marca_cgu>0</wsvcl_s_marca_cgu><wsvcl_s_agencia_rel>3880</wsvcl_s_agencia_rel><wsvcl_s_nome_cliente_dest>THIAGO TIROLLI DORTA</wsvcl_s_nome_cliente_dest><wsvcl_e_tipo_pessoa_dest>1</wsvcl_e_tipo_pessoa_dest><wsvcl_s_cpf_cnpj_conta_dest>31344007821</wsvcl_s_cpf_cnpj_conta_dest><wsvcl_s_nsu_efetivacao>0</wsvcl_s_nsu_efetivacao></wsvcl_s_saida></WsAtrwsvcl>"}<break_tarefa_pmac/>100130<break_param_tarefa/>1<break_param_tarefa/>2022-01-03 14:46:54.051<break_param_tarefa/>00360305|3880|12880000009831864650|TESTE RUMMENIGG5|87544495884|SVGS|||NSGD|00360305|3880|12880000009870839920|THIAGO TIROLLI DORTA|31344007821|SVGS|31344007821|E00360305202201031446d970617d3d6|2022-01-03T14:46:54Z|BRL|2.07|***|||2022-01-07T00:00:00Z|||||||||CLRG|NORM||Teste|||cli-mob-nbm|00||12|201.7.14.121|0|D1DA5314-05F3-4F87-87A8-E541EA67939A|-15.83121273093653|-48.05868034966148|7.025034774929061|1641230451.658707|IOS|15.1|IOS IPHONE|0.0.1|4|falso|falso|||||||||||||3000425577|2022-01-07|AGENDADO|QR_CODE_ESTATICO|IPAY|PAGAGD|||SLEV||||||||||||||||||<break_param_tarefa/>{"nuTarefa":100130,"nuVersaoTarefa":1,"nome":"EnvioAntifraude","codigoHttp":null,"codigo":"00","origemRetorno":"SIAAF","mensagem":"TRANSACAO REALIZADA COM SUCESSO","nsuCorp":0,"entradaApi":null,"saidaApi":""}<break_tarefa_pmac/>100131<break_param_tarefa/>1<break_param_tarefa/>2022-01-03 14:46:54.275<break_param_tarefa/>{"identificador":87544495884,"icMensagem":"PIX_025","parametros":{"NOME_PAGADOR":"TESTE RUMMENIGG5","NOME_RECEBEDOR":"THIAGO TIROLLI DORTA","DIA":"07/01/2022","VALOR":"2.07"},"canal":"caixatem"}<break_param_tarefa/>{"nuTarefa":100131,"nuVersaoTarefa":1,"nome":"EnvioPushCanal","codigoHttp":200,"codigo":"00","origemRetorno":"PUSH","mensagem":"TRANSACAO REALIZADA COM SUCESSO","nsuCorp":0,"entradaApi":null,"saidaApi":"{\"codigo\":200,\"mensagem\":\"Mensagem enviada com sucesso\"}"}<break_tarefa_pmac/>

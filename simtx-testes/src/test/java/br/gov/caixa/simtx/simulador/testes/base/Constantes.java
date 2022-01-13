@@ -31,11 +31,23 @@ public class Constantes {
 	
 	public static final String REGISTRO_N_ENCONTRADO_TB34 = "Registro nao encontrada na tabela MTXTB034_TRANSACAO_AGENDAMENTO";
 	
+	public static final String REGISTRO_N_ENCONTRADO_TB03 = "Registro nao encontrada na tabela CCOTB003_TRANSACAO";
+	
+	public static final String REGISTRO_N_ENCONTRADO_TB09 = "Registro nao encontrado na tabela CCOTB009_TRANSACAO_XML";
+	
+	public static final String REGISTRO_N_ENCONTRADO_TB18 = "Nenhum Tarefa encontrada na tabela CCOTB018_SRVCO_TRNSO_TARFA";
+	
+	public static final String REGISTRO_N_ENCONTRADO_TB38 = "Registro nao encontrada na tabela CCOTB038_TRANSACAO_INTERFACE";
+	
 	public static final String N_DEVE_TER_REGISTRO_TB15 = "Nao espera-se registros na tabela MTXTB015_SRVCO_TRNSO_TARFA";
 	
 	public static final String N_DEVE_TER_REGISTRO_TB34 = "Nao espera-se registro na tabela MTXTB034_TRANSACAO_AGENDAMENTO";
 	
 	public static final String QTDE_TAREFAS_DIVERGENTE_TB15 = "Quantidade de tarefas gravadas na tabela MTXTB015_SRVCO_TRNSO_TARFA esta divergente";
+	
+	public static final String QTDE_TAREFAS_DIVERGENTE_TB18 = "Quantidade de tarefas gravadas na tabela CCOTB018_SRVCO_TRNSO_TARFA esta divergente";
+	
+	public static final String QTDE_INTERFACES_DIVERGENTE_TB38 = "Quantidade de interfaces gravadas na tabela CCOTB038_TRANSACAO_INTERFACE esta divergente";
 	
 	public static final String TAREFA_GRAVADA_ERRADA = "Tarefa nao deveria estar gravada na tabela";
 	
