@@ -1,0 +1,42 @@
+<REQUISICAO><OPERACAO>UNICA</OPERACAO></REQUISICAO><break_pmac/>{
+    "dataHora": "2022-01-19T17:47:54.44Z",
+    "finalidadeTransacao": "IPAY",
+    "formaIniciacaoPagamento": "MANUAL_COM_CHAVE",
+    "idFimAFim": "E00360305202201192047411a6a9c6e9",
+    "informacoesEntreUsuarios": "incididunt elit",
+    "usuarioPagador": {
+        "conta": {
+            "ispb": "00360305",
+            "numeroConta": "987088486",
+            "chave": "ad n",
+            "agencia": "1370",
+            "produto": "1288",
+            "dv": "0",
+            "tipoConta": "SVGS"
+        },
+        "cpf": "28266418160",
+        "nome": "ea occaecat adipisicing sunt"
+        
+    },
+    "usuarioRecebedor": {
+        "conta": {
+            "ispb": "00360305",
+            "numeroConta": "988227687",
+            "chave": "reprehenderit commodo aute",
+            "agencia": "2",
+            "produto": "1288",
+            "dv": "9",
+            "tipoConta": "SVGS"
+        },
+        "cpf": "11666543543",
+        "nome": "consequat Ut dolore"
+       
+    },
+    "valor": 0.01,
+    "nsuCanal": 0,
+    "nsuValidacao": "3000620795",
+    "dataValidacao": "2022-01-19",
+    "participanteTarifado": "SLEV",
+    "metodoLiquidacao": "CLRG",
+    "transactionCurrency": "BRL"
+}<break_pmac/>{"idFimAFim":"E00360305202201192047411a6a9c6e9","nsuTransacao":3000620877,"dataTransacao":"2022-01-19"}<break_pmac/><TRANSACAO><NSU>{{nsuMtx}}</NSU><NSU_ORIGEM>3000620795</NSU_ORIGEM><CODIGO_SERVICO>110116</CODIGO_SERVICO><VERSAO_SERVICO>4</VERSAO_SERVICO><NOME_SERVICO>-</NOME_SERVICO><CO_CANAL>115</CO_CANAL><CO_CANAL_ORIGEM>115</CO_CANAL_ORIGEM><DT_REFERENCIA>19/01/2022</DT_REFERENCIA><DH_TRANSACAO_CANAL>19/01/2022 14:47:54</DH_TRANSACAO_CANAL><DT_CONTABIL></DT_CONTABIL><DH_MULTICANAL>19/01/2022 17:47:54</DH_MULTICANAL><IC_SITUACAO>1</IC_SITUACAO><TAREFAS>3</TAREFAS></TRANSACAO><break_pmac/>100116<break_param_tarefa/>1<break_param_tarefa/>2022-01-19 17:47:54.207<break_param_tarefa/>{"dv":["0"],"produto":["1288"],"conta":["987088486"],"unidade":["1370"]}<break_param_tarefa/>{"nuTarefa":100116,"nuVersaoTarefa":1,"nome":"validaTitular","codigoHttp":200,"codigo":"00","origemRetorno":"SIBAR","mensagem":"TRANSACAO REALIZADA COM SUCESSO","nsuCorp":0,"entradaApi":null,"saidaApi":"{\"tipo_conta\":\"NSGD\",\"titularidade\":1}"}<break_tarefa_pmac/>100109<break_param_tarefa/>4<break_param_tarefa/>2022-01-19 17:47:55.06<break_param_tarefa/>{"idFimAFim":"E00360305202201192047411a6a9c6e9","valor":0.01,"usuarioPagador":{"nome":"ea occaecat adipisicing sunt","cpf":"28266418160","conta":{"chave":"ad n","agencia":"1370","numeroConta":"9870884860","produto":"1288","tipoConta":"SVGS","ispb":"00360305"}},"usuarioRecebedor":{"nome":"consequat Ut dolore","cpf":"11666543543","conta":{"chave":"reprehenderit commodo aute","agencia":"2","numeroConta":"9882276879","produto":"1288","tipoConta":"SVGS","ispb":"00360305"}},"dataHoraRecebimentoPagador":"19/01/2022 17:47:54","informacoesEntreUsuarios":"incididunt elit","tipoAutenticacao":"SIMPLES","nsu":3000620877,"participanteTarifado":"SLEV","prioridadePagamento":"HIGH","canal":"SINBM","pagamentoSiaafDto":{"titularidade":null,"categoriaConta":null,"jurosMulta":null,"descontoAbatimento":null,"dataVencimentoPagamento":null,"detalhesPagamento":null,"tempoExpiracaoQrCode":null,"pointInitiationMethod":null,"merchantAccountInformation":null,"merchantName":null,"merchantCategoryCode":null,"merchantCity":null,"countryCode":null,"finalidade":null,"identificacao":null,"codigoResposta":null,"codigoAcesso":null,"ipDispositivo":"ds3232","portaDispositivo":"8080","idMobileFirst":"sasa23","latitude":"-212121121","longitude":"-12121221","precisao":"21","timeStampGeo":"1603392719","sistOperacionalDispositivo":"Android","sistOperacionalVersao":"10.0","tipoDeDispositivo":"samsung","aplicativoVersao":"nougt","tipoDeAutenticacao":"1","vm":"y","root":"yes","nuCartao":null,"agenciaVinculacaoTerminal":null,"nuATM":null,"nuConveniado":null,"nuTerminalLoterico":null,"nuOperadorTerminal":null,"nuEstacaoFinanceiraOperacional":null,"ipURA":null,"mdcu":null,"nuTelefone":null,"nuOperadorEstacaoFinanceiraOperacional":null,"nuAutorizadorEstacaoFinanceiraOperacional":null},"metodoLiquidacao":"CLRG","transactionCurrency":"BRL","formaIniciacaoPagamento":"MANUAL_COM_CHAVE","tipoPrioridadePagamento":"PAGPRI","finalidadeTransacao":"IPAY","valorTarifa":0,"icContingenciaTarifa":1}<break_param_tarefa/>{"nuTarefa":100109,"nuVersaoTarefa":4,"nome":"PagamentoSPI","codigoHttp":201,"codigo":"00","origemRetorno":"SISPI","mensagem":"TRANSACAO REALIZADA COM SUCESSO","nsuCorp":0,"entradaApi":null,"saidaApi":""}<break_tarefa_pmac/>100121<break_param_tarefa/>1<break_param_tarefa/>2022-01-19 17:48:10.81<break_param_tarefa/>{"idFimAFim":"E00360305202201192047411a6a9c6e9","valor":0.01,"usuarioPagador":{"nome":"ea occaecat adipisicing sunt","cpf":"28266418160","conta":{"chave":"ad n","agencia":"1370","numeroConta":"9870884860","produto":"1288","tipoConta":"SVGS","ispb":"00360305"}},"usuarioRecebedor":{"nome":"consequat Ut dolore","cpf":"11666543543","conta":{"chave":"reprehenderit commodo aute","agencia":"2","numeroConta":"9882276879","produto":"1288","tipoConta":"SVGS","ispb":"00360305"}},"dataHoraRecebimentoPagador":"19/01/2022 17:47:54","informacoesEntreUsuarios":"incididunt elit","tipoAutenticacao":"SIMPLES","nsu":3000620877,"participanteTarifado":"SLEV","prioridadePagamento":"HIGH","canal":"SINBM","pagamentoSiaafDto":{"titularidade":null,"categoriaConta":null,"jurosMulta":null,"descontoAbatimento":null,"dataVencimentoPagamento":null,"detalhesPagamento":null,"tempoExpiracaoQrCode":null,"pointInitiationMethod":null,"merchantAccountInformation":null,"merchantName":null,"merchantCategoryCode":null,"merchantCity":null,"countryCode":null,"finalidade":null,"identificacao":null,"codigoResposta":null,"codigoAcesso":null,"ipDispositivo":"ds3232","portaDispositivo":"8080","idMobileFirst":"sasa23","latitude":"-212121121","longitude":"-12121221","precisao":"21","timeStampGeo":"1603392719","sistOperacionalDispositivo":"Android","sistOperacionalVersao":"10.0","tipoDeDispositivo":"samsung","aplicativoVersao":"nougt","tipoDeAutenticacao":"1","vm":"y","root":"yes","nuCartao":null,"agenciaVinculacaoTerminal":null,"nuATM":null,"nuConveniado":null,"nuTerminalLoterico":null,"nuOperadorTerminal":null,"nuEstacaoFinanceiraOperacional":null,"ipURA":null,"mdcu":null,"nuTelefone":null,"nuOperadorEstacaoFinanceiraOperacional":null,"nuAutorizadorEstacaoFinanceiraOperacional":null},"metodoLiquidacao":"CLRG","transactionCurrency":"BRL","formaIniciacaoPagamento":"MANUAL_COM_CHAVE","tipoPrioridadePagamento":"PAGPRI","finalidadeTransacao":"IPAY","valorTarifa":0,"icContingenciaTarifa":1}<break_param_tarefa/>{"nuTarefa":100121,"nuVersaoTarefa":1,"nome":"","codigoHttp":200,"codigo":"00","origemRetorno":"SISPI","mensagem":"","nsuCorp":0,"entradaApi":{"dataHora":"2022-01-19T17:48:10.269","idFimAFim":"E00360305202201192047411a6a9c6e9","situacaoDaTransacao":"ACSC","dataTransacao":"2022-01-19"},"saidaApi":{"idFimAFim":"E00360305202201192047411a6a9c6e9","nsuTransacao":3000620877,"dataTransacao":"2022-01-19"}}<break_tarefa_pmac/>

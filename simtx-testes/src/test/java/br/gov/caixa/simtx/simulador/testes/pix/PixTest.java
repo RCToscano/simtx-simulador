@@ -51,7 +51,7 @@ public class PixTest extends BaseTeste {
 //	private static final String URI = "https://simtx02.webservices.des.caixa/pagamentos-instantaneos/v3/pagamentos";
 //	private static final String URI = "https://simtx03.webservices.des.caixa/pagamentos-instantaneos/v3/pagamentos";
 //	private static final String URI = "https://simtx.webservices.des.caixa/pagamentos-instantaneos/v3/pagamentos";
-	private static final String URI = "http://localhost:18080/pagamentos-instantaneos/v3/pagamentos";
+	private static final String URI = "http://localhost:28080/pagamentos-instantaneos/v3/pagamentos";
 	
 	private static final String URI_IDFIMAFIM = "https://sispi-container-backend-des-esteiras.nprd2.caixa/sispi-api-war/api/v1/ids-pagamento";
 	

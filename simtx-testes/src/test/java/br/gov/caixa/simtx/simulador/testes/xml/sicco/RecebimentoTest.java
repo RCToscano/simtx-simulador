@@ -57,7 +57,7 @@ class RecebimentoTest extends BaseTeste {
 	
 	@Test
 	void test1Boleto() throws JMSException, InterruptedException {
-		String xml = recuperarJson(BASE_PATH_XML + "recebimento_sicco/boleto/teste2.xml");
+		String xml = recuperarJson(BASE_PATH_XML + "recebimento_sicco/boleto/teste1.xml");
 		xml = xml.trim().replaceAll("(>+[\" \"]*)", ">");
 		xml = xml.replaceAll(XML_LINARIZATION_REGEX, XML_LINARIZATION_REPLACEMENT);
 		final String xmlFinal = xml;
@@ -67,7 +67,7 @@ class RecebimentoTest extends BaseTeste {
 		RecebimentoVO recebimentoVO = executarTest3Boleto(fila, xmlFinal);
 		assertNotNull(recebimentoVO);
 		
-		Thread.sleep(1500);
+		Thread.sleep(5000);
 		
 		List<Long> tarefas = new ArrayList<>();
 		tarefas.add(100043l);
@@ -167,7 +167,7 @@ class RecebimentoTest extends BaseTeste {
 			listaTransacoes.add(executarTest3Boleto(fila, xmlFinal));
 		}
 		
-		Thread.sleep(1500);
+		Thread.sleep(15000);
 		
 		List<Long> tarefas = new ArrayList<>();
 		tarefas.add(100043l);
@@ -302,7 +302,7 @@ class RecebimentoTest extends BaseTeste {
 	void test1Pix() throws JMSException, InterruptedException {
 		BigDecimal nsuTransacao = tabelas.gerarNsuTransacao(this.connection);
 
-		String xml = recuperarJson(BASE_PATH_XML + "recebimento_sicco/pix/teste1.xml");
+		String xml = recuperarJson(BASE_PATH_XML + "recebimento_sicco/pix/teste3.xml");
 		xml = xml.replace("{{nsuMtx}}", nsuTransacao.toString());
 
 		Fila fila = Fila.getFilaRequisicao(host, port, manager, channel, queueReq);
